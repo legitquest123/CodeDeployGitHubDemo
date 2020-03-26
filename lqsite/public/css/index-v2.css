@@ -1,0 +1,208 @@
+.main-banner{
+  background-image: url(./../images/photo-of-man-wearing-eyeglasses-3184611.png);
+  background-size: cover;
+}
+
+.search-filed-box .search-field .form-control {
+    border-radius: 40px;
+    font-size: 1.4rem;
+}
+.search-bar-sm .open-dropdown div.tree-multiselect .auxiliary input.search {
+    height: 36px;
+    box-shadow: none !important;
+    font-size: 1.5rem;
+    top: -42px;
+}
+
+div.tree-multiselect .auxiliary input.search {
+    padding: 5px;
+    margin: 0;
+    border: 0px;
+    display: table-cell;
+    width: 100%;
+    position: absolute;
+    top: -41px;
+    outline: none;
+    left: 0px;
+}
+.main-banner h2{
+  font-size: 2.9rem;
+}
+.menu-icon {
+
+    color: #101f41 !important;
+    line-height: normal;
+}
+.hamburger {
+    font: inherit;
+    display: inline-block;
+    overflow: visible;
+    margin: 0;
+    cursor: pointer;
+    transition-timing-function: linear;
+    transition-duration: .15s;
+    transition-property: opacity,filter;
+    text-transform: none;
+    color: inherit;
+    border: 0;
+    background-color: transparent;
+}
+.hamburger-box {
+    width: 26px;
+    height: 21px;
+    position: relative;
+    display: inline-block;
+}
+.hamburger-inner {
+    top: 2px;
+}
+.hamburger-inner,.hamburger-inner:before, .hamburger-inner:after {
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  transition-timing-function: ease;
+  transition-duration: .15s;
+  transition-property: transform;
+  border-radius: 4px;
+  background-color: #000;
+  display: block;
+}
+.hamburger-inner:before {
+    content: "";
+    top: 8px;
+}
+.hamburger-inner:after {
+    content: "";
+    bottom: -10px;
+    top: 16px;
+}
+
+body.menu-open{
+  overflow: hidden;
+  padding-right: 17px
+}
+.menu-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    right: 0px;
+    background-color: #0d1f50ad;
+    display: none;
+    z-index: 10;
+}
+.hamburger.is-active .hamburger-inner {
+    transform: translate3d(0,10px,0) rotate(45deg);
+}
+.hamburger.is-active .hamburger-inner:before {
+    transform: rotate(-45deg) translate3d(-5.71429px,-6px,0);
+    opacity: 0;
+}
+.hamburger.is-active .hamburger-inner:after {
+    transform: translate3d(0,-16px,0) rotate(-90deg);
+}
+.carousel-control-next, .carousel-control-prev {
+    color: #101f41;
+    opacity: 1;
+    font-size: 45px;
+    width: 5%;
+    background-color: transparent;
+    border: 0px;
+    padding: 0px;
+  }
+  .carousel-control-next:hover, .carousel-control-prev:hover,
+  .carousel-control-next:focus, .carousel-control-prev:focus
+   {
+    color: #4d5bed;
+  }
+
+  .carousel-item {
+    transition: transform .3s ease-in-out;
+  }
+  .side-navbar .nav--has-sub-menu >.nav-sub-menu {
+  border: 0px !important;
+  background-color: #0b1b46 !important;
+  transform: none;
+}
+  .side-navbar .nav-sub-menu .nav-item .nav-link {
+      color: #939dffb5;
+  }
+
+/*##############--------sidebar-nav---------#####################*/
+
+.sidebar-menu {
+    width: 300px;
+    position: fixed;
+    left: -300px;
+    top: 0px;
+    z-index: 100;
+    background-color: #0d2050;
+    height: 100vh;
+    transition: all ease-in-out 100ms
+}
+.menu-open .sidebar-menu{
+  left: 0px
+}
+.sidebar-nav .nav-item .nav-link {
+    color: whitesmoke;
+    font-weight: 300;
+}
+.sidebar-nav .nav-item .dropdown-menu {
+    width: 100%;
+    border-radius: 0px;
+    background: linear-gradient(to right, #0f245b, #11255d);
+    transform: none !important;
+    border: 0px;
+    float: none;
+}
+.sidebar-nav .nav-item .dropdown-menu .nav-link {
+    font-size: .8rem;
+    padding: .4rem 2rem !important;
+    font-weight: 200;
+}
+.sidebar-nav .nav-item .dropdown-menu .nav-link:hover {
+    background-color: #4d5bed26;
+}
+.menu-open .main-wrapper
+{
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
+  filter: url("https://gist.githubusercontent.com/amitabhaghosh197/b7865b409e835b5a43b5/raw/1a255b551091924971e7dee8935fd38a7fdf7311/blur".svg#blur);
+filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
+}
+.nav--has-sub-menu:not(.show) .dropdown-menu {
+  display: none !important
+}
+.sidebar-menu-header{
+      border-bottom: 1px solid #ffffff08;
+}
+.sidebar-nav>.nav--has-sub-menu>a::after {
+    content: "\f078";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 70%;
+    position: absolute !important;
+    right: 1.5rem;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    top: 20px;
+}
+.sidebar-nav>.nav--has-sub-menu.show>a::after {
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+.sidebar-menu .slimScroll {
+    height: calc(100vh - 73px) !important;
+}
+.sidebar-menu .nav--has-sub-menu.show > .nav-link {
+    background-color: #0b1b46;
+}
+.sidebar-menu .nav-item.active > .nav-link {
+    color: #ffffff !important;
+}
+.nav--has-sub-menu.show .dropdown-menu{
+  display: block;
+}
