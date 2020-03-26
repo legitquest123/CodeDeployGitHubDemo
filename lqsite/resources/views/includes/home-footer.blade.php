@@ -138,7 +138,11 @@
   </div> <!-- END Alert Notifications Wrapper -->
 
   <!-- Global Required JS -->
-  <script src="{{asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script>
+  <!-- <script src="{{asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script> -->
+   <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
   <script src="{{asset('public/js/vendor/popper.min.js')}}"></script>
   <script src="{{asset('public/js/vendor/bootstrap.min.js')}}"></script>
 
@@ -150,6 +154,9 @@
   <script src="{{asset('public/js/init/wb.swiper-init.js')}}"></script>
   <script src="{{asset('public/js/init/wb.ajaxchimp-init.js')}}"></script>
   <script src="{{asset('public/js/vendor/jquery.tree-multiselect.js')}}"></script>
+  <script src="{{asset('public/js/vendor/jquery.slimscroll.min.js')}}"></script>
+
+
   <!-- Template JS -->
   <script src="{{asset('public/js/min/main-min.js')}}"></script>
   <script src="{{asset('public/js/searchbar.js')}}"></script>
@@ -166,8 +173,6 @@
   animatedClassName: 'aos-animate', // class applied on animation
   useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
   disableMutationObserver: false, // disables automatic mutations' detections (advanced)
-
-
   // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
   offset: 300, // offset (in px) from the original trigger point
   delay: 0, // values from 0 to 3000, with step 50ms
@@ -181,8 +186,8 @@
   </script>
 
   <script type="text/javascript">
-    $('.menu-icon').on('click',function() {
-      $('.offcanvas-collapse').toggleClass('open');
+    $('.menu-icon, .sidebar-menu-header .close').on('click',function() {
+
       $('body').toggleClass('menu-open');
       $('.hamburger').toggleClass('is-active');
       $('.menu-overlay').fadeToggle();
@@ -190,7 +195,22 @@
   </script>
 
   <script type="text/javascript">
+    $('.sidebar-nav .nav-link').on('click', function() {
+      $(this).parent('.nav-item.nav--has-sub-menu').siblings().removeClass('show');
+      $(this).parent('.nav-item.nav--has-sub-menu').toggleClass('show')
+    })
+  </script>
+
+  <script type="text/javascript">
     $('.carousel').carousel({
       interval: 4000
     })
+  </script>
+
+  <script>
+    $(function() {
+      $('.slimScroll').slimScroll({
+        height: '',
+      });
+    });
   </script>
