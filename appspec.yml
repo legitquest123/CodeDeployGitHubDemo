@@ -6,9 +6,9 @@ files:
 permissions:
    - object: /var/www/html
      pattern: "**"
-     owner: apache
-     group: apache
-     mode: 755
+     owner: root
+     group: root
+     mode: 775
      type:
        - file
 hooks:
