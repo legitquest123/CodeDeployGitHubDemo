@@ -3,7 +3,7 @@
 @section('content')
  <section class="section about-section section-hero py-0 bg-gray">
       <div class="container">
-      <p>Welcome to Leg</p>
+   
         <div class="row row-grid justify-content-center">
 
           <div class="col-md-7 align-self-center text-center mt-9">
