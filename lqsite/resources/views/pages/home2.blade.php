@@ -392,7 +392,7 @@
           <div class="row">
             <div class="col-md-5 text-center text-md-left">
               <div class="icon icon--rounded bg-primary mb-4">
-                <img src="images\icn_fluxo_quote.svg" alt="Feature Icon" class="feature-icon">
+                <img src="{{asset('public/images/icn_fluxo_quote.svg')}}" alt="Feature Icon" class="feature-icon">
               </div>
 
               <h2 class="mt-2 mb-5 mb-md-0 font-weight-bold">Over 200 firms and Universities are
