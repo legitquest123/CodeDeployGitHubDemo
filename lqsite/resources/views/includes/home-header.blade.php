@@ -16,7 +16,7 @@
           <a class="nav-link py-3" href="http://18.188.142.12/lqsite/">Home</a>
         </li>
         <li class="nav-item nav--has-sub-menu ">
-          <a class="nav-link py-3" href="https://legitquest.com/">Company</a>
+          <a class="nav-link py-3" href="#">Company</a>
           <ul class="dropdown-menu position-static py-3">
             <li class="nav-item">
               <a href="{{URL('about')}}" class="nav-link py-3">About Legitquest</a>
