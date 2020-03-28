@@ -25,7 +25,7 @@
               <a href="./team.html" class="nav-link py-3">Our Team</a>
             </li>
             <li class="nav-item">
-              <a href="./careers.html" class="nav-link py-3">Career</a>
+              <a href="{{URL('career')}}" class="nav-link py-3">Career</a>
             </li>
             <li class="nav-item">
               <a href="./contact.html" class="nav-link  py-2">Contact US</a>
