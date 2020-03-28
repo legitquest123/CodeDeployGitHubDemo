@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
  <section class="section about-section section-hero py-0 bg-gray">
