@@ -382,7 +382,7 @@
             <ul class="navbar-nav">
               <li class="nav-item nav--has-sub-menu" data-toggle="hover">
                 <a class="nav-link" href="#" data-toggle="dropdown">
-                <img src="./images/team/ambikaprasad.jpg" class="rounded-circle mr-3" width="25">Ambika Prasad
+                <img src="{{asset('public/images/team/ambikaprasad.jpg')}}" class="rounded-circle mr-3" width="25">Ambika Prasad
                 </a>
 
                 <ul class="nav-sub-menu dropdown-menu rounded-lg shadow dropdown-menu-right">
