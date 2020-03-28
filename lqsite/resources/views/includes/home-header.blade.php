@@ -13,13 +13,13 @@
     <div class="slimScroll pb-5">
       <ul class="sidebar-nav">
         <li class="nav-item active">
-          <a class="nav-link py-3" href="./index.html">Home</a>
+          <a class="nav-link py-3" href="http://18.188.142.12/lqsite/">Home</a>
         </li>
         <li class="nav-item nav--has-sub-menu ">
           <a class="nav-link py-3" href="#">Company</a>
           <ul class="dropdown-menu position-static py-3">
             <li class="nav-item">
-              <a href="./about.html" class="nav-link py-3">About Legitquest</a>
+              <a href="{{URL('about')}}" class="nav-link py-3">About Legitquest</a>
             </li>
             <li class="nav-item">
               <a href="./team.html" class="nav-link py-3">Our Team</a>
