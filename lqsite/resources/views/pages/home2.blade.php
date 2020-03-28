@@ -194,7 +194,7 @@
             <div class="row">
               <div class="col-md-5 ml-auto order-md-2 text-center text-md-left">
                 <div class="icon icon--rounded bg-primary mb-4">
-                  <img src="images\icn_fluxo_stacks.svg" alt="Feature Icon" class="feature-icon">
+                  <img src="{{asset('public/images/icn_fluxo_stacks.svg')}}" alt="Feature Icon" class="feature-icon">
                 </div>
 
                 <h2 class="mt-2 mb-4">Intuitive search engine to save time</h2>
@@ -207,7 +207,7 @@
               </div>
               <div class="col-md-6 order-md-1 mb-5 mb-md-0" data-aos="fade-right">
                 <div class="px-3">
-                    <img src="./images/searchbar.png" alt="Feature" class="img-fluid mx-auto d-block">
+                    <img src="{{asset('public/images/searchbar.png')}}" alt="Feature" class="img-fluid mx-auto d-block">
                 </div>
 
               </div>
@@ -221,7 +221,7 @@
             <div class="row">
               <div class="col-md-5 mr-auto  text-center text-md-left" >
                 <div class="icon icon--rounded bg-primary mb-4">
-                  <img src="images\icn_fluxo_chart.svg" alt="Feature Icon" class="feature-icon">
+                  <img src="{{asset('public/images/icn_fluxo_chart.svg')}}" alt="Feature Icon" class="feature-icon">
                 </div>
 
                 <h2 class="mt-2 mb-4">Research efficiency which comes with 1-click</h2>
@@ -235,7 +235,7 @@
 
               <div class="col-md-6 mb-5 mb-md-0" data-aos="fade-left">
                 <div class="px-3">
-                <img src="./images/idraf.png"  alt="Feature" class="img-fluid mx-auto d-block">
+                <img src="{{asset('public/images/idraf.png')}}"  alt="Feature" class="img-fluid mx-auto d-block">
               </div>
             </div>
             </div>
@@ -245,13 +245,13 @@
             <div class="row">
               <div class="col-md-6 order-md-1 mb-5 mb-md-0" data-aos="fade-right">
                 <div class="px-3">
-                    <img src="./images/search-results.png"  alt="Feature" class="img-fluid mx-auto d-block">
+                    <img src="{{asset('public/images/search-results.png')}}"  alt="Feature" class="img-fluid mx-auto d-block">
                 </div>
 
               </div>
               <div class="col-md-5 ml-auto order-md-2 text-center text-md-left" >
                 <div class="icon icon--rounded bg-primary mb-4">
-                  <img src="images\icn_fluxo_users.svg" alt="Feature Icon" class="feature-icon">
+                  <img src="{{asset('public/images/icn_fluxo_users.svg')}}" alt="Feature Icon" class="feature-icon">
                 </div>
                 <h2 class="mt-2 mb-4">Results which are relevant to your keyword search</h2>
                 <p class="mb-5">At LegitQuest research we are constantly refining our search

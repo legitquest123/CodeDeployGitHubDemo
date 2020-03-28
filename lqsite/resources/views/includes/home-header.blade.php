@@ -66,7 +66,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link py-3" href="./pricing.html">Pricing </a>
+          <a class="nav-link py-3" href="{{URL('price')}}">Pricing </a>
         </li>
       </ul>
       <hr class="my-0 mb-4">
