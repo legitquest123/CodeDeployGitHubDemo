@@ -22,13 +22,13 @@
               <a href="{{URL('about')}}" class="nav-link py-3">About Legitquest</a>
             </li>
             <li class="nav-item">
-              <a href="./team.html" class="nav-link py-3">Our Team</a>
+              <a href="{{URL('team')}}" class="nav-link py-3">Our Team</a>
             </li>
             <li class="nav-item">
               <a href="{{URL('career')}}" class="nav-link py-3">Career</a>
             </li>
             <li class="nav-item">
-              <a href="./contact.html" class="nav-link  py-2">Contact US</a>
+              <a href="{{URL('contact')}}" class="nav-link  py-2">Contact US</a>
             </li>
           </ul>
         </li>
@@ -38,13 +38,13 @@
 
           <ul class="dropdown-menu position-static py-3">
             <li class="nav-item">
-              <a href="./research-request.html" class="nav-link py-3">Research</a>
+              <a href="{{URL('researchrequest')}}" class="nav-link py-3">Research</a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link py-3">Publish</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link py-3">Top Judgement</a>
+              <a href="{{URL('judgment')}}" class="nav-link py-3">Top Judgement</a>
             </li>
           </ul>
         </li>
@@ -54,13 +54,13 @@
 
           <ul class="dropdown-menu  position-static py-3">
             <li class="nav-item">
-              <a href="./translator-typist.html" class="nav-link py-3">Typing</a>
+              <a href="{{URL('service')}}" class="nav-link py-3">Typing</a>
             </li>
             <li class="nav-item">
-              <a href="./translator-typist.html" class="nav-link py-3">Translation</a>
+              <a href="{{URL('service')}}" class="nav-link py-3">Translation</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link py-3">Filling</a>
+              <a href="{{URL('service')}}" class="nav-link py-3">Filling</a>
             </li>
           </ul>
         </li>
@@ -72,8 +72,8 @@
       <hr class="my-0 mb-4">
       <ul class="navbar-nav ml-auto align-items-lg-center">
         <li class="nav-item px-3 d-flex align-items-center flex-fill">
-          <a class="nav-link text-primary py-0 mr-3" href="./login.html">Sign In</a>
-          <a href="./pricing.html" class="btn btn-primary btn-sm btn--has-shadow mt-3 mt-lg-0 ml-auto">Sign Up</a>
+          <a class="nav-link text-primary py-0 mr-3" href="#">Sign In</a>
+          <a href="#" class="btn btn-primary btn-sm btn--has-shadow mt-3 mt-lg-0 ml-auto">Sign Up</a>
         </li>
 
       </ul>
