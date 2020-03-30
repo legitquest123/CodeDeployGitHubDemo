@@ -281,3 +281,29 @@ function showNotebookNote(id)
     });
   }
 </script>
+
+<script>
+  function deleteNote()
+  {
+   var c = confirm("Are you sure you want to empty trash??")
+   if(c)
+   {
+       $.ajax({
+       type:'GET',
+       url:'delete-trash',
+       beforeSend:function(){
+        $('#loading_image').show();
+       },
+       complete:function(){
+        $('#loading_image').hide();
+       },
+       success:function(response){
+      location.reload(true);
+   }
+       }); 
+  }
+   
+  }
+</script>
+
+

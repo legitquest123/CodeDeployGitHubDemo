@@ -104,4 +104,20 @@ class NotesController extends Controller
     	}
     	return $view;
     }
+
+    public function showtrash()
+    {
+    	$data = Notes::all()->where('trash' ,'=',1);
+    	return view('pages.trash',compact('data'));
+    }
+
+    public function deletetrash()
+    {
+    	$delete = Notes::where('trash','=',1)->delete();
+    	if($delete)
+    		return redirect()->back()->with('success','Trash is Empty');
+    	else
+    		return redirect()->back()->with('error','Unable to empty trash');
+
+    }
 }

@@ -180,6 +180,8 @@ Route::post('add-note','NotesController@addNote')->name('addNote');
 Route::post('note-detail','NotesController@getNoteDetail');
 Route::post('add-notebook','NotesController@addNoteBook')->name('add-notebook');
 Route::get('notebook-note','NotesController@getNoteBookNotes');
+Route::get('trash','NotesController@showtrash');
+Route::get('delete-trash','NotesController@deletetrash');
 
 
 
