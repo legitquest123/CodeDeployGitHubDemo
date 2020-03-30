@@ -244,11 +244,17 @@ function showNotebookNote(id)
   $("#result").html('');
   
   $.ajax({
-    type:'POST',
-        url:'share-note',
-        data:{'_token':'{{csrf_token()}}',id:id, email:email},
+    type:'GET',
+        url:'notebook-note',
+        data:{'_token':'{{csrf_token()}}',id:id},
+         beforeSend: function(){
+             $('#loading_image').show();
+             },
+             complete: function(){
+             $('#loading_image').hide();
+             },
         success: function(data){
-            alert(data);
+            $('#notebookTab').html(data);
     }   
     
   });
@@ -263,6 +269,12 @@ function showNotebookNote(id)
       type:'POST',
       url:'note-detail',
       data:{'_token':'{{csrf_token()}}', id:id},
+      beforeSend: function(){
+             $('#loading_image').show();
+             },
+             complete: function(){
+             $('#loading_image').hide();
+             },
       success:function(response){
         $('#result').html(response);
       }

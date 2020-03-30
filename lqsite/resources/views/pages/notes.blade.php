@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 @section('content')
+<div class="overlay">
+      <img id="loading_image" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+    </div>
 <section class="section publish-section section-posts bg-gray  pt-5 pb-5">
       <div class="container-fluid px-md-5">
         <div class="row row-grid justify-content-center">
@@ -140,6 +143,8 @@
                   
                   <div class="col-md-8" style="border:0px solid #CC6600;" id="result">
                   </div>
+                 <!--  <div class="col-md-8" style="border:0px solid #CC6600;" id="result1">
+                  </div> -->
 
                   </div>
               
@@ -167,25 +172,22 @@
                             </tr>
                           </thead>
                           <tbody>
-                         
+                         @foreach($notebookdata as $key => $value)
                             <tr>
-                              <td>
-                               
-                              </td>
-                              <td>
-                                <a href="javascript:void(0);"></a>
-                              </td>
-                              
-
-                              <td>
-                                
-                              </td>
+                            <td>{{$key++}}</td>
+                            <td>
+                              <a onclick="showNotebookNote({{$value->id}});" href="javascript:void(0);">
+                                {{$value->name}}
+                              </a>
+                            </td>
+                              <td>{{$value->date_created}}</td>
                               <td>
                                 <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
                                 <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
                                 <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
                               </td>
                             </tr>
+                            @endforeach
                           </tbody>
                         </table>
                       </div>
@@ -214,36 +216,39 @@
 
       <div class="modal-body">
 
-        <form method="post">
+        <form method="post" action="{{route('add-notebook')}}">
+          @csrf()
             <div class="prblem-area form-group ">
-              <label for="">Problem Area</label>
+              <label for="">Select Your Notebook</label>
               <div class="form-group">
-                <select class="selectpicker-modal form-control" multiple data-selected-text-format="count > 4" title="Select Problem Area">
-                  <option>Content</option>
-                  <option>Segregation</option>
-                  <option>Judge Name</option>
-                  <option>Court</option>
-                  <option>Citation</option>
-                  <option>Other</option>
+                <select class="selectpicker-modal form-control" name="parent_id" title="Select Problem Area">
+                  <option value="0" selected>Select Parent Notebook</option>
+                  @foreach($notebookdata as $key => $value)
+                  <option value="{{$value->id}}">{{$value->name}}</option>
+                  @endforeach
                 </select>
               </div>
 
             </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" value"" name="name" rows="3" placeholder="Please enter name">
+            </div>
 
             <div class="form-group">
                 <label for="">Description</label>
-                <textarea class="form-control" value"" name="" rows="3" placeholder="Please enter information here"></textarea>
+                <textarea class="form-control" value"" name="description" rows="3" placeholder="Please enter information here"></textarea>
             </div>
-        </form>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btn-sm">Send</button>
+        <button type="submit" class="btn btn-primary btn-sm">Send</button>
       </div>
     </div>
   </div>
 </div>
-    
+</form>
     
     
 <div class="popup" style="display: none;">

@@ -178,6 +178,8 @@ Route::post('application','JobsController@jobapplication')->name('app');
 Route::get('notes','NotesController@index');
 Route::post('add-note','NotesController@addNote')->name('addNote');
 Route::post('note-detail','NotesController@getNoteDetail');
+Route::post('add-notebook','NotesController@addNoteBook')->name('add-notebook');
+Route::get('notebook-note','NotesController@getNoteBookNotes');
 
 
 

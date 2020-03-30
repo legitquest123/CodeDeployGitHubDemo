@@ -3,6 +3,16 @@
     color: #cc0000;
     font-size: 14px;
    }
+    #loading_image{
+      left : 50%;
+      top : 50%;
+      position : absolute;
+      z-index : 101;
+      width : 90px;
+      height : 70px;
+      margin-left : -16px;
+      margin-top : -16px;
+     }
  </style>
 
   
