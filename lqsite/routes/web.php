@@ -173,6 +173,12 @@ Route::get('about','PagesController@findslug');
 
 Route::post('application','JobsController@jobapplication')->name('app');
 
+/*Notes Routes*/
+
+Route::get('notes','NotesController@index');
+Route::post('add-note','NotesController@addNote')->name('addNote');
+Route::post('note-detail','NotesController@getNoteDetail');
+
 
 
 

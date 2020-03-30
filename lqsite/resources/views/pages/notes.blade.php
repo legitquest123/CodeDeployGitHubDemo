@@ -1,19 +1,27 @@
 @extends('layouts.layout')
 @section('content')
-
- 
-    <section class="section publish-section section-posts bg-gray  pt-5 pb-5">
+<section class="section publish-section section-posts bg-gray  pt-5 pb-5">
       <div class="container-fluid px-md-5">
         <div class="row row-grid justify-content-center">
 
-          <div class="col-lg-12">
+            <div class="col-lg-12">
+               @if(session('success'))
+                              <div id="messagediv" class="alert alert-success">
+                                  {{session('success')}}
+                              </div>
+                              @endif
+                @if(session('error'))
+              <div id="messagediv" class="alert alert-danger">
+                  {{session('error')}}
+              </div>
+              @endif
 
             <div class="row">
 
               <aside class="sidebar col-lg-3">
                 <section class="widget rounded-lg shadow-sm user-block mb-4 text-center position-relative">
                   <figure class="user-thumb  mb-0">
-                    <img src="./images/team/ambikaprasad.jpg" alt="" class="rounded-circle w-100">
+                    <img src="{{asset('public/images/team/ambikaprasad.jpg')}}" alt="" class="rounded-circle w-100">
                     <figcaption class="position-absolute d-flex align-items-center px-1">
                       <span class="dot-separator bg-success mr-1"></span>
                       <span class="text-dark f-12">Online</span>
@@ -59,11 +67,94 @@
 
               </aside> <!-- END Sidebar -->
 
-              <div class="col-lg-9 mb-5 mb-lg-0">
-                <section>
-                  <div class="card border-0 shadow p-0">
-                    <div class="card-body p-4">
-                      <h4 class="h4 card-title d-block mb-1 font-weight-bold">My Notes</h4>
+             <div class="col-lg-9 mb-5 mb-lg-0">
+              <section>
+                <div class="card border-0 shadow p-0" >
+                  <div class="card-body p-4" >
+                    <div class="row" style="margin:auto; padding:0px; border:0px solid #006633; padding:20px 0px 40px 0px;">
+                      <div class="topnav" id="myTopnav"> 
+                      <a href="javascript:void(0);"  data-toggle="modal" data-target="#add-notes" class="b-r active" id="newNoteBtn"> + New Notes</a> 
+                      <a href="javascript:void(0);" class="b-r" id="noteBtn">All Notes</a> 
+                      <a href="javascript:void(0);" class="b-r" id="notebookBtn">Notebook</a> 
+                      <a href="javascript:void(0);" class="b-r" id="shareBtn">Share with Me</a> 
+                      <a href="javascript:void(0);" class="b-r" id="trashBtn">Trash</a> 
+                      <a href="javascript:void(0);" class="icon"> <i class="fa fa-bars"></i> </a> </div>
+                    </div>
+                    <div class="row" style="margin:auto; padding:0px;" id="row1">
+                      <div class="col-md-4" style="border:0px solid #CC6600;" id="noteTab">
+                        <h4 class="h4 card-title d-block mb-1 font-weight-bold" >My Notes</h4>
+                        <hr class="mb-3">
+                        <div class="row mb-2">
+                        @foreach($data as $value)
+                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;" onclick="getNoteDetail({{$value->id}});">
+                            <h4>{{$value->title}}</h4>
+                            <p style="font-size:12px;">{!!$value->description!!}</p>
+                            <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
+                          </div>
+                          @endforeach
+                        </div>
+                      </div>
+                      <!-- left site -->
+                        <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="trashTab">
+                        <h4 class="h4 card-title d-block mb-1 font-weight-bold" >Trash</h4>
+                        <hr class="mb-3">
+                        <div class="row mb-2">
+                       @foreach($trashdata as $value)
+                       <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;" onclick="getNoteDetail({{$value->id}});">
+                            <h4>{{$value->title}}</h4>
+                            <p style="font-size:12px;">{!!$value->description!!}</p>
+                            <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
+                       </div>
+                       @endforeach
+                          
+                        </div>
+                      </div>
+                      
+                    <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="shareTab">
+                        <h4 class="h4 card-title d-block mb-1 font-weight-bold" >Shared with me</h4>
+                        <hr class="mb-3">
+                        <div class="row mb-2">
+                       
+                       <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;">
+                            <h4></h4>
+                            <p style="font-size:12px;"></p>
+                            <div class="label" style="font-size:12px;"></div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                      
+                    <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="notebookTab">
+                        <h4 class="h4 card-title d-block mb-1 font-weight-bold" >Notebook</h4>
+                        <hr class="mb-3">
+                        <div class="row mb-2">
+               
+                       <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;">
+                            <h4></h4>
+                            <p style="font-size:12px;"></p>
+                            <div class="label" style="font-size:12px;"></div>
+                          </div>
+                         
+                        </div>
+                      </div>
+                  
+                  <div class="col-md-8" style="border:0px solid #CC6600;" id="result">
+                  </div>
+
+                  </div>
+              
+                  <div class="row" style="margin:auto; padding:0px; display:none;" id="row2">
+           
+                 <div class="col-md-10">
+                      <h4 class="h4 card-title d-block mb-1 font-weight-bold">My Notebook</h4>
+                      </div>
+                       <div class="col-md-2">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".report-problem-form" style="float:right; padding-left: 5px; padding-right: 5px;">
+                        New Notebook
+                        </button>
+                      </div>
+                      
+                      <input type="hidden" id="notebookId">
                       <hr class="mb-3">
                       <div class="table-responsive">
                         <table id="datatable" class="table table-striped f-14">
@@ -71,255 +162,25 @@
                             <tr>
                               <th>S/N</th>
                               <th>Title</th>
-                              <th>Discription</th>
                               <th>Date</th>
                               <th>Action</th>
                             </tr>
                           </thead>
                           <tbody>
+                         
                             <tr>
                               <td>
-                                1
+                               
                               </td>
                               <td>
-                                <a href="#">Chandrashekhar Verma Vs. State of M.P.</a>
+                                <a href="javascript:void(0);"></a>
                               </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td class="row-actions">
                               
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                2
-                              </td>
-                              <td>
-                                <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
 
                               <td>
-                                22-11-2019
+                                
                               </td>
                               <td>
-                                <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
-                                <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                3
-                              </td>
-                              <td>
-                                <a href="#">In lobortis volutpat tortor. In nec blandit nulla, ut pretium sem</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td class="row-actions">
-                                <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
-                                <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                4
-                              </td>
-                              <td>
-                                <a href="#">Chandrashekhar Verma Vs. State of M.P.</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td class="row-actions">
-                                <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
-                                <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                5
-                              </td>
-                              <td>
-                                <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td>
-                                <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
-                                <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                6
-                              </td>
-                              <td>
-                                <a href="#">In lobortis volutpat tortor. In nec blandit nulla, ut pretium sem</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td class="row-actions">
-                                <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
-                                <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                7
-                              </td>
-                              <td>
-                                <a href="#">Chandrashekhar Verma Vs. State of M.P.</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td class="row-actions">
-                                <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
-                                <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                8
-                              </td>
-                              <td>
-                                <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td>
-                                <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
-                                <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                9
-                              </td>
-                              <td>
-                                <a href="#">In lobortis volutpat tortor. In nec blandit nulla, ut pretium sem</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td class="row-actions">
-                                <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
-                                <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                10
-                              </td>
-                              <td>
-                                <a href="#">Chandrashekhar Verma Vs. State of M.P.</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td class="row-actions">
-                                <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
-                                <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                11
-                              </td>
-                              <td>
-                                <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td>
-                                <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
-                                <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                12
-                              </td>
-                              <td>
-                                <a href="#">In lobortis volutpat tortor. In nec blandit nulla, ut pretium sem</a>
-                              </td>
-                              <td>
-                                test
-                              </td>
-
-                              <td>
-                                22-11-2019
-                              </td>
-                              <td class="row-actions">
                                 <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
                                 <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
                                 <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
@@ -330,24 +191,120 @@
                       </div>
 
                     </div>
-                  </div>
-
-
-                </section>
-
-
-              </div> <!-- END Posts Wrapper -->
-
-
-
+                  
+                 
+                </div>
+              </section>
+            </div>
             </div> <!-- Nested row -->
           </div>
-
-
-
         </div>
       </div>
     </section> <!-- END Section Posts -->
+      <!-- Modal -->
+<div class="modal fade report-problem-form" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-gray">
+        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">New Note</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
- 
+      <div class="modal-body">
+
+        <form method="post">
+            <div class="prblem-area form-group ">
+              <label for="">Problem Area</label>
+              <div class="form-group">
+                <select class="selectpicker-modal form-control" multiple data-selected-text-format="count > 4" title="Select Problem Area">
+                  <option>Content</option>
+                  <option>Segregation</option>
+                  <option>Judge Name</option>
+                  <option>Court</option>
+                  <option>Citation</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="">Description</label>
+                <textarea class="form-control" value"" name="" rows="3" placeholder="Please enter information here"></textarea>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-sm">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+    
+<div class="popup" style="display: none;">
+  <h4>Share Notes</h4>
+  <p>Sharethe notes around a common topic. They can be private or shared.</p> 
+  <form method="post">
+    <input type="text" name="unique_code" id="unique_code">
+
+    <input type="email" name="emailId" id="emailId">
+
+    <button type="reset" onclick="closePopup();">Cancel</button>
+    <button type="button" onclick="shareNote();">Continue</button>
+
+  </form> 
+</div>
+
+<!--Add Notes Modal -->
+
+<div class="modal fade add-notes" id="add-notes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-gray">
+        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Add Note</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form method="POST" action="{{route('addNote')}}" name="noteform">
+          @csrf()
+            <div class="prblem-area form-group ">
+              <label for="">Select Notes Type</label>
+              <div class="">
+                <select name="fact" id="fact" class="selectpicker-modal form-control" multiple data-selected-text-format="count > 4" title="Select Problem Area">
+                  <option>Reasoning</option>
+                  <option>Facts</option>
+                  <option>Case Cited</option>
+                  <option>Decision</option>
+                  <option>Issue</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="form-group">
+                <label for="note-title">Title</label>
+                <input type="text" class="form-control" value"" name="title" id="title" rows="3" placeholder="notes title">
+            </div>
+            <div class="form-group">
+                <label for="">Description</label>
+                <textarea class="form-control" value"" name="description" id="description" rows="3" placeholder="Please enter information here"></textarea>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary btn-sm">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </form>
+    
 @endsection

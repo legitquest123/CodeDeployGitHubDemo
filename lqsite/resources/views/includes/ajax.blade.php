@@ -145,3 +145,127 @@ $('#errormessage2').hide(2000);
     });
   });
 </script>
+
+
+<script>
+$(function() 
+{
+  $("form[name='noteform']").validate({
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      title: "required",
+      description: "required"
+    },
+    // Specify validation error messages
+    messages: {
+      title: "Please enter title.",
+      description: "Please enter description."
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+<script>
+  
+$("#trashBtn").click(function(){
+  
+  $("#trashTab").show();
+  $("#noteTab").hide();
+  $("#shareTab").hide();
+  $("#notebookTab").hide();
+  $("#row2").hide();
+  $("#row1").show();
+  $("#result").html('');
+    
+});
+
+
+$("#noteBtn").click(function(){
+
+  $("#noteTab").show();
+  $("#trashTab").hide();
+  $("#shareTab").hide();
+  $("#notebookTab").hide();
+  $("#row2").hide();
+  $("#row1").show();
+  $("#result").html('');
+
+    
+});
+
+
+$("#shareBtn").click(function(){
+
+  $("#noteTab").hide();
+  $("#trashTab").hide();
+  $("#shareTab").show();
+  $("#notebookTab").hide();
+  $("#row2").hide();
+  $("#row1").show();
+  $("#result").html('');
+
+    
+});
+
+$("#notebookBtn").click(function(){
+
+  $("#noteTab").hide();
+  $("#trashTab").hide();
+  $("#notebookTab").hide();
+  $("#shareTab").hide();
+  $("#row1").hide();
+  $("#row2").show();
+  $("#result").html('');
+
+    
+});
+
+function getSearchValue()
+{
+    var val = $("#searchValue").val();
+    window.location.href="<?php echo env('APP_URL'); ?>judgment?search="+val;
+    
+}
+
+function showNotebookNote(id)
+{
+  $("#noteTab").hide();
+  $("#trashTab").hide();
+  $("#shareTab").hide();
+  $("#notebookTab").show();
+  $("#row1").show();
+  $("#row2").hide();
+  $("#result").html('');
+  
+  $.ajax({
+    type:'POST',
+        url:'share-note',
+        data:{'_token':'{{csrf_token()}}',id:id, email:email},
+        success: function(data){
+            alert(data);
+    }   
+    
+  });
+  
+}
+</script>
+
+<script>
+  function getNoteDetail(id)
+  {
+    $.ajax({
+      type:'POST',
+      url:'note-detail',
+      data:{'_token':'{{csrf_token()}}', id:id},
+      success:function(response){
+        $('#result').html(response);
+      }
+    });
+  }
+</script>

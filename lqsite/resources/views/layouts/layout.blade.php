@@ -8,7 +8,8 @@
 @yield('content')
 </main>
 @include('includes.ajax')
-
 @include('includes.footer')
+
+
 </body>
 </html>

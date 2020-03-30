@@ -14,6 +14,7 @@
 
   <link rel="stylesheet" href="{{asset('public/css/main.css')}}">
   <link rel="stylesheet" href="{{asset('public/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('public/css/style1.css')}}">
   <title>@yield('title')</title>
 
   <link rel="icon" type="image/png" sizes="32x32" href="{{asset('public/images/favicon/favicon-32x32.png')}}">
