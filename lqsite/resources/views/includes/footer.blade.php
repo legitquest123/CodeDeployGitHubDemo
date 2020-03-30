@@ -4,8 +4,8 @@
     font-size: 14px;
    }
     #loading_image{
-      left : 50%;
-      top : 50%;
+      left : 70%;
+      top : 55%;
       position : absolute;
       z-index : 101;
       width : 90px;
