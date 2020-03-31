@@ -418,12 +418,6 @@ function showNotebookNote(id)
     $.ajax({
         type:'POST',
         url:'generate-url',
-        beforeSend:function(){
-          $('#loading_image').show();
-        },
-        complete:function(){
-         $('#loading_image').hide();
-        },
         data:{'_token':'{{csrf_token()}}',id:id},
         success:function(data){
           // alert(data);
