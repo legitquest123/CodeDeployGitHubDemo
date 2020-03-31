@@ -1,4 +1,15 @@
-
+<style>
+  #loading_image{
+      left : 86%;
+      top : 45%;
+      position : absolute;
+      z-index : 101;
+      width : 60px;
+      height : 50px;
+      margin-left : -16px;
+      margin-top : -16px;
+     }
+</style>
    <footer class="footer background--dark p-0 text-center">
                 <div class="container">
                   <div class="row">
@@ -35,6 +46,7 @@
   <script src="{{asset('public/js/init/wb.ajaxchimp-init.js')}}"></script>
 
   <script src="{{asset('public/js/min/main-min.js')}}"></script>
+
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
 
 

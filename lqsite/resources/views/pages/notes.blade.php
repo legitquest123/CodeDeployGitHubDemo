@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.noteslayout')
 @section('content')
 <div class="overlay">
       <img id="loading_image" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
@@ -216,7 +216,7 @@
 
       <div class="modal-body">
 
-        <form method="post" action="{{route('add-notebook')}}">
+        <form method="POST" action="{{route('add-notebook')}}" name="notebookform">
           @csrf()
             <div class="prblem-area form-group ">
               <label for="">Select Your Notebook</label>
@@ -232,18 +232,18 @@
             </div>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" value"" name="name" rows="3" placeholder="Please enter name">
+                <input type="text" class="form-control" name="name" id="name" rows="3" placeholder="Please enter name">
             </div>
 
             <div class="form-group">
                 <label for="">Description</label>
-                <textarea class="form-control" value"" name="description" rows="3" placeholder="Please enter information here"></textarea>
+                <textarea class="form-control" name="description" id="description" rows="3" placeholder="Please enter information here"></textarea>
             </div>
         
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary btn-sm">Send</button>
+        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
       </div>
     </div>
   </div>

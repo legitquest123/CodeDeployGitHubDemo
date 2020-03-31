@@ -18,17 +18,17 @@ Route::get('/judgment', function(){
    return view('pages.judgment');
 });
 
-Route::get('/detail', function(){
-   return view('pages.detail');
-});
+// Route::get('/detail', function(){
+//    return view('pages.detail');
+// });
 
 Route::get('/coverage', function(){
    return view('pages.coverage');
 });
 
-Route::get('/notes', function(){
-   return view('pages.notes');
-});
+// Route::get('/notes', function(){
+//    return view('pages.notes');
+// });
 
 Route::get('/bookmark', function(){
    return view('pages.bookmark');
@@ -182,6 +182,9 @@ Route::post('add-notebook','NotesController@addNoteBook')->name('add-notebook');
 Route::get('notebook-note','NotesController@getNoteBookNotes');
 Route::get('trash','NotesController@showtrash');
 Route::get('delete-trash','NotesController@deletetrash');
+Route::get('detail','NotesController@detail');
+Route::get('delete-note','NotesController@deletenote');
+Route::post('generate-url','NotesController@generateurl');
 
 
 

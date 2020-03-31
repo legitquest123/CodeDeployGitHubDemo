@@ -75,7 +75,7 @@
                   <div class="card border-0 shadow p-0">
                     <div class="card-body p-4">
                       <h4 class="h4 card-title d-block mb-1 font-weight-bold">Trash</h4>
-                      <button type="button" onclick="deleteNote();">Empty Trash</button>
+                      <button type="button" onclick="trashNotes();">Empty Trash</button>
                       <hr class="mb-3">
                       <div class="table-responsive">
                         <table id="datatable" class="table table-striped f-14">

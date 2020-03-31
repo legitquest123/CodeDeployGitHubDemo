@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Notes;
 use App\Models\NoteBook;
+use Illuminate\Support\Facades\Route;
 use DB;
 class NotesController extends Controller
 {
@@ -14,6 +15,13 @@ class NotesController extends Controller
     	$trashdata = Notes::all()->where('trash','=',1);
     	$notebookdata = NoteBook::all()->where('status','=',1);
     	return view('pages.notes',compact('data','trashdata','notebookdata'));
+    }
+    public function detail()
+    {
+    	$data = Notes::all()
+    	->where('status','=',1)
+    	->where('trash','=',0);
+    	return view('pages.detail',compact('data'));
     }
 
     public function addNote(Request $request)
@@ -43,11 +51,12 @@ class NotesController extends Controller
     		$view .= '<h4 class="h4 card-title d-block mb-1 font-weight-bold" >'.$value['title'].'</h4>
                         <hr class="mb-3">
                         <div class="row mb-2">
-                          <div class="col-sm-12 b-b">
+                          <div style="height:100%;" class="col-sm-12 b-b">
                             <div class="label" style="font-size:15px; font-weight:bold; padding:0px 0px 10px 0px;"></div>
-                            <div class="label" style="font-size:12px;">'.$value['date'].'</div>
+                            
                             <h4 style="padding:6px 0px 10px 0px;">'.$value['title'].'</h4>
                             <p style="font-size:13px; text-align:justify;">'.$value['description'].'</p>
+                            <div class="label" style="font-size:12px;">'.$value['date_created'].'</div>
                           </div>
                         </div>';
     	}
@@ -96,9 +105,9 @@ class NotesController extends Controller
                         <div class="row mb-2">
                           <div class="col-sm-12 b-b">
                             <div class="label" style="font-size:15px; font-weight:bold; padding:0px 0px 10px 0px;"></div>
-                            <div class="label" style="font-size:12px;">'.$value['title'].'</div>
-                            <h4 style="padding:6px 0px 10px 0px;">'.$value['description'].'</h4>
-                            <p style="font-size:13px; text-align:justify;">'.$value['date_created'].'</p>
+                            <h4 style="padding:6px 0px 10px 0px;">'.$value['title'].'</h4>
+                            <p style="font-size:13px; text-align:justify;">'.$value['description'].'</p>
+                            <div class="label" style="font-size:12px;">'.$value['date_created'].'</div>
                           </div>
                         </div>';
     	}
@@ -118,6 +127,29 @@ class NotesController extends Controller
     		return redirect()->back()->with('success','Trash is Empty');
     	else
     		return redirect()->back()->with('error','Unable to empty trash');
+    }
 
+    public function deletenote(Request $request)
+    {
+    	$id = $request->id;
+    	$note = Notes::find($id);
+    	$delete = $note->delete();
+    	if($delete)
+    	{
+    		echo "Note Deleted Successfully!";
+    	}
+    	else
+    	{
+    		echo "Fail to delete notes";
+    	}
+    		
+    }
+
+    public function generateurl(Request $request)
+    {
+        // $path  = $request->path();
+        $path = $request->root().'/detail/'.$request->id;
+        // $path = $request->url();
+        return $path;
     }
 }

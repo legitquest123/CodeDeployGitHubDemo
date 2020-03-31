@@ -1,6 +1,8 @@
 @extends('layouts.detaillayout')
 @section('content')
-
+<div class="overlay">
+      <img id="loading_image" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+    </div>
         <section class="section judgment-section py-0 bg-gray">
           <div class="d-flex anim justify-content-between">
 
@@ -257,7 +259,7 @@
                       </div>
                     </div>
                     <div class="graph">
-                      <img src="./images/citation-graph.png" alt="">
+                      <img src="{{('public/images/citation-graph.png')}}" alt="">
                     </div>
                   </div>
                 </div>
@@ -365,6 +367,7 @@
       </div>
 
       <div class="notes-content flex-fill bg-gray">
+        <form method="POST" name="detail_note_form">
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane  fade " id="note-form" role="tabpanel" aria-labelledby="home-tab">
             <div class="pt-3 px-4 d-flex align-items-center">
@@ -374,7 +377,7 @@
               </a>
             -->
               <div class="mr-auto">
-                <select class="selectpicker show-tick" data-width="fit">
+                <select class="selectpicker show-tick" name="fact" id="fact" data-width="fit">
                   <option>Reasoning</option>
                   <option>Arguments Of Petitioner</option>
                   <option>Facts</option>
@@ -396,15 +399,15 @@
             <div class="notes-form p-4  slimScroll">
               <div class="form-group">
 
-                <input type="text" class="form-control form-control-sm" placeholder="Enter Note Title">
+                <input type="text" name="title" id="title" class="form-control form-control-sm" placeholder="Enter Note Title">
               </div>
 
               <div class="form-group">
-                <textarea name="name" rows="5" cols="80" class="form-control text-editor" placeholder="Enter Discription Here"></textarea>
+                <textarea name="description" id="description" rows="5" cols="80" class="form-control text-editor" placeholder="Enter Discription Here"></textarea>
               </div>
               <div class="sidebar-action-btn">
-                <button class="btn btn-dark btn-sm px-3 py-1" name="button"><small> Clear</small></button>
-                <button class="btn btn-primary btn-sm px-3 py-1" name="button"><small>Save</small> </button>
+               <!--  <button class="btn btn-dark btn-sm px-3 py-1" name="button"><small> Clear</small></button> -->
+                <button onclick="detailAddNote();" class="btn btn-primary btn-sm px-3 py-1" type="button" name="button"><small>Save</small> </button>
                 <button class="btn btn-primary btn-sm px-3 py-1" name="button"><small>Share</small></button>
               </div>
 
@@ -432,177 +435,33 @@
               </div>
 
               <div class="notes-list p-4 ">
+                @foreach($data as $key=> $value)
                 <div class="card p-0 mb-0 border-0 bg-transparent">
                   <div class="card-body p-0">
                     <div class="d-flex">
                       <div class="flex-fill mr-2">
-                        <a href="#" class="h6 mb-1 text-dark d-block"> Nesciunt tofu stumptown aliqua</a>
-                        <small class="d-block">3 days Ago</small>
+                        <a href="#" class="h6 mb-1 text-dark d-block">{{$value->title}}</a>
+                        <small class="d-block">{{$value->date_created}}</small>
                       </div>
                       <div class="d-flex  align-items-start">
-                        <a href="" class="d-inline-block mr-2" data-toggle="tooltip" data-placement="bottom" title="share">
-                          <i class="lni-share"></i>
+                        <a  class="d-inline-block mr-2" data-toggle="tooltip" data-placement="bottom" title="share">
+                          <i data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" class="lni-share"></i>
                         </a>
-                        <a href="" class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                          <i class="lni-trash"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-                <hr>
-
-                <div class="card p-0 mb-0 border-0 bg-transparent">
-                  <div class="card-body p-0">
-                    <div class="d-flex">
-                      <div class="flex-fill mr-2">
-                        <a href="#" class="h6 mb-1 text-dark d-block">Mustache cliche tempor, willi amsburg carles vegan helvetica</a>
-                        <small class="d-block">3 days Ago</small>
-                      </div>
-                      <div class="d-flex  align-items-start">
-                        <a href="" class="d-inline-block mr-2" data-toggle="tooltip" data-placement="bottom" title="share">
-                          <i class="lni-share"></i>
-                        </a>
-                        <a href="" class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                          <i class="lni-trash"></i>
+                        <a href=""  class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
+                          <i onclick="deletenote({{$value->id}});" class="lni-trash"></i>
                         </a>
                       </div>
                     </div>
-
                   </div>
                 </div>
-
-                <hr>
-
-                <div class="card p-0 mb-0 border-0 bg-transparent">
-                  <div class="card-body p-0">
-                    <div class="d-flex">
-                      <div class="flex-fill mr-2">
-                        <a href="#" class="h6 mb-1 text-dark d-block">retro synth master cleanse.</a>
-                        <small class="d-block">3 days Ago</small>
-                      </div>
-                      <div class="d-flex  align-items-start">
-                        <a href="" class="d-inline-block mr-2" data-toggle="tooltip" data-placement="bottom" title="share">
-                          <i class="lni-share"></i>
-                        </a>
-                        <a href="" class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                          <i class="lni-trash"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="card p-0 mb-0 border-0 bg-transparent">
-                  <div class="card-body p-0">
-                    <div class="d-flex">
-                      <div class="flex-fill mr-2">
-                      <a href="#" class="h6 mb-1 text-dark d-block">Mustache cliche tempor, willi amsburg carles vegan helvetica</a>
-                        <small class="d-block">3 days Ago</small>
-                      </div>
-                      <div class="d-flex  align-items-start">
-                        <a href="" class="d-inline-block mr-2" data-toggle="tooltip" data-placement="bottom" title="share">
-                          <i class="lni-share"></i>
-                        </a>
-                        <a href="" class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                          <i class="lni-trash"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="card p-0 mb-0 border-0 bg-transparent">
-                  <div class="card-body p-0">
-                    <div class="d-flex">
-                      <div class="flex-fill mr-2">
-                        <a href="#" class="h6 mb-1 text-dark d-block">Nesciunt tofu stumptown aliqua</a>
-                        <small class="d-block">3 days Ago</small>
-                      </div>
-                      <div class="d-flex  align-items-start">
-                        <a href="" class="d-inline-block mr-2" data-toggle="tooltip" data-placement="bottom" title="share">
-                          <i class="lni-share"></i>
-                        </a>
-                        <a href="" class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                          <i class="lni-trash"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="card p-0 mb-0 border-0 bg-transparent">
-                  <div class="card-body p-0">
-                    <div class="d-flex">
-                      <div class="flex-fill mr-2">
-                        <a href="#" class="h6 mb-1 text-dark d-block">Mustache cliche tempor, willi amsburg carles vegan helvetica</a>
-                        <small class="d-block">3 days Ago</small>
-                      </div>
-                      <div class="d-flex  align-items-start">
-                        <a href="" class="d-inline-block mr-2" data-toggle="tooltip" data-placement="bottom" title="share">
-                          <i class="lni-share"></i>
-                        </a>
-                        <a href="" class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                          <i class="lni-trash"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="card p-0 mb-0 border-0 bg-transparent">
-                  <div class="card-body p-0">
-                    <div class="d-flex">
-                      <div class="flex-fill mr-2">
-                        <a href="#" class="h6 mb-1 text-dark d-block">retro synth master cleanse.</a>
-                        <small class="d-block">3 days Ago</small>
-                      </div>
-                      <div class="d-flex  align-items-start">
-                        <a href="" class="d-inline-block mr-2" data-toggle="tooltip" data-placement="bottom" title="share">
-                          <i class="lni-share"></i>
-                        </a>
-                        <a href="" class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                          <i class="lni-trash"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-                <hr>
-                <div class="card p-0 mb-0 border-0 bg-transparent">
-                  <div class="card-body p-0">
-                    <div class="d-flex">
-                      <div class="flex-fill mr-2">
-                        <a href="#" class="h6 mb-1 text-dark d-block">Mustache cliche tempor, williamsburg carles vegan helvetica</a>
-                        <small class="d-block">3 days Ago</small>
-                      </div>
-                      <div class="d-flex align-items-start">
-                        <a href="" class="d-inline-block mr-2" data-toggle="tooltip" data-placement="bottom" title="share">
-                          <i class="lni-share"></i>
-                        </a>
-                        <a href="" class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                          <i class="lni-trash"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
+                 <hr>
+                @endforeach   
               </div>
+
             </div>
-
-
           </div>
-
         </div>
+      </form>
 
       </div>
 
@@ -635,7 +494,7 @@
 
 
   <!-- Modal -->
-<div class="modal fade report-problem-form" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade report-problem-form" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-header bg-gray">
@@ -675,7 +534,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <div class="modal fade print-modal" id="print-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
@@ -720,5 +579,67 @@
   </div>
 </div>
 
+
+
+<div class="modal fade shareform" id="shareform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:0px solid #FF9900;">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title">Share My Custom Note</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" style="background:#fff;">
+        <div class="jumbotron jumbotron-size namit" >
+          <p style="font-size: 13px;" class="share"><strong>Shareable link</strong>
+            <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round toggle-small"></span> </label>
+            <span style="color:green;"><b>Enabled</b></span> </p>
+          <span style="margin-top:-56px; color:#0081c2; float:right; font-size:13px; padding-top:15px;" onclick="copytext();" class="pull-right">Copy Link</span>
+          <input style="border-radius: 0px; padding: 20px;
+" class="form-control" type="text" id="generateurl">
+<!-- <div id="generateurl"></div> -->
+          <div class="BgqMSSe4i5Xcx4ovi-L97 vxdNx4zxpyzFVmrRhysgV _204SBFKyNSu1zYD0gtU2Xo" style="padding:10px 0px 10px 0px; font-size:13px;">
+           
+             </div>
+        </div>
+        <p style="font-size: 13px;" class="share"><strong>Invite People</strong> </p>
+        <input style="border-radius: 0px; padding:10px;
+" class="form-control" type="text" placeholder="Enter Name or Email">
+        <p style="font-size:13px; padding:10px 0px 10px 0px; color:#999999;">Others may have access to this note if it is also in a shared notebook.</p>
+      </div>
+  <section class="accordion-section clearfix mt-3123" aria-label="Question Accordions">
+  <div class="container">
+  
+  
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading p-3123 mb-3" role="tab" id="heading0">
+      <p class="panel-title">
+        <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+        Who has access (1+)
+        </a>
+      </p>
+      </div>
+      <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0" style="border:0px solid #FF3300; margin:auto; padding:0px;">
+      <div class="panel-body px-3123 mb-4" style="margin:auto; padding:0px;">
+
+       
+              <div class="BgqMSSe4i5Xcx4ovi-L97 vxdNx4zxpyzFVmrRhysgV _204SBFKyNSu1zYD0gtU2Xo" style="border-top:1px solid #d0d0d0; margin:auto; padding:10px; font-size:13px;">
+            <img src="https://img.icons8.com/ios-filled/24/000000/user-male-circle.png">
+           shankar.kumar@legitquest.com (you)<span class="_18hcszCROJlwWW4T8m7H5T" style="float:right;">Can edit and invite</span> </div>
+            
+            
+                <div class="BgqMSSe4i5Xcx4ovi-L97 vxdNx4zxpyzFVmrRhysgV _204SBFKyNSu1zYD0gtU2Xo" style="border-top:1px solid #d0d0d0; border-bottom:1px solid #d0d0d0; margin:auto; padding:10px; padding:10px; font-size:13px;">
+                <img src="https://img.icons8.com/ios-filled/24/000000/user-male-circle.png">
+                Anyone with the link <span class="_18hcszCROJlwWW4T8m7H5T" style="float:right;">Can view</span> 
+              </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
 @endsection
 

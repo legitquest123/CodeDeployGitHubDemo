@@ -114,7 +114,7 @@ $('#errormessage2').hide(2000);
 <script>
   $(function()
   {
-    $('form').validate({
+    $("form[name='jobform']").validate({
      
      rules:{
       name:"required",
@@ -171,6 +171,59 @@ $(function()
   });
 });
 </script>
+
+
+<script>
+$(function() 
+{
+  $("form[name='notebookform']").validate({
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      name: "required",
+      description: "required"
+    },
+    // Specify validation error messages
+    messages: {
+      name: "Please enter notebook name",
+      description: "Please enter notebook description"
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+
+<script>
+$(function() 
+{
+  $("form[name='detail_note_form']").validate({
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      title: "required",
+      description: "required"
+    },
+    // Specify validation error messages
+    messages: {
+      title: "Please enter note title",
+      description: "Please enter note description"
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+
+
 <script>
   
 $("#trashBtn").click(function(){
@@ -261,7 +314,6 @@ function showNotebookNote(id)
   
 }
 </script>
-
 <script>
   function getNoteDetail(id)
   {
@@ -283,7 +335,7 @@ function showNotebookNote(id)
 </script>
 
 <script>
-  function deleteNote()
+  function trashNotes()
   {
    var c = confirm("Are you sure you want to empty trash??")
    if(c)
@@ -306,4 +358,87 @@ function showNotebookNote(id)
   }
 </script>
 
+<script>
+  function detailAddNote()
+  {
+    fact = $('#fact').val();
+    title = $('#title').val();
+    description = $('#description').val();
+    $.ajax({
+       type:'POST',
+       url:'add-note',
+       beforeSend:function(){
+        $('#loading_image').show();
+         // $('body').not("#loading").css("filter","blur(3px)");
+       },
+       complete:function(){
+        $('#loading_image').hide();
+       },
+       data:{
+        '_token':'{{csrf_token()}}',
+        fact:fact,
+        title:title,
+        description:description
+       },
+       success:function(response){
+       }
+    });
+  }
+  </script>
 
+  <script>
+  function deletenote(id)
+  {
+
+    var c = confirm("Delete note or not?");
+    if(c)
+    {
+
+       $.ajax({
+          type:'GET',
+          url:'delete-note',
+          data:{
+        '_token':'{{csrf_token()}}',
+          id:id,
+          },
+          success:function(data){
+            alert(data);
+          }
+       });
+    }
+    else
+    event.preventDefault();   
+  }
+
+</script>
+
+<script>
+  function generateURL(id)
+  {
+    $.ajax({
+        type:'POST',
+        url:'generate-url',
+        beforeSend:function(){
+          $('#loading_image').show();
+        },
+        complete:function(){
+         $('#loading_image').hide();
+        },
+        data:{'_token':'{{csrf_token()}}',id:id},
+        success:function(data){
+          // alert(data);
+          $('#generateurl').val(data);
+        }
+    });
+  }
+</script>
+<script>
+  function copytext()
+  {
+    var copyText = document.getElementById('generateurl');
+    copyText.select();
+    copyText.setSelectionRange(0,9999);
+    document.execCommand("copy");
+    alert("Copied : " + copyText.value);
+  }
+</script>
