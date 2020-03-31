@@ -408,7 +408,7 @@
               <div class="sidebar-action-btn">
                <!--  <button class="btn btn-dark btn-sm px-3 py-1" name="button"><small> Clear</small></button> -->
                 <button onclick="detailAddNote();" class="btn btn-primary btn-sm px-3 py-1" type="button" name="button"><small>Save</small> </button>
-                <button class="btn btn-primary btn-sm px-3 py-1" name="button"><small>Share</small></button>
+             <!--    <button class="btn btn-primary btn-sm px-3 py-1" name="button"><small>Share</small></button> -->
               </div>
 
             </div>
