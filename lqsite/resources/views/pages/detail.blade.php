@@ -1,8 +1,8 @@
 @extends('layouts.detaillayout')
 @section('content')
-<div class="overlay">
+<!-- <div class="overlay">
       <img id="loading_image" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
-    </div>
+    </div> -->
         <section class="section judgment-section py-0 bg-gray">
           <div class="d-flex anim justify-content-between">
 
@@ -113,6 +113,17 @@
 
                 <div id="judgement" class="flex-fill pt-4 mt-2 tab-pane fade show active"  role="tabpanel">
                   <div class="judgment-detail-header text-center">
+                     @if(session('success'))
+                              <div id="messagediv" class="alert alert-success">
+                                  {{session('success')}}
+                              </div>
+                                      @endif
+                        @if(session('error'))
+                      <div id="messagediv" class="alert alert-danger">
+                          {{session('error')}}
+                      </div>
+                      @endif
+
                     <h1 class="mb-3 font-weight-bold">Chandrashekhar Verma
                       <br>
                       v.
@@ -581,64 +592,80 @@
 
 
 
-<div class="modal fade shareform" id="shareform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:0px solid #FF9900;">
+<div data-backdrop="static" data-keyboard="false" class="modal fade shareform" id="shareform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:0px solid #FF9900;">
   <div class="modal-dialog modal-dialog-centered " role="document">
-    <div class="modal-content">
+    <form method="POST" action="{{route('sharenote')}}" name="shareform" id="shform"> 
+      @csrf()
+    <div style="width:124%;" class="modal-content">
       <div class="modal-header">
-
-        <h4 class="modal-title">Share My Custom Note</h4>
+        <p id="sharenotetitle" class="modal-title"></p>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body" style="background:#fff;">
-        <div class="jumbotron jumbotron-size namit" >
+       
+        <div style="max-height: 200px; padding: 2rem 1rem;" class="jumbotron jumbotron-size namit" >
+          <div class="overlay">
+          <h5 id="loader_message" style="display:none; text-align: center;">Sharing your Note please wait....</h5>       
+          <img id="loading_image1" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
           <p style="font-size: 13px;" class="share"><strong>Shareable link</strong>
             <label class="switch">
             <input type="checkbox" checked>
             <span class="slider round toggle-small"></span> </label>
             <span style="color:green;"><b>Enabled</b></span> </p>
-          <span style="margin-top:-56px; color:#0081c2; float:right; font-size:13px; padding-top:15px;" onclick="copytext();" class="pull-right">Copy Link</span>
-          <input style="border-radius: 0px; padding: 20px;
-" class="form-control" type="text" id="generateurl">
+          <span style="margin-top:-56px; color:#0081c2; float:right; font-size:13px; padding-top:15px;" onclick="copytext();" style="cursor: pointer;" class="pull-right">Copy Link</span>
+          <input style="border-radius: 0px; padding: 20px; max-height:20px;
+" class="form-control" type="text" name="generateurl" id="generateurl">
 <!-- <div id="generateurl"></div> -->
           <div class="BgqMSSe4i5Xcx4ovi-L97 vxdNx4zxpyzFVmrRhysgV _204SBFKyNSu1zYD0gtU2Xo" style="padding:10px 0px 10px 0px; font-size:13px;">
            
              </div>
         </div>
-        <p style="font-size: 13px;" class="share"><strong>Invite People</strong> </p>
-        <input style="border-radius: 0px; padding:10px;
-" class="form-control" type="text" placeholder="Enter Name or Email">
+        <p style="font-size: 13px;" class="share">Invite People</p>
+        <input style="border-radius: 0px; padding:10px; max-height: 41px;
+" class="form-control" type="text" name="email" id="email" placeholder="Enter Email">
+
+<div style="display: none;" style="padding:6px; border:1px solid #ccc;" id="emails"></div>
+
+<input type="hidden" id="noteid" name="noteid">
+        <span id="error1"></span>
         <p style="font-size:13px; padding:10px 0px 10px 0px; color:#999999;">Others may have access to this note if it is also in a shared notebook.</p>
+
+         <button type="button" onclick="sharenote();" class="btn btn-success btn-sm pull-right" style="color:#ffffff; background-color: green; font-size:14px;  padding-left: 24px; padding-right: 24px; padding-top:10px;  border-style: none; border-radius: 5px; float: right; ">Share Note</button>
+      
+          <button onclick="resetform();" class="btn btn-success btn-sm pull-right" style="color:#000; font-size:14px; padding-left: 24px; padding-right: 24px; padding-top:8px; border:1px solid #ccc; background-color: #eee; border-radius: 5px; float: right; margin-right: 10px;" class="close" data-dismiss="modal">Cancel</button>
       </div>
-  <section class="accordion-section clearfix mt-3123" aria-label="Question Accordions">
+</form>
+  <!-- <section class="accordion-section clearfix mt-3123" aria-label="Question Accordions">
   <div class="container">
+   -->
   
-  
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-      <div class="panel-heading p-3123 mb-3" role="tab" id="heading0">
+    <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> -->
+    <!-- <div class="panel panel-default"> -->
+     <!--  <div class="panel-heading p-3123 mb-3" role="tab" id="heading0">
       <p class="panel-title">
         <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
         Who has access (1+)
         </a>
       </p>
-      </div>
-      <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0" style="border:0px solid #FF3300; margin:auto; padding:0px;">
-      <div class="panel-body px-3123 mb-4" style="margin:auto; padding:0px;">
+      </div> -->
+     <!--  <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0" style="border:0px solid #FF3300; margin:auto; padding:0px;"> -->
+     <!--  <div class="panel-body px-3123 mb-4" style="margin:auto; padding:0px;"> -->
 
        
-              <div class="BgqMSSe4i5Xcx4ovi-L97 vxdNx4zxpyzFVmrRhysgV _204SBFKyNSu1zYD0gtU2Xo" style="border-top:1px solid #d0d0d0; margin:auto; padding:10px; font-size:13px;">
+             <!--  <div class="BgqMSSe4i5Xcx4ovi-L97 vxdNx4zxpyzFVmrRhysgV _204SBFKyNSu1zYD0gtU2Xo" style="border-top:1px solid #d0d0d0; margin:auto; padding:10px; font-size:13px;">
             <img src="https://img.icons8.com/ios-filled/24/000000/user-male-circle.png">
-           shankar.kumar@legitquest.com (you)<span class="_18hcszCROJlwWW4T8m7H5T" style="float:right;">Can edit and invite</span> </div>
+           shankar.kumar@legitquest.com (you)<span class="_18hcszCROJlwWW4T8m7H5T" style="float:right;">Can edit and invite</span> </div> -->
             
             
-                <div class="BgqMSSe4i5Xcx4ovi-L97 vxdNx4zxpyzFVmrRhysgV _204SBFKyNSu1zYD0gtU2Xo" style="border-top:1px solid #d0d0d0; border-bottom:1px solid #d0d0d0; margin:auto; padding:10px; padding:10px; font-size:13px;">
+                <!-- <div class="BgqMSSe4i5Xcx4ovi-L97 vxdNx4zxpyzFVmrRhysgV _204SBFKyNSu1zYD0gtU2Xo" style="border-top:1px solid #d0d0d0; border-bottom:1px solid #d0d0d0; margin:auto; padding:10px; padding:10px; font-size:13px;">
                 <img src="https://img.icons8.com/ios-filled/24/000000/user-male-circle.png">
                 Anyone with the link <span class="_18hcszCROJlwWW4T8m7H5T" style="float:right;">Can view</span> 
-              </div>
-      </div>
-      </div>
-    </div>
-    </div>
+              </div> -->
+      <!-- </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+    <!-- </div> -->
   </div>
 </section>
 @endsection

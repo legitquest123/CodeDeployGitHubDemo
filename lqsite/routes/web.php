@@ -185,6 +185,8 @@ Route::get('delete-trash','NotesController@deletetrash');
 Route::get('detail','NotesController@detail');
 Route::get('delete-note','NotesController@deletenote');
 Route::post('generate-url','NotesController@generateurl');
+Route::post('share-note','NotesController@sharenote')->name('sharenote');
+Route::post('getemails','NotesController@getemails')->name('getemails');
 
 
 

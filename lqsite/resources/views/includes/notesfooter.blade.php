@@ -12,8 +12,8 @@
       height : 70px;
       margin-left : -16px;
       margin-top : -16px;
-     }
-
+  }
+  
  </style>
   <footer class="footer background--dark">
     <div class="container">

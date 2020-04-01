@@ -198,6 +198,7 @@ $(function()
 });
 </script>
 
+
 <script>
 $(function() 
 {
@@ -381,6 +382,7 @@ function showNotebookNote(id)
         description:description
        },
        success:function(response){
+        location.reload(true);
        }
     });
   }
@@ -389,7 +391,6 @@ function showNotebookNote(id)
   <script>
   function deletenote(id)
   {
-
     var c = confirm("Delete note or not?");
     if(c)
     {
@@ -420,12 +421,71 @@ function showNotebookNote(id)
         url:'generate-url',
         data:{'_token':'{{csrf_token()}}',id:id},
         success:function(data){
-          // alert(data);
-          $('#generateurl').val(data);
+          // console.log(data);
+          $('#generateurl').val(data['path']);
+          $('#sharenotetitle').html('Share' + " " + data['title']);
+          $('#noteid').val(data['note_id']);
         }
     });
   }
 </script>
+
+<script>
+  function sharenote()
+  {
+    var url = $('#generateurl').val();
+    var email = $('#email').val();
+    var noteid = $('#noteid').val();
+    if(email == ""){
+      $('#error1').html("Please enter an email");
+      return false;
+    }
+    else
+    {
+    $('#error1').hide();  
+    $.ajax({
+        type:'POST',
+        url:'share-note',
+        backdrop: "static",
+        beforeSend:function(){
+          $('#loading_image1').show();
+          $('#loader_message').show();
+          $('#loader_message').css("visibility","visible");
+          $('#loading_image1').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+        },
+        complete:function(){
+         $('#loading_image1').hide();
+         $('#loader_message').hide();
+         $('#loader_message').css("visibility","hidden");
+         $('#loading_image1').css("visibility","hidden");
+         $('.modal-body').css("visibility","visible");
+         $('.modal-header').css("visibility","visible");
+        },
+        data:{'_token':'{{csrf_token()}}',url: url ,email:email, noteid:noteid},
+        success:function(data){
+          alert(data);
+        }
+    });  
+    }
+    
+  }
+</script>
+
+<script>
+  function resetform()
+  {
+    document.getElementById('shform').reset();
+  }
+</script>
+
+<script>
+ setTimeout(function() {
+    $('#messagediv').fadeOut('slow');
+}, 1000);
+</script>
+
 <script>
   function copytext()
   {
@@ -433,6 +493,35 @@ function showNotebookNote(id)
     copyText.select();
     copyText.setSelectionRange(0,9999);
     document.execCommand("copy");
-    alert("Copied : " + copyText.value);
+    // alert("Copied : " + copyText.value);
   }
+</script>
+
+<script>
+  $(document).ready(function(){
+  $('#email').keyup(function(){
+  var query = $(this).val();
+  if(query!= '')
+  {
+    $.ajax({
+    type:'POST',
+    url:'getemails',
+    data:{'_token':'{{csrf_token()}}', query:query},
+    success:function(data){
+      $('#emails').show();
+      $('#emails').html(data);
+      // alert(JSON.stringify(data));
+    }
+    });
+  }
+  else
+  {
+    $('#emails').hide();
+  }
+   $(document).on('click', '.dropdown-menu li', function(){  
+        $('#email').val($(this).text());  
+        $('#emails').hide();  
+    }); 
+  });
+  });
 </script>

@@ -1,14 +1,14 @@
 <style>
-  #loading_image{
-      left : 86%;
-      top : 45%;
+   #loading_image1{
+      left : 41%;
+      top : 35%;
       position : absolute;
       z-index : 101;
-      width : 60px;
-      height : 50px;
-      margin-left : -16px;
-      margin-top : -16px;
-     }
+      width : 90px;
+      height : 70px;
+     /* margin-left : -16px;
+      margin-top : -16px;*/
+  }
 </style>
    <footer class="footer background--dark p-0 text-center">
                 <div class="container">
