@@ -14,16 +14,16 @@ class NotesController extends Controller
 {
     public function index()
     {
-    	$data = Notes::all()->where('trash' ,'=', 0);
-    	$trashdata = Notes::all()->where('trash','=',1);
-    	$notebookdata = NoteBook::all()->where('status','=',1);
+    	$data = Notes::where('trash','=', '0')->paginate(4);
+    	$trashdata = Notes::all()->where('trash','=','1');
+    	$notebookdata = NoteBook::all()->where('status','=','1');
     	return view('pages.notes',compact('data','trashdata','notebookdata'));
     }
     public function detail()
     {
     	$data = Notes::all()
-    	->where('status','=',1)
-    	->where('trash','=',0);
+    	->where('status','=','1')
+    	->where('trash','=','0');
     	return view('pages.detail',compact('data'));
     }
 
@@ -44,6 +44,24 @@ class NotesController extends Controller
       else
       	// return redirect()->back()->with('error','Fail to Save Note');
         echo "Fail to Add Notes";
+    }
+
+    public function addingnote(Request $request)
+    {
+      $obj = new Notes;
+      $obj->user_id = '1';
+      $obj->fact = $request->fact;
+      $obj->title = $request->title;
+      $obj->description = $request->description;
+      $obj->date_created = Date('Y-m-d');
+      $obj->date_modified = Date('Y-m-d');
+      $save = $obj->save();
+      if($save)
+        return redirect()->back()->with('success','Note Save Successfully');
+        // echo "Notes Added Successfully!";
+      else
+        return redirect()->back()->with('error','Fail to Save Note');
+        // echo "Fail to Add Notes"; 
     }
 
     public function getNoteDetail(Request $request)
@@ -213,6 +231,21 @@ class NotesController extends Controller
       echo $output;
          // return $emails;
         }
-        
+    }
+
+
+    public function deletenotebook(Request $request)
+    {
+      $id = $request->id;
+      $notebook = NoteBook::where('id','=',$id);
+      $delete = $notebook->delete();
+      if($delete)
+      {
+        echo "Notebook Deleted Successfully!";
+      }
+      else
+      {
+        echo "Fail to delete Notebook";
+      }
     }
 }

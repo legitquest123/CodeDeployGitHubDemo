@@ -460,7 +460,7 @@
                           <i style="cursor: pointer;" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" class="lni-share"></i>
                         </a>
                         <a class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                          <i data-toggle="modal" data-target="#deletemodal" onclick="getNoteId({{$value->id}});" class="lni-trash"></i>
+                          <i style="cursor: pointer;" data-toggle="modal" data-target="#deletemodal" onclick="getNoteId({{$value->id}});" class="lni-trash"></i>
                         </a>
                       </div>
                     </div>
@@ -598,12 +598,9 @@
     
       <!-- Modal content-->
       <div style="width:63%; margin:auto;" class="modal-content">
-        <div class="modal-header">
-          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message1"></div>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
         <div class="modal-body">
           <input type="hidden" id="deletenote">
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message1"></div>
           <div class="overlay">
           <h5 id="loader_message2" style="display:none; text-align: center;">Deleting Note..</h5>       
           <img id="loading_image2" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">

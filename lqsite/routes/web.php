@@ -176,6 +176,7 @@ Route::post('application','JobsController@jobapplication')->name('app');
 /*Notes Routes*/
 
 Route::get('notes','NotesController@index');
+Route::post('adding-note','NotesController@addingnote')->name('addingnote');
 Route::post('add-note','NotesController@addNote')->name('addNote');
 Route::post('note-detail','NotesController@getNoteDetail');
 Route::post('add-notebook','NotesController@addNoteBook')->name('add-notebook');
@@ -187,6 +188,7 @@ Route::post('delete-note','NotesController@deletenote');
 Route::post('generate-url','NotesController@generateurl');
 Route::post('share-note','NotesController@sharenote')->name('sharenote');
 Route::post('getemails','NotesController@getemails')->name('getemails');
+Route::post('delete-notebook','NotesController@deletenotebook');
 
 
 

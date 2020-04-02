@@ -155,11 +155,13 @@ $(function()
       // The key name on the left side is the name attribute
       // of an input field. Validation rules are defined
       // on the right side
+      fact:"required",
       title: "required",
       description: "required"
     },
     // Specify validation error messages
     messages: {
+      fact:"Please select fact",
       title: "Please enter title.",
       description: "Please enter description."
     },
@@ -429,6 +431,7 @@ function showNotebookNote(id)
           // alert(data);
           $('#message1').show();
           $('#message1').html(data);
+           location.reload(true);
           }
        });
     // else
@@ -498,6 +501,7 @@ function showNotebookNote(id)
           // alert(data);
           $("#message").show();
           $("#message").html(data);
+
         }
     });  
     }
@@ -510,6 +514,7 @@ function showNotebookNote(id)
   {
     document.getElementById('shform').reset();
     $('#message').hide();
+    $('message3').hide();
   }
 </script>
 
@@ -564,4 +569,48 @@ function showNotebookNote(id)
     }); 
   });
   });
+</script>
+
+
+<script>
+  
+  function getnotebookid(id)
+  {
+    $('#notebookid').val(id);
+  }
+</script>
+
+<script>
+  function deletenotebook()
+  {
+    var id = $('#notebookid').val();
+    $.ajax({
+    type:'POST',
+    url:'delete-notebook',
+     data:{'_token':'{{csrf_token()}}', id:id},
+     beforeSend:function(){
+          $('#loading_image3').show();
+          $('#loader_message3').show();
+          $('#loading_image3').css("visibility","visible");
+          $('#loader_message3').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image3').hide();
+          $('#loader_message3').hide(); 
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image3').css("visibility","hidden");
+          $('#loader_message3').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
+    success:function(response){
+      // alert(response);
+      $("#message3").show();
+      $("#message3").html(response);
+       location.reload(true);
+    }
+    });
+
+  }
 </script>

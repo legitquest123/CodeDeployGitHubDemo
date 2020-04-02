@@ -1,5 +1,6 @@
 @extends('layouts.noteslayout')
 @section('content')
+
 <div class="overlay">
       <img id="loading_image" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
     </div>
@@ -96,6 +97,7 @@
                           </div>
                           @endforeach
                         </div>
+                        {{$data->links()}}
                       </div>
                       <!-- left site -->
                         <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="trashTab">
@@ -109,7 +111,6 @@
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
                        </div>
                        @endforeach
-                          
                         </div>
                       </div>
                       
@@ -184,7 +185,7 @@
                               <td>
                                 <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
                                 <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
+                                <a onclick="getnotebookid({{$value->id}});" data-toggle="modal" data-target="#deletenotebook" class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
                               </td>
                             </tr>
                             @endforeach
@@ -279,7 +280,7 @@
 
       <div class="modal-body">
 
-        <form method="POST" action="{{route('addNote')}}" name="noteform">
+        <form method="POST" action="{{route('addingnote')}}" name="noteform">
           @csrf()
             <div class="prblem-area form-group ">
               <label for="">Select Notes Type</label>
@@ -311,5 +312,30 @@
   </div>
 </div>
   </form>
+
+  <div class="modal fade" id="deletenotebook" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div style="width:72%; margin:auto;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="notebookid">
+           <div style="display: none; margin:auto; font-size: 16px; color:green; margin-left:50px;" id="message3"></div>
+          <div class="overlay">
+          <h5 id="loader_message3" style="display:none; text-align: center;">Deleting NoteBook Please wait....</h5><br>       
+          <img id="loading_image3" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to delete this notebook?</p>
+        </div>
+        <div class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" onclick="resetform();" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-danger btn-sm" onclick="deletenotebook();"><i class="fa fa-check" aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
     
 @endsection
