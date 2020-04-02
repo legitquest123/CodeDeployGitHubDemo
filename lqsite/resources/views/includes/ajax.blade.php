@@ -368,13 +368,13 @@ function showNotebookNote(id)
     $.ajax({
        type:'POST',
        url:'add-note',
-       beforeSend:function(){
-        $('#loading_image').show();
-         // $('body').not("#loading").css("filter","blur(3px)");
-       },
-       complete:function(){
-        $('#loading_image').hide();
-       },
+       // beforeSend:function(){
+       //  $('#loading_image').show();
+       //   // $('body').not("#loading").css("filter","blur(3px)");
+       // },
+       // complete:function(){
+       //  $('#loading_image').hide();
+       // },
        data:{
         '_token':'{{csrf_token()}}',
         fact:fact,
@@ -382,35 +382,66 @@ function showNotebookNote(id)
         description:description
        },
        success:function(response){
+        $('#addmessage').show();
+        $('#addmessage').html(response);
         location.reload(true);
+
        }
     });
   }
   </script>
 
   <script>
-  function deletenote(id)
-  {
-    var c = confirm("Delete note or not?");
-    if(c)
+    function getNoteId(id)
     {
+      $('#deletenote').val(id);
+    }
+  </script>
 
+  <script>
+  function deletenote()
+  {
+       var id = $('#deletenote').val();
        $.ajax({
-          type:'GET',
+          type:'POST',
           url:'delete-note',
+          beforeSend:function(){
+          $('#loading_image2').show();
+          $('#loader_message2').show();
+          $('#loading_image2').css("visibility","visible");
+          $('#loader_message2').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image2').hide();
+          $('#loader_message2').hide(); 
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image1').css("visibility","hidden");
+          $('#loader_message2').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
           data:{
         '_token':'{{csrf_token()}}',
           id:id,
           },
           success:function(data){
-            alert(data);
+          // alert(data);
+          $('#message1').show();
+          $('#message1').html(data);
           }
        });
-    }
-    else
-    event.preventDefault();   
+    // else
+    // event.preventDefault();   
   }
 
+</script>
+
+<script>
+  function removemessage()
+  {
+    $('#message1').hide();
+  }
 </script>
 
 <script>
@@ -446,7 +477,6 @@ function showNotebookNote(id)
     $.ajax({
         type:'POST',
         url:'share-note',
-        backdrop: "static",
         beforeSend:function(){
           $('#loading_image1').show();
           $('#loader_message').show();
@@ -465,7 +495,9 @@ function showNotebookNote(id)
         },
         data:{'_token':'{{csrf_token()}}',url: url ,email:email, noteid:noteid},
         success:function(data){
-          alert(data);
+          // alert(data);
+          $("#message").show();
+          $("#message").html(data);
         }
     });  
     }
@@ -477,12 +509,20 @@ function showNotebookNote(id)
   function resetform()
   {
     document.getElementById('shform').reset();
+    $('#message').hide();
   }
 </script>
 
 <script>
  setTimeout(function() {
     $('#messagediv').fadeOut('slow');
+}, 1000);
+</script>
+
+
+<script>
+ setTimeout(function() {
+    $('#message').fadeOut('slow');
 }, 1000);
 </script>
 

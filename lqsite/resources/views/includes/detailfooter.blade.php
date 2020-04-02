@@ -9,6 +9,16 @@
      /* margin-left : -16px;
       margin-top : -16px;*/
   }
+   #loading_image2{
+      left : 41%;
+      top : 35%;
+      position : absolute;
+      z-index : 101;
+      width : 50px;
+      height : 50px;
+     /* margin-left : -16px;
+      margin-top : -16px;*/
+  }
 </style>
    <footer class="footer background--dark p-0 text-center">
                 <div class="container">

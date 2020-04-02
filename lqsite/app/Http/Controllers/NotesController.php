@@ -39,9 +39,11 @@ class NotesController extends Controller
       $obj->date_modified = Date('Y-m-d');
       $save = $obj->save();
       if($save)
-      	return redirect()->back()->with('success','Note Save Successfully');
+      	// return redirect()->back()->with('success','Note Save Successfully');
+        echo "Notes Added Successfully!";
       else
-      	return redirect()->back()->with('error','Fail to Save Note');
+      	// return redirect()->back()->with('error','Fail to Save Note');
+        echo "Fail to Add Notes";
     }
 
     public function getNoteDetail(Request $request)

@@ -53,6 +53,7 @@
 
             <div class="flex-fill">
               <div class="judgement-topbar shadow-sm bg-white">
+                <div class="alert alert-success" style="display: none;" id="addmessage"></div>
 
                 <div class="container-fluid d-flex align-items-center mt-2 mb-1">
                   <div class="back-to-result">
@@ -456,10 +457,10 @@
                       </div>
                       <div class="d-flex  align-items-start">
                         <a  class="d-inline-block mr-2" data-toggle="tooltip" data-placement="bottom" title="share">
-                          <i data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" class="lni-share"></i>
+                          <i style="cursor: pointer;" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" class="lni-share"></i>
                         </a>
-                        <a href=""  class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                          <i onclick="deletenote({{$value->id}});" class="lni-trash"></i>
+                        <a class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="Delete">
+                          <i data-toggle="modal" data-target="#deletemodal" onclick="getNoteId({{$value->id}});" class="lni-trash"></i>
                         </a>
                       </div>
                     </div>
@@ -504,6 +505,7 @@
   </div>
 
 
+
   <!-- Modal -->
 <!-- <div class="modal fade report-problem-form" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
@@ -546,6 +548,9 @@
     </div>
   </div>
 </div> -->
+
+
+
 <div class="modal fade print-modal" id="print-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
@@ -582,27 +587,56 @@
             </a>
           </div>
         </div>
-
-
       </div>
-
     </div>
   </div>
 </div>
 
+<!-- Delete Note Modal -->
+  <div class="modal fade" id="deletemodal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div style="width:63%; margin:auto;" class="modal-content">
+        <div class="modal-header">
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message1"></div>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="deletenote">
+          <div class="overlay">
+          <h5 id="loader_message2" style="display:none; text-align: center;">Deleting Note..</h5>       
+          <img id="loading_image2" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to delete this note?</p>
+        </div>
+        <div class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding:5px; font-size: 15px; border-radius: 0px;" type="button" onclick="deletenote();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+
 
 
 <div data-backdrop="static" data-keyboard="false" class="modal fade shareform" id="shareform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:0px solid #FF9900;">
+
   <div class="modal-dialog modal-dialog-centered " role="document">
     <form method="POST" action="{{route('sharenote')}}" name="shareform" id="shform"> 
       @csrf()
     <div style="width:124%;" class="modal-content">
       <div class="modal-header">
-        <p id="sharenotetitle" class="modal-title"></p>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <p id="sharenotetitle" class="modal-title"></p><br>
+        <div style="display: none; margin:auto; font-size: 16px; color:green;" id="message"></div>
+        <button type="button" class="close" onclick="resetform();" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body" style="background:#fff;">
-       
+      
         <div style="max-height: 200px; padding: 2rem 1rem;" class="jumbotron jumbotron-size namit" >
           <div class="overlay">
           <h5 id="loader_message" style="display:none; text-align: center;">Sharing your Note please wait....</h5>       
@@ -636,6 +670,8 @@
           <button onclick="resetform();" class="btn btn-success btn-sm pull-right" style="color:#000; font-size:14px; padding-left: 24px; padding-right: 24px; padding-top:8px; border:1px solid #ccc; background-color: #eee; border-radius: 5px; float: right; margin-right: 10px;" class="close" data-dismiss="modal">Cancel</button>
       </div>
 </form>
+
+
   <!-- <section class="accordion-section clearfix mt-3123" aria-label="Question Accordions">
   <div class="container">
    -->
@@ -667,6 +703,10 @@
     <!-- </div> -->
     <!-- </div> -->
   </div>
+
 </section>
+
+
+
 @endsection
 
