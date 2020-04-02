@@ -298,7 +298,8 @@ function showNotebookNote(id)
   $("#row1").show();
   $("#row2").hide();
   $("#result").html('');
-  
+  // localStorage.setItem('key',id);
+
   $.ajax({
     type:'GET',
         url:'notebook-note',
@@ -312,11 +313,18 @@ function showNotebookNote(id)
         success: function(data){
             $('#notebookTab').html(data);
     }   
-    
   });
   
 }
 </script>
+
+<script>
+  function getNoteBookId(id)
+  {
+    $('#notebookid').val(id);
+  }
+</script>
+
 <script>
   function getNoteDetail(id)
   {

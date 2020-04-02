@@ -14,8 +14,8 @@ class NotesController extends Controller
 {
     public function index()
     {
-    	$data = Notes::where('trash','=', '0')->paginate(4);
-    	$trashdata = Notes::all()->where('trash','=','1');
+    	$data = Notes::orderBy('id','desc')->where('trash','=', '0')->paginate(3);
+    	$trashdata = Notes::orderBy('id','desc')->where('trash','=','1')->paginate(3);
     	$notebookdata = NoteBook::all()->where('status','=','1');
     	return view('pages.notes',compact('data','trashdata','notebookdata'));
     }
@@ -49,6 +49,7 @@ class NotesController extends Controller
     public function addingnote(Request $request)
     {
       $obj = new Notes;
+      $obj->notebook_id = $request->notebookid;
       $obj->user_id = '1';
       $obj->fact = $request->fact;
       $obj->title = $request->title;
@@ -57,7 +58,7 @@ class NotesController extends Controller
       $obj->date_modified = Date('Y-m-d');
       $save = $obj->save();
       if($save)
-        return redirect()->back()->with('success','Note Save Successfully');
+        return redirect()->back()->with('success','Note Added Successfully');
         // echo "Notes Added Successfully!";
       else
         return redirect()->back()->with('error','Fail to Save Note');
@@ -238,7 +239,9 @@ class NotesController extends Controller
     {
       $id = $request->id;
       $notebook = NoteBook::where('id','=',$id);
-      $delete = $notebook->delete();
+      $deletenotebook = $notebook->delete();
+      $notes = Notes::where('notebook_id','=',$id);
+      $delete = $notes->delete();
       if($delete)
       {
         echo "Notebook Deleted Successfully!";

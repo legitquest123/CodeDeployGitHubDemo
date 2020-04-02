@@ -10,10 +10,10 @@
 
             <div class="col-lg-12">
                @if(session('success'))
-                              <div id="messagediv" class="alert alert-success">
-                                  {{session('success')}}
-                              </div>
-                              @endif
+                  <div id="messagediv" class="alert alert-success">
+                      {{session('success')}}
+                  </div>
+                  @endif
                 @if(session('error'))
               <div id="messagediv" class="alert alert-danger">
                   {{session('error')}}
@@ -90,7 +90,7 @@
                         <hr class="mb-3">
                         <div class="row mb-2">
                         @foreach($data as $value)
-                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;" onclick="getNoteDetail({{$value->id}});">
+                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:10px;" onclick="getNoteDetail({{$value->id}});">
                             <h4>{{$value->title}}</h4>
                             <p style="font-size:12px;">{!!$value->description!!}</p>
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
@@ -112,6 +112,7 @@
                        </div>
                        @endforeach
                         </div>
+                      {{$trashdata->links()}}
                       </div>
                       
                     <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="shareTab">
@@ -129,16 +130,16 @@
                       </div>
                       
                     <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="notebookTab">
+
                         <h4 class="h4 card-title d-block mb-1 font-weight-bold" >Notebook</h4>
                         <hr class="mb-3">
-                        <div class="row mb-2">
+                        <div class="row mb-2" >
                
                        <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;">
                             <h4></h4>
                             <p style="font-size:12px;"></p>
                             <div class="label" style="font-size:12px;"></div>
                           </div>
-                         
                         </div>
                       </div>
                   
@@ -185,7 +186,8 @@
                               <td>
                                 <a href="#/" data-toggle="modal" data-target="#viewnotes"><i class="fas fa-search"></i></a>
                                 <a class="ml-2" href="#/"><i class="fas fa-print"></i></a>
-                                <a onclick="getnotebookid({{$value->id}});" data-toggle="modal" data-target="#deletenotebook" class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
+                                <a title="Delete NotebooK" onclick="getnotebookid({{$value->id}});" data-toggle="modal" data-target="#deletenotebook" class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
+                                <a title="Add Note" data-toggle="modal" data-target="#add-notes" onclick="getNoteBookId({{$value->id}});" class="ml-2" href="#/"><i class="fas fa-plus"></i></a>
                               </td>
                             </tr>
                             @endforeach
@@ -220,6 +222,7 @@
         <form method="POST" action="{{route('add-notebook')}}" name="notebookform">
           @csrf()
             <div class="prblem-area form-group ">
+
               <label for="">Select Your Notebook</label>
               <div class="form-group">
                 <select class="selectpicker-modal form-control" name="parent_id" title="Select Problem Area">
@@ -283,6 +286,7 @@
         <form method="POST" action="{{route('addingnote')}}" name="noteform">
           @csrf()
             <div class="prblem-area form-group ">
+              <input type="hidden" id="notebookid" name="notebookid">
               <label for="">Select Notes Type</label>
               <div class="">
                 <select name="fact" id="fact" class="selectpicker-modal form-control" multiple data-selected-text-format="count > 4" title="Select Problem Area">
@@ -306,7 +310,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary btn-sm">Send</button>
+        <button type="submit" class="btn btn-primary btn-sm">Add Note</button>
       </div>
     </div>
   </div>

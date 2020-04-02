@@ -9,10 +9,10 @@
 
           <div class="col-lg-12">
              @if(session('success'))
-                              <div id="messagediv" class="alert alert-success">
-                                  {{session('success')}}
-                              </div>
-                              @endif
+                <div id="messagediv" class="alert alert-success">
+                    {{session('success')}}
+                </div>
+                @endif
                 @if(session('error'))
               <div id="messagediv" class="alert alert-danger">
                   {{session('error')}}
@@ -98,7 +98,7 @@
                                 <a href="#">{{$value->title}}</a>
                               </td>
                               <td>
-                                {{$value->description}}
+                                {!!$value->description!!}
                               </td>
 
                               <td>
