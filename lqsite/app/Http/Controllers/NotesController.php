@@ -17,13 +17,15 @@ class NotesController extends Controller
     	$data = Notes::orderBy('id','desc')->where('trash','=', '0')->paginate(3);
     	$trashdata = Notes::orderBy('id','desc')->where('trash','=','1')->paginate(3);
     	$notebookdata = NoteBook::all()->where('status','=','1');
-    	return view('pages.notes',compact('data','trashdata','notebookdata'));
+      $notecount = Notes::all()->count();
+    	return view('pages.notes',compact('data','trashdata','notebookdata','notecount'));
     }
     public function detail()
     {
-    	$data = Notes::all()
+    	$data = Notes::orderBy('id','desc')
     	->where('status','=','1')
-    	->where('trash','=','0');
+    	->where('trash','=','0')
+      ->get();
     	return view('pages.detail',compact('data'));
     }
 
@@ -80,7 +82,7 @@ class NotesController extends Controller
                             
                             <h4 style="padding:6px 0px 10px 0px;">'.$value['title'].'</h4>
                             <p style="font-size:13px; text-align:justify;">'.$value['description'].'</p>
-                            <div class="label" style="font-size:12px;">'.$value['date_created'].'</div>
+                            <div class="label" style="font-size:12px; margin-bottom:4px;">'.$value['date_created'].'</div>
                           </div>
                         </div>';
     	}
@@ -131,7 +133,7 @@ class NotesController extends Controller
                             <div class="label" style="font-size:15px; font-weight:bold; padding:0px 0px 10px 0px;"></div>
                             <h4 style="padding:6px 0px 10px 0px;">'.$value['title'].'</h4>
                             <p style="font-size:13px; text-align:justify;">'.$value['description'].'</p>
-                            <div class="label" style="font-size:12px;">'.$value['date_created'].'</div>
+                            <div class="label" style="font-size:12px; margin-bottom:4px;">'.$value['date_created'].'</div>
                           </div>
                         </div>';
     	}
@@ -238,11 +240,12 @@ class NotesController extends Controller
     public function deletenotebook(Request $request)
     {
       $id = $request->id;
-      $notebook = NoteBook::where('id','=',$id);
-      $deletenotebook = $notebook->delete();
       $notes = Notes::where('notebook_id','=',$id);
       $delete = $notes->delete();
-      if($delete)
+      $notebook = NoteBook::where('id','=',$id);
+      $deletenotebook = $notebook->delete();
+     
+      if($deletenotebook)
       {
         echo "Notebook Deleted Successfully!";
       }
@@ -250,5 +253,36 @@ class NotesController extends Controller
       {
         echo "Fail to delete Notebook";
       }
+    }
+
+    public function getnotebookdata(Request $request)
+    {
+      $id = $request->id;
+      $notebooknotes = Notes::where('notebook_id','=',$id)->get();
+      $view = '<table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Date Created</th>
+          <th>Date Modified</th>
+        </tr>
+      </thead>
+      <tbody>';
+
+      foreach($notebooknotes as $key=> $value)
+      {
+        $view .= '
+     
+          <tr>
+             <td>' .++$key.'</td>
+             <td>' .$value['title'].'</td>
+             <td>' .$value['date_created'].'</td>
+             <td>' .$value['date_modified'].'</td>
+          </tr>';
+      }
+      $view.= '</tbody>
+      </table>';
+      return $view;
     }
 }

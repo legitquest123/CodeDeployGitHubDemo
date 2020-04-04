@@ -621,4 +621,17 @@ function showNotebookNote(id)
     });
 
   }
+
+  function getNoteBookData(id)
+  {
+    $.ajax({
+      type:'POST',
+      url:'getnotebookdata',
+      data:{'_token':'{{csrf_token()}}',id:id},
+      success:function(data){
+        // alert(data);
+        $('.mydata').html(data);
+      }
+    })
+  }
 </script>

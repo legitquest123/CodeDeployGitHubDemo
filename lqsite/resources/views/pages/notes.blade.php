@@ -40,7 +40,7 @@
                                       <div class="col-sm-6 b-r b-b">
                                           <div class="el-tablo centered py-3">
                                             <a href="./notes.html">
-                                              <div class="value">25</div>
+                                              <div class="value">{{$notecount}}</div>
                                               <div class="label">Notes</div>
                                             </a>
                                           </div>
@@ -112,7 +112,7 @@
                        </div>
                        @endforeach
                         </div>
-                      {{$trashdata->links()}}
+                          {{$data->links()}}
                       </div>
                       
                     <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="shareTab">
@@ -163,7 +163,10 @@
                       
                       <input type="hidden" id="notebookId">
                       <hr class="mb-3">
-                      <div class="table-responsive">
+
+                      <!--Main Design Starts-->
+
+                     <!--  <div class="table-responsive">
                         <table id="datatable" class="table table-striped f-14">
                           <thead class="bg-dark text-white">
                             <tr>
@@ -193,15 +196,42 @@
                             @endforeach
                           </tbody>
                         </table>
-                      </div>
+                      </div> -->
 
+                      <!--Main Design Ends-->
+
+
+                      <!--My Custom Design Starts-->
+
+                      <table class="table table-bordered">
+                       <tr>
+                        <th>#</th>
+                        <th style="text-align: center;">Notebook Name</th>
+                        <th>Date Created</th>
+                        <th>Actions</th>
+                      </tr>
+                      @foreach($notebookdata as $key => $value)
+                      <tr>
+                        <td>{{++$key}}</td>
+                        <td style="width:50%; text-align: center; " onclick="getNoteBookData({{$value->id}});" data-toggle="collapse" data-target="#demo{{$key}}"><a href="#"><strong><span class="caret">{{$value->name}}</span></strong>
+                         <div id="demo{{$key}}" class="collapse table mydata">
+
+                          
+                        </div></a></td>
+                        <td>{{$value->date_created}}</td>
+                        <td><i style="cursor: pointer;" title="Add Note" data-toggle="modal" data-target="#add-notes" onclick="getNoteBookId({{$value->id}});" class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                          <i style="cursor: pointer;" title="Delete NotebooK" onclick="getnotebookid({{$value->id}});" data-toggle="modal" data-target="#deletenotebook" class="fas fa-trash"></i></td>
+                      </tr>
+                      @endforeach
+                      </table>
+
+                      <!--My Custom Design Ends-->
+ 
                     </div>
-                  
-                 
                 </div>
               </section>
             </div>
-            </div> <!-- Nested row -->
+            </div>
           </div>
         </div>
       </div>
@@ -275,7 +305,7 @@
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-header bg-gray">
-        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Add Note</h5>
+        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Add Note in Notebook</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

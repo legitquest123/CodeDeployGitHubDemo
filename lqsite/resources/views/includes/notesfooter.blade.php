@@ -154,6 +154,8 @@
   </div>
   <!-- Global Required JS -->
   <script src="{{asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+
   <script src="{{asset('public/js/vendor/popper.min.js')}}"></script>
   <script src="{{asset('public/js/vendor/bootstrap.min.js')}}"></script>
 

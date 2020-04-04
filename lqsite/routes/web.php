@@ -189,6 +189,7 @@ Route::post('generate-url','NotesController@generateurl');
 Route::post('share-note','NotesController@sharenote')->name('sharenote');
 Route::post('getemails','NotesController@getemails')->name('getemails');
 Route::post('delete-notebook','NotesController@deletenotebook');
+Route::post('getnotebookdata','NotesController@getnotebookdata');
 
 
 

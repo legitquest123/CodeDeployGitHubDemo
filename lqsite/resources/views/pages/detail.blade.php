@@ -597,7 +597,7 @@
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div style="width:63%; margin:auto;" class="modal-content">
+      <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
         <div class="modal-body">
           <input type="hidden" id="deletenote">
           <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message1"></div>
@@ -607,7 +607,7 @@
         </div>
           <p>Are you sure you want to delete this note?</p>
         </div>
-        <div class="modal-footer">
+        <div style="border-style:none;" class="modal-footer">
           <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
           <button style="padding:5px; font-size: 15px; border-radius: 0px;" type="button" onclick="deletenote();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
 
