@@ -16,7 +16,7 @@ class NotesController extends Controller
     {
     	$data = Notes::orderBy('id','desc')->where('trash','=', '0')->paginate(3);
     	$trashdata = Notes::orderBy('id','desc')->where('trash','=','1')->paginate(3);
-    	$notebookdata = NoteBook::all()->where('status','=','1');
+    	$notebookdata = NoteBook::orderBy('id','desc')->where('status','=','1')->paginate(5);
       $notecount = Notes::all()->count();
     	return view('pages.notes',compact('data','trashdata','notebookdata','notecount'));
     }
@@ -158,17 +158,23 @@ class NotesController extends Controller
     public function deletenote(Request $request)
     {
     	$id = $request->id;
-    	$note = Notes::where('id','=',$id);
-    	$delete = $note->delete();
-    	if($delete)
-    	{
-    		echo "Note Deleted Successfully!";
-    	}
-    	else
-    	{
-    		echo "Fail to delete notes";
-    	}
-    		
+    	$note = Notes::find($id);
+      // dd($note);
+      if($note->trash == '0')
+      {
+         $note->trash = '1';
+         $trash = $note->save();
+          if($trash)
+          echo "Note Moved to trash Successfully!";
+          else
+          echo "Fail to Move notes";
+      }
+      else
+      {
+        // $note->trash = '0';
+        echo "Already in Trash";
+      }
+    	// $delete = $note->delete();		
     }
 
     public function generateurl(Request $request)

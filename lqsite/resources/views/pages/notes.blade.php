@@ -213,7 +213,7 @@
                       @foreach($notebookdata as $key => $value)
                       <tr>
                         <td>{{++$key}}</td>
-                        <td style="width:50%; text-align: center; " onclick="getNoteBookData({{$value->id}});" data-toggle="collapse" data-target="#demo{{$key}}"><a href="#"><strong><span class="caret">{{$value->name}}</span></strong>
+                        <td style="width:70%;" onclick="getNoteBookData({{$value->id}});"><a data-toggle="collapse" data-target="#demo{{$key}}" href=""><strong style="font-size: 15px;">{{$value->name}}</strong>
                          <div id="demo{{$key}}" class="collapse table mydata">
 
                           
@@ -224,6 +224,7 @@
                       </tr>
                       @endforeach
                       </table>
+                      {{$notebookdata->links()}}
 
                       <!--My Custom Design Ends-->
  
