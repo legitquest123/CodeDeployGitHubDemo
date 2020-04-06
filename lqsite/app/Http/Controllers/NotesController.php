@@ -58,6 +58,7 @@ class NotesController extends Controller
       $obj->description = $request->description;
       $obj->date_created = Date('Y-m-d');
       $obj->date_modified = Date('Y-m-d');
+      
       $save = $obj->save();
       if($save)
         return redirect()->back()->with('success','Note Added Successfully');

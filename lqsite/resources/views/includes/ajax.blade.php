@@ -630,7 +630,7 @@ function showNotebookNote(id)
       data:{'_token':'{{csrf_token()}}',id:id},
       success:function(data){
         // alert(data);
-        $('.mydata').html(data);
+        $('.mydata' + id).html(data);
       }
     })
   }

@@ -209,7 +209,7 @@
 
                       <!--My Custom Design Starts-->
 
-                      <table class="table table-bordered table-hover">
+                      <table style="border-style:none;" class="table">
                        <tr>
                         <!-- <th>#</th> -->
                         <th>Notebook Name</th>
@@ -222,7 +222,7 @@
                         <td onclick="getNoteBookData({{$value->id}});"><i data-toggle="collapse" data-target="#demo{{$key}}" style="cursor: pointer;" class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;&nbsp;
                         <i class="fa fa-address-book" aria-hidden="true"></i>&nbsp;&nbsp;
                         {{$value->name}}
-                         <div style="border-style: none;" id="demo{{$key}}" class="collapse table mydata">
+                         <div style="border-style: none;" id="demo{{$key}}" class="collapse table mydata{{$value->id}}">
 
                           
                         </div></td>
