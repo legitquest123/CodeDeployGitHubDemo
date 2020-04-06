@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 @section('content')
-<div class="overlay">
+<!-- <div class="overlay">
       <img id="loading_image" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
-    </div>
+    </div> -->
     <section class="section publish-section section-posts bg-gray  pt-5 pb-5">
       <div class="container-fluid px-md-5">
         <div class="row row-grid justify-content-center">
@@ -89,7 +89,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                         @foreach($data as $key=> $value)
+                         @foreach($tdata as $key=> $value)
                             <tr>
                               <td>
                               {{++$key}}
@@ -105,7 +105,8 @@
                                {{$value->date_created}}
                               </td>
                               <td>
-                                <a class="ml-2" href="#" onclick="moveNote();"><i class="fas fa-print"></i></a>
+                                <a class="ml-2" data-toggle="modal"  data-target="#trashmodal" href="#" onclick="getTrashNoteId({{$value->id}});"><i class="fas fa-undo"></i></a>
+                                <a class="ml-2" data-toggle="modal" data-target="#deletemodal1" href="#" onclick="getId({{$value->id}});"><i class="fas fa-trash"></i></a>
                               </td>
                             </tr>
                             @endforeach
@@ -115,6 +116,59 @@
 
                     </div>
                   </div>
+
+
+<!-- Trash Note Modal -->
+  <div class="modal fade" id="trashmodal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="trashnote">
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message"></div>
+          <div class="overlay">
+          <h5 id="loader_message2" style="display:none; text-align: center;">Moving Notes..</h5>       
+          <img id="loading_image2" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to Undo this 
+          Note?</p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding:5px; font-size: 15px; border-radius: 0px;" type="button" onclick="undotrash();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Delete Note Modal -->
+  <div class="modal fade" id="deletemodal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="trashnoteid">
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message4"></div>
+          <div class="overlay">
+          <h5 id="loader_message4" style="display:none; text-align: center;">Deleting Notes..</h5>       
+          <img id="loading_image4" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to Delete this 
+          Note Permanently?</p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding:5px; font-size: 15px; border-radius: 0px;" type="button" onclick="deletetrashnote();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
                 </section>

@@ -634,4 +634,83 @@ function showNotebookNote(id)
       }
     })
   }
+
+ function getTrashNoteId(id)
+ {
+   $('#trashnote').val(id);
+ }
+
+ function undotrash()
+ {
+  var id = $('#trashnote').val();
+  $.ajax({
+    type:'POST',
+    url:'undotrash',
+    beforeSend:function(){
+          $('#loading_image2').show();
+          $('#loader_message2').show();
+          $('#loading_image2').css("visibility","visible");
+          $('#loader_message2').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image2').hide();
+          $('#loader_message2').hide(); 
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image2').css("visibility","hidden");
+          $('#loader_message2').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
+    data:{'_token':'{{csrf_token()}}',id:id},
+    success:function(data){
+      $('#message').show();
+      $('#message').html(data);
+      location.reload(true);
+    }
+  });
+ }
+</script>
+
+<script>
+  function getId(id)
+ {
+   // alert(id);
+   $('#trashnoteid').val(id);
+ }
+</script>
+
+<script>
+
+ function deletetrashnote()
+ {
+  var id = $('#trashnoteid').val();
+  $.ajax({
+    type:'POST',
+    url:'empty-trash',
+    beforeSend:function(){
+          $('#loading_image4').show();
+          $('#loader_message4').show();
+          $('#loading_image4').css("visibility","visible");
+          $('#loader_message4').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image4').hide();
+          $('#loader_message4').hide(); 
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image4').css("visibility","hidden");
+          $('#loader_message4').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
+    data:{'_token':'{{csrf_token()}}',id:id},
+    success:function(data)
+    {
+      $('#message4').show();
+      $('#message4').html(data);
+      location.reload(true);
+    }
+  });
+ }
 </script>

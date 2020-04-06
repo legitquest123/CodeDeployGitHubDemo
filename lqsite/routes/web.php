@@ -190,6 +190,8 @@ Route::post('share-note','NotesController@sharenote')->name('sharenote');
 Route::post('getemails','NotesController@getemails')->name('getemails');
 Route::post('delete-notebook','NotesController@deletenotebook');
 Route::post('getnotebookdata','NotesController@getnotebookdata');
+Route::post('undotrash','NotesController@undoTrash');
+Route::post('empty-trash','NotesController@emptytrash');
 
 
 

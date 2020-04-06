@@ -14,9 +14,9 @@ class NotesController extends Controller
 {
     public function index()
     {
-    	$data = Notes::orderBy('id','desc')->where('trash','=', '0')->paginate(3);
-    	$trashdata = Notes::orderBy('id','desc')->where('trash','=','1')->paginate(3);
-    	$notebookdata = NoteBook::orderBy('id','desc')->where('status','=','1')->paginate(5);
+    	$data = Notes::orderBy('id','desc')->where('trash','=', '0')->paginate(4);
+    	$trashdata = Notes::orderBy('id','desc')->where('trash','=','1')->paginate(4);
+    	$notebookdata = NoteBook::orderBy('id','desc')->where('status','=','1')->paginate(4);
       $notecount = Notes::all()->count();
     	return view('pages.notes',compact('data','trashdata','notebookdata','notecount'));
     }
@@ -70,7 +70,7 @@ class NotesController extends Controller
     public function getNoteDetail(Request $request)
     {
     	$id = $request->id;
-    		$data = Notes::where('id','=',$request->id)->get();
+    	$data = Notes::where('id','=',$request->id)->get();
     	$view = '';
     	foreach($data as $value)
     	{
@@ -84,7 +84,8 @@ class NotesController extends Controller
                             <p style="font-size:13px; text-align:justify;">'.$value['description'].'</p>
                             <div class="label" style="font-size:12px; margin-bottom:4px;">'.$value['date_created'].'</div>
                           </div>
-                        </div>';
+                        </div>
+                       ';
     	}
     	return $view;
     }
@@ -142,8 +143,8 @@ class NotesController extends Controller
 
     public function showtrash()
     {
-    	$data = Notes::all()->where('trash' ,'=',1);
-    	return view('pages.trash',compact('data'));
+    	$tdata = Notes::all()->where('trash' ,'=',1);
+    	return view('pages.trash',compact('tdata'));
     }
 
     public function deletetrash()
@@ -290,5 +291,31 @@ class NotesController extends Controller
       $view.= '</tbody>
       </table>';
       return $view;
+    }
+
+    public function undoTrash(Request $request)
+    {
+      $id = $request->id;
+      $note = Notes::find($id);
+      if($note->trash == '1')
+      {
+        $note->trash = '0';
+        $move = $note->save();
+        if($move)
+          echo "Note Move Successfully!";
+        else
+          echo "Fail to Move Note;";
+      }
+    }
+
+    public function emptytrash(Request $request)
+    {
+      $id = $request->id;
+      $note = Notes::find($id);
+      $delete = $note->delete();
+      if($delete)
+        echo "Note Deleted Successfully!";
+      else
+        echo "Fail to Delete Note!";
     }
 }

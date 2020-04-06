@@ -13,6 +13,26 @@
       margin-left : -16px;
       margin-top : -16px;
      }
+     #loading_image2{
+      left : 41%;
+      top : 35%;
+      position : absolute;
+      z-index : 101;
+      width : 50px;
+      height : 50px;
+     /* margin-left : -16px;
+      margin-top : -16px;*/
+  }
+   #loading_image4{
+      left : 41%;
+      top : 35%;
+      position : absolute;
+      z-index : 101;
+      width : 50px;
+      height : 50px;
+     /* margin-left : -16px;
+      margin-top : -16px;*/
+  }
  </style>
 
   

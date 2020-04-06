@@ -90,10 +90,13 @@
                         <hr class="mb-3">
                         <div class="row mb-2">
                         @foreach($data as $value)
-                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:10px;" onclick="getNoteDetail({{$value->id}});">
-                            <h4>{{$value->title}}</h4>
+                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:10px;">
+                          
+                            <a href="#"><h4 onclick="getNoteDetail({{$value->id}});">{{$value->title}}</a></h4>
                             <p style="font-size:12px;">{!!$value->description!!}</p>
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
+                              <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="float:right; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
+                             <i title="Move to trash" data-toggle="modal" data-target="#deletemodal1" onclick="getNoteId({{$value->id}});" style="float:right; font-size: 12px; margin-right: 10px; cursor: pointer; " class="fas fa-trash"></i>
                           </div>
                           @endforeach
                         </div>
@@ -105,14 +108,15 @@
                         <hr class="mb-3">
                         <div class="row mb-2">
                        @foreach($trashdata as $value)
-                       <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;" onclick="getNoteDetail({{$value->id}});">
-                            <h4>{{$value->title}}</h4>
+                       <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;" >
+                            <a href="#"><h4 onclick="getNoteDetail({{$value->id}});">{{$value->title}}</a></h4>
                             <p style="font-size:12px;">{!!$value->description!!}</p>
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
+                            <i data-toggle="modal" data-target="#trash" onclick="getTrashNoteId({{$value->id}});" style="float: right; cursor: pointer;" title="Undo trash" class="fas fa-undo"></i>
                        </div>
                        @endforeach
                         </div>
-                          {{$data->links()}}
+                      {{$trashdata->links()}}
                       </div>
                       
                     <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="shareTab">
@@ -144,7 +148,9 @@
                       </div>
                   
                   <div class="col-md-8" style="border:0px solid #CC6600;" id="result">
+                   
                   </div>
+
                  <!--  <div class="col-md-8" style="border:0px solid #CC6600;" id="result1">
                   </div> -->
 
@@ -300,6 +306,64 @@
   </form> 
 </div>
 
+
+<!-- Delete Note Modal -->
+  <div class="modal fade" id="deletemodal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="deletenote">
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message1"></div>
+          <div class="overlay">
+          <h5 id="loader_message2" style="display:none; text-align: center;">Moving to Trash..</h5>       
+          <img id="loading_image2" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to move this note to trash?</p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding:5px; font-size: 15px; border-radius: 0px;" type="button" onclick="deletenote();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+<!--Trash undo Modal-->
+
+<!-- Trash Note Modal -->
+  <div class="modal fade" id="trash" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="trashnote">
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message1"></div>
+          <div class="overlay">
+          <h5 id="loader_message2" style="display:none; text-align: center;">Moving to Notes..</h5>       
+          <img id="loading_image2" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to Undo trash this 
+          Note?</p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding:5px; font-size: 15px; border-radius: 0px;" type="button" onclick="undotrash();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 <!--Add Notes Modal -->
 
 <div class="modal fade add-notes" id="add-notes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -348,6 +412,8 @@
 </div>
   </form>
 
+
+
   <div class="modal fade" id="deletenotebook" role="dialog">
     <div class="modal-dialog">
     
@@ -371,6 +437,52 @@
       
     </div>
   </div>
-  
-    
+
+  <div data-backdrop="static" data-keyboard="false" class="modal fade shareform" id="shareform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:0px solid #FF9900;">
+
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <form method="POST" action="{{route('sharenote')}}" name="shareform" id="shform"> 
+      @csrf()
+    <div style="width:124%;" class="modal-content">
+      <div class="modal-header">
+        <p id="sharenotetitle" class="modal-title"></p><br>
+        <div style="display: none; margin:auto; font-size: 16px; color:green;" id="message"></div>
+        <button type="button" class="close" onclick="resetform();" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" style="background:#fff;">
+      
+        <div style="max-height: 200px; padding: 2rem 1rem;" class="jumbotron jumbotron-size namit" >
+          <div class="overlay">
+          <h5 id="loader_message" style="display:none; text-align: center;">Sharing your Note please wait....</h5>       
+          <img id="loading_image1" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p style="font-size: 13px;" class="share"><strong>Shareable link</strong>
+            <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round toggle-small"></span> </label>
+            <span style="color:green;"><b>Enabled</b></span> </p>
+          <span style="margin-top:-56px; color:#0081c2; float:right; font-size:13px; padding-top:15px;" onclick="copytext();" style="cursor: pointer;" class="pull-right">Copy Link</span>
+          <input style="border-radius: 0px; padding: 20px; max-height:20px;
+" class="form-control" type="text" name="generateurl" id="generateurl">
+
+          <div class="BgqMSSe4i5Xcx4ovi-L97 vxdNx4zxpyzFVmrRhysgV _204SBFKyNSu1zYD0gtU2Xo" style="padding:10px 0px 10px 0px; font-size:13px;">
+           
+             </div>
+        </div>
+        <p style="font-size: 13px;" class="share">Invite People</p>
+        <input style="border-radius: 0px; padding:10px; max-height: 41px;
+" class="form-control" type="text" name="email" id="email" placeholder="Enter Email">
+
+<div style="display: none;" style="padding:6px; border:1px solid #ccc;" id="emails"></div>
+
+<input type="hidden" id="noteid" name="noteid">
+        <span id="error1"></span>
+        <p style="font-size:13px; padding:10px 0px 10px 0px; color:#999999;">Others may have access to this note if it is also in a shared notebook.</p>
+
+         <button type="button" onclick="sharenote();" class="btn btn-success btn-sm pull-right" style="color:#ffffff; background-color: green; font-size:14px;  padding-left: 24px; padding-right: 24px; padding-top:10px;  border-style: none; border-radius: 5px; float: right; ">Share Note</button>
+      
+          <button onclick="resetform();" class="btn btn-success btn-sm pull-right" style="color:#000; font-size:14px; padding-left: 24px; padding-right: 24px; padding-top:8px; border:1px solid #ccc; background-color: #eee; border-radius: 5px; float: right; margin-right: 10px;" class="close" data-dismiss="modal">Cancel</button>
+      </div>
+</form>
+
 @endsection
