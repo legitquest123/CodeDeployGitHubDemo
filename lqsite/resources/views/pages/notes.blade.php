@@ -219,7 +219,7 @@
                       @foreach($notebookdata as $key => $value)
                       <tr>
                         <!-- <td>{{++$key}}</td> -->
-                        <td onclick="getNoteBookData({{$value->id}});"><i data-toggle="collapse" data-target="#demo{{$key}}" class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;&nbsp;
+                        <td onclick="getNoteBookData({{$value->id}});"><i data-toggle="collapse" data-target="#demo{{$key}}" style="cursor: pointer;" class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;&nbsp;
                         <i class="fa fa-address-book" aria-hidden="true"></i>&nbsp;&nbsp;
                         {{$value->name}}
                          <div style="border-style: none;" id="demo{{$key}}" class="collapse table mydata">
