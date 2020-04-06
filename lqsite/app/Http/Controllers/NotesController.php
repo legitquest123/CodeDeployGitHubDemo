@@ -266,30 +266,24 @@ class NotesController extends Controller
     {
       $id = $request->id;
       $notebooknotes = Notes::where('notebook_id','=',$id)->get();
-      $view = '<table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Title</th>
-          <th>Date Created</th>
-          <th>Date Modified</th>
-        </tr>
-      </thead>
-      <tbody>';
+      $view = '';
+      // $view = '<table>
+      // <thead>
+      //   <tr>
+          
+      //     <th>Title</th>
+      //     <th>Date Created</th>
+      //     <th>Date Modified</th>
+      //   </tr>
+      // </thead>
+      // <tbody>';
 
       foreach($notebooknotes as $key=> $value)
       {
-        $view .= '
-     
-          <tr>
-             <td>' .++$key.'</td>
-             <td>' .$value['title'].'</td>
-             <td>' .$value['date_created'].'</td>
-             <td>' .$value['date_modified'].'</td>
-          </tr>';
+        $view .= '<ul style="list-style-type:none;">
+          <li style="margin-left:50px; margin-top:15px; font-size:13px;"> <i class="fa fa-file"></i>'."  ".$value['title'].'</li>'
+          ;
       }
-      $view.= '</tbody>
-      </table>';
       return $view;
     }
 

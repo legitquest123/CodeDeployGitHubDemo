@@ -209,21 +209,23 @@
 
                       <!--My Custom Design Starts-->
 
-                      <table class="table table-bordered">
+                      <table class="table table-bordered table-hover">
                        <tr>
-                        <th>#</th>
-                        <th style="text-align: center;">Notebook Name</th>
+                        <!-- <th>#</th> -->
+                        <th>Notebook Name</th>
                         <th>Date Created</th>
                         <th>Actions</th>
                       </tr>
                       @foreach($notebookdata as $key => $value)
                       <tr>
-                        <td>{{++$key}}</td>
-                        <td style="width:70%;" onclick="getNoteBookData({{$value->id}});"><a data-toggle="collapse" data-target="#demo{{$key}}" href=""><strong style="font-size: 15px;">{{$value->name}}</strong>
-                         <div id="demo{{$key}}" class="collapse table mydata">
+                        <!-- <td>{{++$key}}</td> -->
+                        <td onclick="getNoteBookData({{$value->id}});"><i data-toggle="collapse" data-target="#demo{{$key}}" class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;&nbsp;
+                        <i class="fa fa-address-book" aria-hidden="true"></i>&nbsp;&nbsp;
+                        {{$value->name}}
+                         <div style="border-style: none;" id="demo{{$key}}" class="collapse table mydata">
 
                           
-                        </div></a></td>
+                        </div></td>
                         <td>{{$value->date_created}}</td>
                         <td><i style="cursor: pointer;" title="Add Note" data-toggle="modal" data-target="#add-notes" onclick="getNoteBookId({{$value->id}});" class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;
                           <i style="cursor: pointer;" title="Delete NotebooK" onclick="getnotebookid({{$value->id}});" data-toggle="modal" data-target="#deletenotebook" class="fas fa-trash"></i></td>
@@ -418,7 +420,7 @@
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div style="width:72%; margin:auto;" class="modal-content">
+      <div style="width:63%; margin:auto; border-radius: 0px;" class="modal-content">
         <div class="modal-body">
           <input type="hidden" id="notebookid">
            <div style="display: none; margin:auto; font-size: 16px; color:green; margin-left:50px;" id="message3"></div>
@@ -428,7 +430,7 @@
         </div>
           <p>Are you sure you want to delete this notebook?</p>
         </div>
-        <div class="modal-footer">
+        <div style="border-style:none;" class="modal-footer">
           <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" onclick="resetform();" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
           <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-danger btn-sm" onclick="deletenotebook();"><i class="fa fa-check" aria-hidden="true"></i></button>
 
