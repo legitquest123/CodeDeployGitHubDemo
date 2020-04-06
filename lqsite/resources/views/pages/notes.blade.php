@@ -162,9 +162,10 @@
                       <h4 class="h4 card-title d-block mb-1 font-weight-bold">My Notebook</h4>
                       </div>
                        <div class="col-md-2">
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".report-problem-form" style="float:right; padding-left: 5px; padding-right: 5px;">
+                        <a href="#" data-toggle="modal" data-target=".report-problem-form" style="float:right; background-color: none; color:blue; width:113%;">
+                          <i class="fa fa-plus"></i>
                         New Notebook
-                        </button>
+                        </a>
                       </div>
                       
                       <input type="hidden" id="notebookId">

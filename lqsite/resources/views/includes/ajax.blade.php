@@ -624,6 +624,7 @@ function showNotebookNote(id)
 
   function getNoteBookData(id)
   {
+    
     $.ajax({
       type:'POST',
       url:'getnotebookdata',
