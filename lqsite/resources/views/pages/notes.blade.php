@@ -38,7 +38,7 @@
                                   <div class="row mb-2 text-center">
                                       <div class="col-sm-6 b-r b-b">
                                           <div class="el-tablo centered py-3">
-                                            <a href="./notes.html">
+                                            <a href="#">
                                               <div class="value">{{$notecount}}</div>
                                               <div class="label">Notes</div>
                                             </a>
@@ -46,7 +46,7 @@
                                       </div>
                                       <div class="col-sm-6 b-b">
                                           <div class="el-tablo centered  py-3">
-                                            <a href="./bookmark.html">
+                                            <a href="#">
                                               <div class="value">31</div>
                                               <div class="label">Bookmarks</div>
                                             </a>
@@ -56,10 +56,10 @@
 
                                   <div class="profile-links">
                                     <ul class="list-unstyled mb-0">
-                                      <li><a href="./profile.html"><i class="lni-user mr-2"></i>Edit Profile</a> </li>
+                                      <li><a href="#"><i class="lni-user mr-2"></i>Edit Profile</a> </li>
                                       <li><a href="#"><i class="lni-lock mr-2"></i> Change password</a></li>
-                                      <li><a href="./bookmark.html"><i class="lni-bookmark mr-2"></i> Bookmarks</a></li>
-                                      <li><a href="./notes.html"><i class="lni-pencil-alt mr-2"></i> Notes</a></li>
+                                      <li><a href="#"><i class="lni-bookmark mr-2"></i> Bookmarks</a></li>
+                                      <li><a href="#"><i class="lni-pencil-alt mr-2"></i> Notes</a></li>
                                     </ul>
                                   </div>
                               </div>
