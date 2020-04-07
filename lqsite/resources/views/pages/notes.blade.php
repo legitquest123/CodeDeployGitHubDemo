@@ -106,7 +106,7 @@
                         <div class="row mb-2">
                        @foreach($trashdata as $value)
                        <div class="col-sm-12 b-r b-r-s b-b" style="text-align: justify; padding-bottom:18px; padding-top:13px;">
-                            <h4 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h4>
+                            <h5 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h5>
                             <!-- <p style="font-size:12px;">{!!$value->description!!}</p> -->
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
                             <i data-toggle="modal" data-target="#trash" onclick="getTrashNoteId({{$value->id}});" style=" float:right; cursor: pointer;" title="Undo trash" class="fas fa-undo"></i>
