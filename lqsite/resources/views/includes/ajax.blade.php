@@ -624,7 +624,7 @@ function showNotebookNote(id)
 
   function getNoteBookData(id)
   {
-    
+
     $.ajax({
       type:'POST',
       url:'getnotebookdata',
@@ -713,5 +713,42 @@ function showNotebookNote(id)
       location.reload(true);
     }
   });
+ }
+
+ function hello(value)
+ {
+  alert(value);
+ }
+
+ function getNotebookNotesDetail(id)
+ {
+   $('#showNotebookNoteId').val(id);
+   $.ajax({
+     type:'POST',
+     url:'getnotebooknotesdetail',
+     data:{'_token':'{{csrf_token()}}',id:id},
+     success:function(data){
+      $('#notetitle').html(data['title']);
+      $('#notedescription').html(data['description']);
+      $('#notedate').html(data['date_created']);
+      // alert(JSON.stringify(data));
+     }
+   });
+ }
+
+ function getnotedetail(id)
+ {
+   $('#notedetail123').val(id);
+   $.ajax({
+     type:'POST',
+     url:'getnotebooknotesdetail',
+     data:{'_token':'{{csrf_token()}}',id:id},
+     success:function(data){
+      // alert(JSON.stringify(data));
+      $('#notetitle').html(data['title']);
+      $('#notedescription').html(data['description']);
+      $('#notedate').html(data['date_created']);
+     }
+   });
  }
 </script>

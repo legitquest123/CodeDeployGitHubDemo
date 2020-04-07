@@ -95,7 +95,7 @@
                               {{++$key}}
                               </td>
                               <td>
-                                <a href="#">{{$value->title}}</a>
+                                <a onclick="getnotedetail({{$value->id}});" data-toggle="modal" data-target="#notedetail"  href="#">{{$value->title}}</a>
                               </td>
                               <td>
                                 {!!$value->description!!}
@@ -161,8 +161,8 @@
           Note Permanently?</p>
         </div>
         <div style="border-style:none;" class="modal-footer">
-          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
-          <button style="padding:5px; font-size: 15px; border-radius: 0px;" type="button" onclick="deletetrashnote();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px;" type="button" onclick="deletetrashnote();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
 
         </div>
       </div>
@@ -171,21 +171,27 @@
 
 
 
+<!-- Show Notes Detail Modal -->
+  <div class="modal fade" id="notedetail" role="dialog">
+    <div class="modal-dialog">
+      <div style="border-radius:0px;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="notedetail123">
+          <h3 style="text-align: center;" id="notetitle"></h3>
+          <p style="text-align: center;" id="notedescription"></p>
+          <p style="text-align: center;" id="notedate"></p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
                 </section>
-
-
               </div> <!-- END Posts Wrapper -->
-
-
-
             </div> <!-- Nested row -->
           </div>
-
-
-
         </div>
       </div>
     </section> <!-- END Section Posts -->
 
- 
 @endsection

@@ -78,7 +78,7 @@ class NotesController extends Controller
     		$view .= '<h4 class="h4 card-title d-block mb-1 font-weight-bold" >'.$value['title'].'</h4>
                         <hr class="mb-3">
                         <div class="row mb-2">
-                          <div style="height:100%;" class="col-sm-12 b-b">
+                          <div style="height:100%; border-style:none;" class="col-sm-12 b-b">
                             <div class="label" style="font-size:15px; font-weight:bold; padding:0px 0px 10px 0px;"></div>
                             
                             <h4 style="padding:6px 0px 10px 0px;">'.$value['title'].'</h4>
@@ -185,7 +185,7 @@ class NotesController extends Controller
         $title = DB::table('note')->where('id','=',$id)->pluck('title');
         $noteid = DB::table('note')->where('id','=',$id)->pluck('id');
         // $path  = $request->path();
-        $path = $request->root().'/detail/'.$request->id;
+        $path = $request->root().'/'.md5($request->id);
         // $path = $request->url();
         $arr = array(
         'title' => $title,
@@ -268,21 +268,11 @@ class NotesController extends Controller
       $id = $request->id;
       $notebooknotes = Notes::where('notebook_id','=',$id)->get();
       $view = '';
-      // $view = '<table>
-      // <thead>
-      //   <tr>
-          
-      //     <th>Title</th>
-      //     <th>Date Created</th>
-      //     <th>Date Modified</th>
-      //   </tr>
-      // </thead>
-      // <tbody>';
-
+    
       foreach($notebooknotes as $key=> $value)
       {
         $view .= '<ul style="list-style-type:none;">
-          <li style="margin-left:50px; margin-top:15px; font-size:13px;"> <i class="fa fa-file"></i>'."  ".$value['title'].'</li>'
+          <li data-toggle="modal" data-target="#showNotebookNote" onclick="getNotebookNotesDetail('.$value['id'].');" style="margin-left:50px; margin-top:15px; font-size:13px; cursor:pointer;"> <i class="fa fa-file"></i>'."  ".$value['title'].'</li>'
           ;
       }
       return $view;
@@ -312,5 +302,12 @@ class NotesController extends Controller
         echo "Note Deleted Successfully!";
       else
         echo "Fail to Delete Note!";
+    }
+
+    public function getNotebookNotesDetail(Request $request)
+    {
+      $id = $request->id;
+      $data = Notes::find($id);
+      return $data;
     }
 }

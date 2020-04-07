@@ -1,6 +1,5 @@
 @extends('layouts.noteslayout')
 @section('content')
-
 <div class="overlay">
       <img id="loading_image" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
     </div>
@@ -63,8 +62,6 @@
                                       <li><a href="./notes.html"><i class="lni-pencil-alt mr-2"></i> Notes</a></li>
                                     </ul>
                                   </div>
-
-
                               </div>
                           </div>
                 </section>
@@ -90,13 +87,13 @@
                         <hr class="mb-3">
                         <div class="row mb-2">
                         @foreach($data as $value)
-                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:10px;">
+                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:6px; text-align: justify;">
                           
                             <a href="#"><h4 onclick="getNoteDetail({{$value->id}});">{{$value->title}}</a></h4>
                             <p style="font-size:12px;">{!!$value->description!!}</p>
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
-                              <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="float:right; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
-                             <i title="Move to trash" data-toggle="modal" data-target="#deletemodal1" onclick="getNoteId({{$value->id}});" style="float:right; font-size: 12px; margin-right: 10px; cursor: pointer; " class="fas fa-trash"></i>
+                              <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="top:18px; position: absolute; right: 23px; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
+                             <i title="Move to trash" data-toggle="modal" data-target="#deletemodal1" onclick="getNoteId({{$value->id}});" style="top:18px; position: absolute; right: 23px; font-size: 12px; margin-right: 20px; cursor: pointer; " class="fas fa-trash"></i>
                           </div>
                           @endforeach
                         </div>
@@ -112,7 +109,7 @@
                             <a href="#"><h4 onclick="getNoteDetail({{$value->id}});">{{$value->title}}</a></h4>
                             <p style="font-size:12px;">{!!$value->description!!}</p>
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
-                            <i data-toggle="modal" data-target="#trash" onclick="getTrashNoteId({{$value->id}});" style="float: right; cursor: pointer;" title="Undo trash" class="fas fa-undo"></i>
+                            <i data-toggle="modal" data-target="#trash" onclick="getTrashNoteId({{$value->id}});" style="top:25px; right:36px; position:absolute; cursor: pointer;" title="Undo trash" class="fas fa-undo"></i>
                        </div>
                        @endforeach
                         </div>
@@ -148,14 +145,8 @@
                       </div>
                   
                   <div class="col-md-8" style="border:0px solid #CC6600;" id="result">
-                   
                   </div>
-
-                 <!--  <div class="col-md-8" style="border:0px solid #CC6600;" id="result1">
-                  </div> -->
-
                   </div>
-              
                   <div class="row" style="margin:auto; padding:0px; display:none;" id="row2">
            
                  <div class="col-md-10">
@@ -224,8 +215,6 @@
                         <i class="fa fa-address-book" aria-hidden="true"></i>&nbsp;&nbsp;
                         {{$value->name}}
                          <div style="border-style: none;" id="demo{{$key}}" class="collapse table mydata{{$value->id}}">
-
-                          
                         </div></td>
                         <td>{{$value->date_created}}</td>
                         <td><i style="cursor: pointer;" title="Add Note" data-toggle="modal" data-target="#add-notes" onclick="getNoteBookId({{$value->id}});" class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;
@@ -246,7 +235,9 @@
         </div>
       </div>
     </section> <!-- END Section Posts -->
-      <!-- Modal -->
+
+
+<!--Modal for Adding Notebooks Starts here-->
 <div class="modal fade report-problem-form" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
@@ -293,6 +284,7 @@
   </div>
 </div>
 </form>
+<!--Modal for Adding Notebooks ends here-->
     
     
 <div class="popup" style="display: none;">
@@ -310,11 +302,9 @@
 </div>
 
 
-<!-- Delete Note Modal -->
+<!-- Move note to trash modal starts here -->
   <div class="modal fade" id="deletemodal1" role="dialog">
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
       <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
         <div class="modal-body">
           <input type="hidden" id="deletenote">
@@ -326,24 +316,20 @@
           <p>Are you sure you want to move this note to trash?</p>
         </div>
         <div style="border-style:none;" class="modal-footer">
-          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
-          <button style="padding:5px; font-size: 15px; border-radius: 0px;" type="button" onclick="deletenote();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
-
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-danger btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" onclick="deletenote();" class="btn btn-success btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
         </div>
       </div>
-      
     </div>
   </div>
 
+<!-- Move note to trash modal ends here -->
 
 
-<!--Trash undo Modal-->
+<!--Trash undo Modal starts here-->
 
-<!-- Trash Note Modal -->
   <div class="modal fade" id="trash" role="dialog">
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
       <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
         <div class="modal-body">
           <input type="hidden" id="trashnote">
@@ -356,18 +342,19 @@
           Note?</p>
         </div>
         <div style="border-style:none;" class="modal-footer">
-          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
-          <button style="padding:5px; font-size: 15px; border-radius: 0px;" type="button" onclick="undotrash();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-danger btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" onclick="undotrash();" class="btn btn-success btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
 
         </div>
       </div>
     </div>
   </div>
 
+<!--Trash undo Modal ends here-->
 
 
 
-<!--Add Notes Modal -->
+<!--Modal for Add Notes in Notebook Starts here-->
 
 <div class="modal fade add-notes" id="add-notes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
@@ -413,13 +400,16 @@
     </div>
   </div>
 </div>
-  </form>
+</form>
+
+<!--Modal for Add Notes in Notebook Ends here-->
 
 
+
+<!--Modal for Deleting Notebook Starts here-->
 
   <div class="modal fade" id="deletenotebook" role="dialog">
-    <div class="modal-dialog">
-    
+    <div class="modal-dialog">    
       <!-- Modal content-->
       <div style="width:63%; margin:auto; border-radius: 0px;" class="modal-content">
         <div class="modal-body">
@@ -432,15 +422,41 @@
           <p>Are you sure you want to delete this notebook?</p>
         </div>
         <div style="border-style:none;" class="modal-footer">
-          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" onclick="resetform();" class="btn btn-success btn-sm" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
-          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-danger btn-sm" onclick="deletenotebook();"><i class="fa fa-check" aria-hidden="true"></i></button>
-
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" onclick="resetform();" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px;font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm" onclick="deletenotebook();"><i class="fa fa-check" aria-hidden="true"></i></button>
         </div>
       </div>
-      
     </div>
   </div>
 
+<!--Modal for Deleting Notebook Ends here-->
+
+
+
+
+<!--Modal for Showing Notes Detail from Notebook Starts here-->
+
+<div class="modal fade" id="showNotebookNote" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div style="border-radius: 0px;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="showNotebookNoteId">
+          <h3 style="text-align: left; text-decoration: underline;" id="notetitle"></h3>
+          <p style="text-align: left; text-align: justify; font-size: 13px;" id="notedescription"></p>
+          Date Created: <p style="text-align: left;" id="notedate"></p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--Modal for Showing Notes Detail from Notebook Ends here-->
+
+
+
+<!--Modal for Sharing Notes starts here-->
   <div data-backdrop="static" data-keyboard="false" class="modal fade shareform" id="shareform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:0px solid #FF9900;">
 
   <div class="modal-dialog modal-dialog-centered " role="document">
@@ -488,4 +504,5 @@
       </div>
 </form>
 
+<!--Modal for Sharing Notes ends here-->
 @endsection
