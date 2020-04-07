@@ -89,7 +89,7 @@
                         @foreach($data as $value)
                           <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:40px; padding-top: 15px; text-align: justify;">
                           
-                            <h4 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h4>
+                            <h6 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h6>
                             <!-- <p style="font-size:12px;">{!!$value->description!!}</p> -->
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
                               <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="top:20px; position: absolute; right: 23px; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
