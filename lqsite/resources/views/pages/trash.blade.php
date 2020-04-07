@@ -84,7 +84,8 @@
                               <th>S/N</th>
                               <th>Title</th>
                               <th>Description</th>
-                              <th>Date</th>
+                              <th>Date Created</th>
+                              
                               <th>Action</th>
                             </tr>
                           </thead>
@@ -105,8 +106,8 @@
                                {{$value->date_created}}
                               </td>
                               <td>
-                                <a class="ml-2" data-toggle="modal"  data-target="#trashmodal" href="#" onclick="getTrashNoteId({{$value->id}});"><i class="fas fa-undo"></i></a>
-                                <a class="ml-2" data-toggle="modal" data-target="#deletemodal1" href="#" onclick="getId({{$value->id}});"><i class="fas fa-trash"></i></a>
+                                <a title="Undo Trash" class="ml-2" data-toggle="modal"  data-target="#trashmodal" href="#" onclick="getTrashNoteId({{$value->id}});"><i class="fas fa-undo"></i></a>
+                                <a title="Delete note permanently" class="ml-2" data-toggle="modal" data-target="#deletemodal1" href="#" onclick="getId({{$value->id}});"><i class="fas fa-trash"></i></a>
                               </td>
                             </tr>
                             @endforeach
@@ -177,9 +178,9 @@
       <div style="border-radius:0px;" class="modal-content">
         <div class="modal-body">
           <input type="hidden" id="notedetail123">
-          <h3 style="text-align: center;" id="notetitle"></h3>
-          <p style="text-align: center;" id="notedescription"></p>
-          <p style="text-align: center;" id="notedate"></p>
+          <h3 style="text-align: left; text-decoration: underline;" id="notetitle"></h3>
+          <p style="text-align: left; font-size: 13px; text-align: justify;" id="notedescription"></p>
+          Date Created: <p style="text-align: left;" id="notedate"></p>
         </div>
         <div style="border-style:none;" class="modal-footer">
         </div>
