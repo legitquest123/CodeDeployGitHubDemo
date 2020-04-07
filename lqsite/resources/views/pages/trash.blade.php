@@ -85,7 +85,7 @@
                               <th>Title</th>
                               <th>Description</th>
                               <th>Date Created</th>
-                              
+
                               <th>Action</th>
                             </tr>
                           </thead>
@@ -136,8 +136,8 @@
           Note?</p>
         </div>
         <div style="border-style:none;" class="modal-footer">
-          <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
-          <button style="padding:5px; font-size: 15px; border-radius: 0px;" type="button" onclick="undotrash();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px;" type="button" onclick="undotrash();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
 
         </div>
       </div>
