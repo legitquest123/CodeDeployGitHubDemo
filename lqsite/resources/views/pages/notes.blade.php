@@ -87,13 +87,13 @@
                         <hr class="mb-3">
                         <div class="row mb-2">
                         @foreach($data as $value)
-                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:40px; padding-top: 15px; text-align: justify;">
+                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:15px; padding-top: 15px; text-align: justify;">
                           
-                            <h6 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h6>
+                            <h5 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h5>
                             <!-- <p style="font-size:12px;">{!!$value->description!!}</p> -->
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
-                              <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="top:20px; position: absolute; right: 23px; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
-                             <i title="Move to trash" data-toggle="modal" data-target="#deletemodal1" onclick="getNoteId({{$value->id}});" style="top:20px; position: absolute; right: 23px; font-size: 12px; margin-right: 20px; cursor: pointer; " class="fas fa-trash"></i>
+                              <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="float:right; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
+                             <i title="Move to trash" data-toggle="modal" data-target="#deletemodal1" onclick="getNoteId({{$value->id}});" style="float:right; font-size: 12px; margin-right: 8px; cursor: pointer; " class="fas fa-trash"></i>
                           </div>
                           @endforeach
                         </div>
