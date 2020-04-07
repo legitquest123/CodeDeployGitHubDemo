@@ -751,4 +751,20 @@ function showNotebookNote(id)
      }
    });
  }
+
+ function getNoteDetailId(id)
+ {
+  $('#showNotebookNoteId').val(id);
+  $.ajax({
+     type:'POST',
+     url:'getnotebooknotesdetail',
+     data:{'_token':'{{csrf_token()}}',id:id},
+     success:function(data){
+      // alert(JSON.stringify(data));
+      $('#notetitle').html(data['title']);
+      $('#notedescription').html(data['description']);
+      $('#notedate').html(data['date_created']);
+     }
+   });
+ }
 </script>

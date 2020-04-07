@@ -89,7 +89,7 @@
                         @foreach($data as $value)
                           <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:6px; text-align: justify;">
                           
-                            <a href="#"><h4 onclick="getNoteDetail({{$value->id}});">{{$value->title}}</a></h4>
+                            <h4 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h4>
                             <p style="font-size:12px;">{!!$value->description!!}</p>
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
                               <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="top:10px; position: absolute; right: 23px; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
@@ -106,7 +106,7 @@
                         <div class="row mb-2">
                        @foreach($trashdata as $value)
                        <div class="col-sm-12 b-r b-r-s b-b" style="text-align: justify;">
-                            <a href="#"><h4 onclick="getNoteDetail({{$value->id}});">{{$value->title}}</a></h4>
+                            <h4 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h4>
                             <p style="font-size:12px;">{!!$value->description!!}</p>
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
                             <i data-toggle="modal" data-target="#trash" onclick="getTrashNoteId({{$value->id}});" style="top:8px; right:36px; position:absolute; cursor: pointer;" title="Undo trash" class="fas fa-undo"></i>
@@ -447,6 +447,7 @@
           Date Created: <p style="text-align: left;" id="notedate"></p>
         </div>
         <div style="border-style:none;" class="modal-footer">
+        <button type="button" class="close btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>

@@ -452,7 +452,7 @@
                   <div class="card-body p-0">
                     <div class="d-flex">
                       <div class="flex-fill mr-2">
-                        <a href="#" class="h6 mb-1 text-dark d-block">{{$value->title}}</a>
+                        <a data-toggle="modal" data-target="#showNotebookNoteDetail" onclick="getNoteDetailId({{$value->id}});" href="#" class="h6 mb-1 text-dark d-block">{{$value->title}}</a>
                         <small class="d-block">{{$value->date_created}}</small>
                       </div>
                       <div class="d-flex  align-items-start">
@@ -504,6 +504,29 @@
     <a class="dropdown-item py-2" href="#"><i class="fas fa-cog"></i> Citation Format</a>
   </div>
 
+
+
+<!--Modal for Showing Notes Detail from Notebook Starts here-->
+
+<div class="modal fade" id="showNotebookNoteDetail" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div style="border-radius: 0px;" class="modal-content">
+        
+        <div class="modal-body">
+          <input type="hidden" id="showNotebookNoteId">
+          <h3 style="text-align: left; text-decoration: underline;" id="notetitle"></h3>
+          <p style="text-align: left; text-align: justify; font-size: 13px;" id="notedescription"></p>
+          Date Created: <p style="text-align: left;" id="notedate"></p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+        <button type="button" class="close btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--Modal for Showing Notes Detail from Notebook Ends here-->
 
 
   <!-- Modal -->
