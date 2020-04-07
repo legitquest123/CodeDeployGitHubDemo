@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-sm position-static">
       <div class="container-fluid position-relative">
 
-        <a class="navbar-brand" href="http://localhost:8080/lqsite/">
+        <a class="navbar-brand" href="http://18.188.142.12/lqsite/">
             <img src="{{asset('public/upload')}}/{{Helpers::getFrontEndLogo()}}" alt="legitquest"></a>
         <button class="navbar-toggler border-0" type="button" data-toggle="offcanvas">
           <i class="navbar-toggler__bar navbar-toggler__bar--top"></i>
@@ -14,7 +14,7 @@
         <div class="offcanvas-collapse d-lg-flex flex-fill align-items-center">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost:8080/lqsite/">Home</a>
+              <a class="nav-link" href="http://18.188.142.12/lqsite/">Home</a>
             </li>
 
             <li class="nav-item nav--has-sub-menu" data-toggle="hover">
