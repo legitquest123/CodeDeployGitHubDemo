@@ -947,7 +947,7 @@ function moveNote()
        {
          $('#message5').show();
          $('#message5').html(data);
-         // location.reload(true);
+         location.reload(true);
       }
     });
   }
