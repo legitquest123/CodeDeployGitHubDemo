@@ -74,11 +74,11 @@
                   <div class="card-body p-4" >
                     <div class="row" style="margin:auto; padding:0px; border:0px solid #006633; padding:20px 0px 40px 0px;">
                       <div class="topnav" id="myTopnav"> 
-                      <a href="javascript:void(0);"  data-toggle="modal" data-target="#add-notes" class="b-r active" id="newNoteBtn"> + New Notes</a> 
-                      <a href="javascript:void(0);" class="b-r" id="noteBtn">All Notes</a> 
-                      <a href="javascript:void(0);" class="b-r" id="notebookBtn">Notebook</a> 
-                      <a href="javascript:void(0);" class="b-r" id="shareBtn">Share with Me</a> 
-                      <a href="javascript:void(0);" class="b-r" id="trashBtn">Trash</a> 
+                      <a href="javascript:void(0);"  data-toggle="modal" data-target="#add-notes" class="b-r active" id="newNoteBtn"><i class="fas fa-plus">&nbsp;</i>New Notes</a> 
+                      <a href="javascript:void(0);" class="b-r" id="noteBtn"><i class="fas fa-file">&nbsp;&nbsp;</i>All Notes</a> 
+                      <a href="javascript:void(0);" class="b-r" id="notebookBtn"><i class="fas fa-address-book">&nbsp;&nbsp;</i>Notebook</a> 
+                      <a href="javascript:void(0);" class="b-r" id="shareBtn"><i class="fas fa-user">&nbsp;&nbsp;</i>Share with Me</a> 
+                      <a href="javascript:void(0);" class="b-r" id="trashBtn"><i class="fas fa-trash">&nbsp;&nbsp;</i>Trash</a> 
                       <a href="javascript:void(0);" class="icon"> <i class="fa fa-bars"></i> </a> 
                       
                     </div>
