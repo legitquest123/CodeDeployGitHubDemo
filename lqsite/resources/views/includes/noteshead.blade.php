@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="{{asset('public/css/vendor/bootstrap.min.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Gelasio:400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.lineicons.com/1.0.1/LineIcons.min.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <!-- Vendor/Plugins CSS -->
   <link rel="stylesheet" href="{{asset('public/css/vendor/fontawesome-all.min.css')}}">
   <link rel="stylesheet" href="{{asset('public/css/vendor/jquery-listslider.css')}}">

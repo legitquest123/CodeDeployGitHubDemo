@@ -96,7 +96,7 @@
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
                               <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="float:right; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
                              <i title="Move to trash" data-toggle="modal" data-target="#deletemodal1" onclick="getNoteId({{$value->id}});" style="float:right; font-size: 12px; margin-right: 8px; cursor: pointer;" class="fas fa-trash"></i>
-                             <i data-toggle="modal" title="Move note to Notebook" data-target="#movenotemodal" onclick="getMoveNoteId({{$value->id}});" style="float: right; cursor: pointer; font-size: 12px; margin-right: 5px;" class="fas fa-truck" aria-hidden="true"></i>
+                             <i data-toggle="modal" title="Move note to Notebook" data-target="#movenotemodal" onclick="getMoveNoteId({{$value->id}});" style="float: right; cursor: pointer; font-size: 12px; margin-right: 5px;" class="icon-move" aria-hidden="true"></i>
                           </div>
                           @endforeach
                         </div>
