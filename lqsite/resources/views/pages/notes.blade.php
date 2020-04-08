@@ -472,6 +472,7 @@
     <div class="modal-dialog">
       <!-- Modal content-->
       <div style="border-radius: 0px; border-style: none;" class="modal-content">
+        <h4 style="padding:20px; text-align: center;">Select Notebook where you want to move your Note</h4>
         <div class="modal-body">
           <input type="hidden" id="movenoteid">
           <input type="hidden" id="movenotebookid">
