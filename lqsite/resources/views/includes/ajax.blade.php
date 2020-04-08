@@ -326,6 +326,14 @@ function showNotebookNote(id)
 </script>
 
 <script>
+
+  /*Below function getNoteDetail() is used to show detail view of notes in notes page
+
+   Created by :  Namit Singh
+
+   @return message 
+ */ 
+
   function getNoteDetail(id)
   {
     $.ajax({
@@ -346,30 +354,53 @@ function showNotebookNote(id)
 </script>
 
 <script>
+
+  /*Below function trashNotes() is used to empty the trash
+
+   Created by :  Namit Singh
+
+   @return message 
+ */ 
   function trashNotes()
   {
-   var c = confirm("Are you sure you want to empty trash??")
-   if(c)
-   {
        $.ajax({
        type:'GET',
        url:'delete-trash',
+       // data:{'_token':'{{csrf_token()}}'},
        beforeSend:function(){
-        $('#loading_image').show();
-       },
-       complete:function(){
-        $('#loading_image').hide();
-       },
-       success:function(response){
-      location.reload(true);
-   }
-       }); 
-  }
-   
+          $('#loading_image5').show();
+          $('#loader_message5').show();
+          $('#loading_image5').css("visibility","visible");
+          $('#loader_message5').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image5').hide();
+          $('#loader_message5').hide(); 
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image5').css("visibility","hidden");
+          $('#loader_message5').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
+       success:function(data)
+       {
+         $('#message5').show();
+         $('#message5').html(data);
+         location.reload(true);
+      }
+    }); 
   }
 </script>
 
 <script>
+
+  /*Below function detailAddNote() is used to add notes in detail page
+
+   Created by :  Namit Singh
+
+   @return message 
+ */ 
   function detailAddNote()
   {
     fact = $('#fact').val();
@@ -409,6 +440,13 @@ function showNotebookNote(id)
   </script>
 
   <script>
+
+  /*Below function deletenote() is used to move notes to trash
+
+   Created by :  Namit Singh
+
+   @return message 
+ */ 
   function deletenote()
   {
        var id = $('#deletenote').val();
@@ -456,6 +494,14 @@ function showNotebookNote(id)
 </script>
 
 <script>
+
+ /*Below function generateURL() is used to generate URL which is shown in Share notes popup
+
+   Created by :  Namit Singh
+
+   @return message 
+ */ 
+
   function generateURL(id)
   {
     $.ajax({
@@ -473,6 +519,14 @@ function showNotebookNote(id)
 </script>
 
 <script>
+
+  /*Below function sharenote() is used to Share notes
+
+   Created by :  Namit Singh
+
+   @return message 
+ */ 
+
   function sharenote()
   {
     var url = $('#generateurl').val();
@@ -540,6 +594,14 @@ function showNotebookNote(id)
 </script>
 
 <script>
+
+  /*Below function copytext() is used to copy URL inside Share notes popup
+
+   Created by :  Namit Singh
+
+   @return message 
+ */ 
+
   function copytext()
   {
     var copyText = document.getElementById('generateurl');
@@ -551,6 +613,14 @@ function showNotebookNote(id)
 </script>
 
 <script>
+
+  /*Below Script is used for AutoComplete of emails in Share notes popup
+
+   Created by :  Namit Singh
+
+   @return message 
+ */ 
+
   $(document).ready(function(){
   $('#email').keyup(function(){
   var query = $(this).val();
@@ -589,6 +659,13 @@ function showNotebookNote(id)
 </script>
 
 <script>
+
+  /*Below function deletenotebook() is used to RDelete Notebooks
+
+   Created by :  Namit Singh
+
+   @return message 
+ */ 
   function deletenotebook()
   {
     var id = $('#notebookid').val();
@@ -622,6 +699,15 @@ function showNotebookNote(id)
 
   }
 
+
+ /*Below function getNoteBookData() is used to Request data from controller and return notes 
+   under particular notebook
+
+   Created by :  Namit Singh
+
+   @return message 
+ */  
+
   function getNoteBookData(id)
   {
 
@@ -640,6 +726,13 @@ function showNotebookNote(id)
  {
    $('#trashnote').val(id);
  }
+
+ /*Below function undotrash is used to undo trash notes and mpve them to all notes from trash page
+
+   Created by :  Namit Singh
+
+   @return message 
+ */
 
  function undotrash()
  {
@@ -674,7 +767,7 @@ function showNotebookNote(id)
 </script>
 
 <script>
-  function getId(id)
+function getId(id)
  {
    // alert(id);
    $('#trashnoteid').val(id);
@@ -682,6 +775,13 @@ function showNotebookNote(id)
 </script>
 
 <script>
+
+ /*Below function deletetrashnote is used to delete notes from trash page permanently
+
+   Created by :  Namit Singh
+
+   @return message 
+ */
 
  function deletetrashnote()
  {
@@ -715,10 +815,17 @@ function showNotebookNote(id)
   });
  }
 
- function hello(value)
- {
-  alert(value);
- }
+ // function hello(value)
+ // {
+ //  alert(value);
+ // }
+
+ /*Below function getnotedetail is used to show detail view of notes on notes page under notebooks
+
+   Created by :  Namit Singh
+
+   @return notetitle , description, datecreated
+ */
 
  function getNotebookNotesDetail(id)
  {
@@ -736,8 +843,18 @@ function showNotebookNote(id)
    });
  }
 
- function getnotedetail(id)
+
+ 
+ /*Below function getnotedetail is used to show detail view of notes on trash page
+
+   Created by :  Namit Singh
+
+   @return notetitle , description, datecreated
+ */
+
+function getnotedetail(id)
  {
+  // alert();
    $('#notedetail123').val(id);
    $.ajax({
      type:'POST',
@@ -751,6 +868,14 @@ function showNotebookNote(id)
      }
    });
  }
+
+
+ /*Below function getNoteDetailId is used to show detail view of notes on detail page
+
+   Created by :  Namit Singh
+
+   @return notetitle , description, datecreated
+ */
 
  function getNoteDetailId(id)
  {
@@ -768,3 +893,20 @@ function showNotebookNote(id)
    });
  }
 </script>
+
+
+
+<!--Notebook Search Ajax Starts-->
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<!--Notebook Search Ajax Starts-->

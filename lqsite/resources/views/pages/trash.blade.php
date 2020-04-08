@@ -75,7 +75,7 @@
                   <div class="card border-0 shadow p-0">
                     <div class="card-body p-4">
                       <h4 class="h4 card-title d-block mb-1 font-weight-bold">Trash</h4>
-                      <button type="button" onclick="trashNotes();">Empty Trash</button>
+                      <button type="button" data-toggle="modal" data-target="#emptytrashmodal">Empty Trash</button>
                       <hr class="mb-3">
                       <div class="table-responsive">
                         <table id="datatable" class="table table-striped f-14">
@@ -172,6 +172,7 @@
 
 
 
+
 <!-- Show Notes Detail Modal -->
   <div class="modal fade" id="notedetail" role="dialog">
     <div class="modal-dialog">
@@ -183,10 +184,38 @@
           Date Created: <p style="text-align: left;" id="notedate"></p>
         </div>
         <div style="border-style:none;" class="modal-footer">
+        <button type="button" class="close btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+
         </div>
       </div>
     </div>
   </div>
+
+
+  <!-- Trash Note Modal -->
+  <div class="modal fade" id="emptytrashmodal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
+        <div class="modal-body">
+          <!-- <input type="hidden" id="trashnoteid"> -->
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message5"></div>
+          <div class="overlay">
+          <h5 id="loader_message5" style="display:none; text-align: center;">Emptying Your Trash ...</h5>       
+          <img id="loading_image5" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to Empty your Trash? </p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px;" type="button" onclick="trashNotes();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
                 </section>
               </div> <!-- END Posts Wrapper -->
             </div> <!-- Nested row -->

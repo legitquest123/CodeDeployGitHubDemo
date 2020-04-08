@@ -152,9 +152,11 @@ class NotesController extends Controller
     {
     	$delete = Notes::where('trash','=',1)->delete();
     	if($delete)
-    		return redirect()->back()->with('success','Trash is Empty');
+        echo "Trash Empty Successfully!";
+    		// return redirect()->back()->with('success','Trash Empty Successfully!');
     	else
-    		return redirect()->back()->with('error','Unable to empty trash');
+        echo "Trash is Aleady Empty!";
+    		// return redirect()->back()->with('error','Trash is already empty');
     }
 
     public function deletenote(Request $request)

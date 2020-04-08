@@ -79,7 +79,9 @@
                       <a href="javascript:void(0);" class="b-r" id="notebookBtn">Notebook</a> 
                       <a href="javascript:void(0);" class="b-r" id="shareBtn">Share with Me</a> 
                       <a href="javascript:void(0);" class="b-r" id="trashBtn">Trash</a> 
-                      <a href="javascript:void(0);" class="icon"> <i class="fa fa-bars"></i> </a> </div>
+                      <a href="javascript:void(0);" class="icon"> <i class="fa fa-bars"></i> </a> 
+                      
+                    </div>
                     </div>
                     <div class="row" style="margin:auto; padding:0px;" id="row1">
                       <div class="col-md-4" style="border:0px solid #CC6600;" id="noteTab">
@@ -202,12 +204,17 @@
                       <!--My Custom Design Starts-->
 
                       <table style="border-style:none;" class="table">
+                      <!-- <label style="margin-left: 16px;">Search: </label> -->
+                       <input id="myInput" style="width:30%; border-radius: 0px; margin-bottom: 30px; margin-left: 10px; height: 35px;" type="text" placeholder="Search your notebook.."> 
+                       <thead>
                        <tr>
                         <!-- <th>#</th> -->
                         <th>Notebook Name</th>
                         <th>Date Created</th>
                         <th>Actions</th>
                       </tr>
+                    </thead>
+                    <tbody id="myTable">
                       @foreach($notebookdata as $key => $value)
                       <tr>
                         <!-- <td>{{++$key}}</td> -->
@@ -221,6 +228,7 @@
                           <i style="cursor: pointer;" title="Delete NotebooK" onclick="getnotebookid({{$value->id}});" data-toggle="modal" data-target="#deletenotebook" class="fas fa-trash"></i></td>
                       </tr>
                       @endforeach
+                    </tbody>
                       </table>
                       {{$notebookdata->links()}}
 
