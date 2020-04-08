@@ -193,6 +193,7 @@ Route::post('getnotebookdata','NotesController@getnotebookdata');
 Route::post('undotrash','NotesController@undoTrash');
 Route::post('empty-trash','NotesController@emptytrash');
 Route::post('getnotebooknotesdetail','NotesController@getNotebookNotesDetail');
+Route::post('move-note','NotesController@moveNote');
 
 
 

@@ -907,6 +907,53 @@ $(document).ready(function(){
     });
   });
 });
-</script>
 
-<!--Notebook Search Ajax Starts-->
+function getMoveNoteId(id)
+{
+  $('#movenoteid').val(id);
+  // alert(id);
+}
+function getMoveNoteBookId(id)
+{
+  $('#movenotebookid').val(id);
+}
+function moveNote()
+{
+  var noteid = $('#movenoteid').val();
+  var notebookid = $('#movenotebookid').val();
+  if(noteid != "" && notebookid != "")
+  {
+    $.ajax({
+    type:'POST',
+    url:'move-note',
+    data:{'_token':'{{csrf_token()}}',noteid:noteid , notebookid: notebookid},
+    beforeSend:function(){
+          $('#loading_image5').show();
+          $('#loader_message5').show();
+          $('#loading_image5').css("visibility","visible");
+          $('#loader_message5').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image5').hide();
+          $('#loader_message5').hide(); 
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image5').css("visibility","hidden");
+          $('#loader_message5').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
+       success:function(data)
+       {
+         $('#message5').show();
+         $('#message5').html(data);
+         // location.reload(true);
+      }
+    });
+  }
+  else
+  {
+    alert("Please Select Notebook");
+  }
+}
+</script>

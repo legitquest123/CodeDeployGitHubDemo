@@ -89,13 +89,14 @@
                         <hr class="mb-3">
                         <div class="row mb-2">
                         @foreach($data as $value)
-                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:15px; padding-top: 15px; text-align: justify;">
+                          <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:25px; padding-top: 15px; text-align: justify;">
                           
                             <h5 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h5>
                             <!-- <p style="font-size:12px;">{!!$value->description!!}</p> -->
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
                               <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="float:right; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
-                             <i title="Move to trash" data-toggle="modal" data-target="#deletemodal1" onclick="getNoteId({{$value->id}});" style="float:right; font-size: 12px; margin-right: 8px; cursor: pointer; " class="fas fa-trash"></i>
+                             <i title="Move to trash" data-toggle="modal" data-target="#deletemodal1" onclick="getNoteId({{$value->id}});" style="float:right; font-size: 12px; margin-right: 8px; cursor: pointer;" class="fas fa-trash"></i>
+                             <i data-toggle="modal" title="Move note to Notebook" data-target="#movenotemodal" onclick="getMoveNoteId({{$value->id}});" style="float: right; cursor: pointer; font-size: 12px; margin-right: 5px;" class="fas fa-truck" aria-hidden="true"></i>
                           </div>
                           @endforeach
                         </div>
@@ -107,7 +108,7 @@
                         <hr class="mb-3">
                         <div class="row mb-2">
                        @foreach($trashdata as $value)
-                       <div class="col-sm-12 b-r b-r-s b-b" style="text-align: justify; padding-bottom:18px; padding-top:13px;">
+                       <div class="col-sm-12 b-r b-r-s b-b" style="text-align: justify; padding-bottom:25px; padding-top:13px;">
                             <h5 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h5>
                             <!-- <p style="font-size:12px;">{!!$value->description!!}</p> -->
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
@@ -246,7 +247,7 @@
 
 
 <!--Modal for Adding Notebooks Starts here-->
-<div class="modal fade report-problem-form" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal report-problem-form" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-header bg-gray">
@@ -311,7 +312,7 @@
 
 
 <!-- Move note to trash modal starts here -->
-  <div class="modal fade" id="deletemodal1" role="dialog">
+  <div class="modal" id="deletemodal1" role="dialog">
     <div class="modal-dialog">
       <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
         <div class="modal-body">
@@ -336,7 +337,7 @@
 
 <!--Trash undo Modal starts here-->
 
-  <div class="modal fade" id="trash" role="dialog">
+  <div class="modal" id="trash" role="dialog">
     <div class="modal-dialog">
       <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
         <div class="modal-body">
@@ -364,7 +365,7 @@
 
 <!--Modal for Add Notes in Notebook Starts here-->
 
-<div class="modal fade add-notes" id="add-notes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal add-notes" id="add-notes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-header bg-gray">
@@ -416,7 +417,7 @@
 
 <!--Modal for Deleting Notebook Starts here-->
 
-  <div class="modal fade" id="deletenotebook" role="dialog">
+  <div class="modal" id="deletenotebook" role="dialog">
     <div class="modal-dialog">    
       <!-- Modal content-->
       <div style="width:63%; margin:auto; border-radius: 0px;" class="modal-content">
@@ -444,7 +445,7 @@
 
 <!--Modal for Showing Notes Detail from Notebook Starts here-->
 
-<div class="modal fade" id="showNotebookNote" role="dialog">
+<div class="modal" id="showNotebookNote" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div style="border-radius: 0px;" class="modal-content">
@@ -465,8 +466,56 @@
 
 
 
+<!--Modal for Moving notes Starts here-->
+
+<div class="modal" id="movenotemodal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div style="border-radius: 0px; border-style: none;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="movenoteid">
+          <input type="hidden" id="movenotebookid">
+           <div style="display:none; font-size: 16px; color:green; text-align: center;" id="message5"></div>
+          <div class="overlay">
+          <h5 id="loader_message5" style="display:none; text-align: center;">Moving Note Please wait....</h5><br>       
+          <img id="loading_image5" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th><strong>Select Notebook</strong></th>
+                <th><strong>Notebook Name</strong></th>
+                <th><strong>Date Created</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($notebookdata as $key=> $value)
+              <tr>
+                <td><input onclick="getMoveNoteBookId({{$value->id}});" type="radio" name="notebooktitle"></td>
+                <td>{{$value->name}}</td>
+                <td>{{$value->date_created}}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+          <!-- <h3 style="text-align: left; text-decoration: underline;" id="notetitle"></h3> -->
+          <!-- <p style="text-align: left; text-align: justify; font-size: 13px;" id="notedescription"></p> -->
+          <!-- Date Created: <p style="text-align: left;" id="notedate"></p> -->
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+        <button type="button" onclick="moveNote();" style="color:#fff; padding:5px; background-color: blue; border-radius: 0px;" class="btn btn-success btn-sm">Move</button>
+        <button type="button" class="close btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--Modal for Moving Notes Ends here-->
+
+
+
 <!--Modal for Sharing Notes starts here-->
-  <div data-backdrop="static" data-keyboard="false" class="modal fade shareform" id="shareform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:0px solid #FF9900;">
+  <div data-backdrop="static" data-keyboard="false" class="modal shareform" id="shareform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:0px solid #FF9900;">
 
   <div class="modal-dialog modal-dialog-centered " role="document">
     <form method="POST" action="{{route('sharenote')}}" name="shareform" id="shform"> 

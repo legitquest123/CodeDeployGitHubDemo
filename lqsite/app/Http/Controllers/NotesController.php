@@ -312,4 +312,17 @@ class NotesController extends Controller
       $data = Notes::find($id);
       return $data;
     }
+
+    public function moveNote(Request $request)
+    {
+      $noteid = $request->noteid;
+      $notebookid = $request->notebookid;
+      $update = DB::table('note')
+              ->where('id', $noteid)
+              ->update(['notebook_id' => $notebookid]);
+      if($update)
+      echo "Note Moved Successfully!";
+      else
+      echo "Already in Notebook!";        
+    }
 }

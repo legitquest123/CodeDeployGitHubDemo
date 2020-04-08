@@ -120,7 +120,7 @@
 
 
 <!-- Trash Note Modal -->
-  <div class="modal fade" id="trashmodal" role="dialog">
+  <div class="modal" id="trashmodal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -146,7 +146,7 @@
 
 
 <!-- Delete Note Modal -->
-  <div class="modal fade" id="deletemodal1" role="dialog">
+  <div class="modal" id="deletemodal1" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -174,7 +174,7 @@
 
 
 <!-- Show Notes Detail Modal -->
-  <div class="modal fade" id="notedetail" role="dialog">
+  <div class="modal" id="notedetail" role="dialog">
     <div class="modal-dialog">
       <div style="border-radius:0px;" class="modal-content">
         <div class="modal-body">
@@ -193,7 +193,7 @@
 
 
   <!-- Trash Note Modal -->
-  <div class="modal fade" id="emptytrashmodal" role="dialog">
+  <div class="modal" id="emptytrashmodal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->

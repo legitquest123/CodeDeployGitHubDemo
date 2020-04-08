@@ -508,7 +508,7 @@
 
 <!--Modal for Showing Notes Detail from Notebook Starts here-->
 
-<div class="modal fade" id="showNotebookNoteDetail" role="dialog">
+<div class="modal" id="showNotebookNoteDetail" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div style="border-radius: 0px;" class="modal-content">
@@ -574,7 +574,7 @@
 
 
 
-<div class="modal fade print-modal" id="print-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal print-modal" id="print-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-header bg-gray">
@@ -616,7 +616,7 @@
 </div>
 
 <!-- Delete Note Modal -->
-  <div class="modal fade" id="deletemodal" role="dialog">
+  <div class="modal" id="deletemodal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
