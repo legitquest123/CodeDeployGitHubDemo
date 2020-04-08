@@ -7926,7 +7926,7 @@ body {
                   <h4 style="padding:6px 0px 10px 0px;">They invited you to work in</h4>
                   <p style="font-size:15px;"> <i class="lni-pencil-alt"> 1 Note</i></p>
                   <p class="b-b" style="padding-bottom:22px;">
-                    <button type="button" class="btn btn-outline-primary btn-sm" style="width:30%;">Sign Up</button>
+                    <a href="https://legitquest.com/" class="btn btn-outline-primary btn-sm" style="width:30%;">Sign Up</a>
                   </p>
                   <p style="font-size:13px; text-align:justify; text-align:center;">Legitquest is the one workspace you need.<br>
                     Collect ideas and work on projects together.</p>

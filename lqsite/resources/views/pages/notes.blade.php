@@ -464,9 +464,9 @@
     <form method="POST" action="{{route('sharenote')}}" name="shareform" id="shform"> 
       @csrf()
     <div style="width:124%;" class="modal-content">
-      <div class="modal-header">
+      <div style="border-style:none;" class="modal-header">
         <p id="sharenotetitle" class="modal-title"></p><br>
-        <div style="display: none; margin:auto; font-size: 16px; color:green;" id="message"></div>
+        <div style="display: none; top:11%; position: absolute;z-index: 1000; right: 33%; margin:auto; font-size: 16px; color:green;" id="message"></div>
         <button type="button" class="close" onclick="resetform();" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body" style="background:#fff;">
