@@ -14,9 +14,21 @@ class NotesController extends Controller
 {
     public function index()
     {
-    	$data = Notes::orderBy('id','desc')->where('trash','=', '0')->paginate(4);
-    	$trashdata = Notes::orderBy('id','desc')->where('trash','=','1')->paginate(4);
-    	$notebookdata = NoteBook::orderBy('id','desc')->where('status','=','1')->paginate(4);
+    	$data = Notes::orderBy('id','desc')
+      ->where('trash','=', '0')
+      ->where('user_id','1')
+      ->paginate(4);
+
+    	$trashdata = Notes::orderBy('id','desc')
+      ->where('trash','=','1')
+      ->where('user_id','1')
+      ->paginate(4);
+
+    	$notebookdata = NoteBook::orderBy('id','desc')
+      ->where('status','=','1')
+      ->where('user_id','1')
+      ->paginate(4);
+
       $notecount = Notes::all()->count();
     	return view('pages.notes',compact('data','trashdata','notebookdata','notecount'));
     }
@@ -25,7 +37,9 @@ class NotesController extends Controller
     	$data = Notes::orderBy('id','desc')
     	->where('status','=','1')
     	->where('trash','=','0')
+      ->where('user_id','1')
       ->get();
+
     	return view('pages.detail',compact('data'));
     }
 
@@ -125,6 +139,7 @@ class NotesController extends Controller
     {
       $id = $request->id;	
       $getnotes = Notes::where('notebook_id','=',$id)->get();
+
       $view = '';
     	foreach($getnotes as $value)
     	{
@@ -144,7 +159,9 @@ class NotesController extends Controller
 
     public function showtrash()
     {
-    	$tdata = Notes::all()->where('trash' ,'=',1);
+    	$tdata = Notes::all()
+      ->where('trash' ,'=',1)
+      ->where('user_id','1');
     	return view('pages.trash',compact('tdata'));
     }
 
@@ -268,7 +285,7 @@ class NotesController extends Controller
     public function getnotebookdata(Request $request)
     {
       $id = $request->id;
-      $notebooknotes = Notes::where('notebook_id','=',$id)->get();
+      $notebooknotes = Notes::where('notebook_id','=',$id)->where('user_id','1')->get();
       $view = '';
     
       foreach($notebooknotes as $key=> $value)

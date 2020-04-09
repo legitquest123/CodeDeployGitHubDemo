@@ -196,6 +196,11 @@ Route::post('getnotebooknotesdetail','NotesController@getNotebookNotesDetail');
 Route::post('move-note','NotesController@moveNote');
 
 
+/*BookMark Route*/
+
+Route::post('save-bookmark','BookmarkController@saveBookmark');
+
+
 
 
 

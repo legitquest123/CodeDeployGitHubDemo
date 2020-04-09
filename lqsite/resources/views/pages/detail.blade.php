@@ -69,7 +69,7 @@
 
                   <div class="btn-group btn-toolbar-top btn-group-sm">
                     <button type="button" class="btn btn-default py-0 bookmark-btn" data-toggle="tooltip" data-placement="left" title="Bookmark">
-                      <i class="lni-bookmark"></i>
+                      <i onclick="saveBookMark();" class="lni-bookmark"></i>
                     </button>
                     <button type="button" class="btn btn-default py-0" data-toggle="tooltip" data-placement="left" title="Night Mode">
                       <i class="lni-night"></i>

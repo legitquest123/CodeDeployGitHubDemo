@@ -153,12 +153,12 @@
     })
   </script>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     $('.bookmark-btn').on('click', function() {
       $('#success-notification').addClass('show');
       $('#success-notification span.notification-text').text('Bookmar added successfully! Please check your inbox to opt-in.')
     })
-  </script>
+  </script> -->
 
 
   <script type="text/javascript">

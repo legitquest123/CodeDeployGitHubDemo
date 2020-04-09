@@ -216,21 +216,31 @@
                       </tr>
                     </thead>
                     <tbody id="myTable">
-                      @foreach($notebookdata as $key => $value)
-                      <tr>
-                        <!-- <td>{{++$key}}</td> -->
-                        <td style="width:60%;" onclick="getNoteBookData({{$value->id}});"><i data-toggle="collapse" data-target="#demo{{$key}}" style="cursor: pointer;" class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;&nbsp;
-                        <i class="fa fa-address-book" aria-hidden="true"></i>&nbsp;&nbsp;
-                        {{$value->name}}
-                         <div style="border-style: none;" id="demo{{$key}}" class="collapse table mydata{{$value->id}}">
-                        </div></td>
-                        <td>{{$value->date_created}}</td>
-                        <td><i style="cursor: pointer;" title="Add Note" data-toggle="modal" data-target="#add-notes" onclick="getNoteBookId({{$value->id}});" class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;
-                          <i style="cursor: pointer;" title="Delete NotebooK" onclick="getnotebookid({{$value->id}});" data-toggle="modal" data-target="#deletenotebook" class="fas fa-trash"></i></td>
-                      </tr>
-                      @endforeach
+                      @if(count($notebookdata) > 0)
+                          @foreach($notebookdata as $key => $value)
+                          <tr>
+                            <!-- <td>{{++$key}}</td> -->
+                            <td style="width:60%;" onclick="getNoteBookData({{$value->id}});"><i data-toggle="collapse" data-target="#demo{{$key}}" style="cursor: pointer;" class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;&nbsp;
+                            <i class="fa fa-address-book" aria-hidden="true"></i>&nbsp;&nbsp;
+                            {{$value->name}}
+                             <div style="border-style: none;" id="demo{{$key}}" class="collapse table mydata{{$value->id}}">
+                            </div></td>
+                            <td>{{$value->date_created}}</td>
+                            <td><i style="cursor: pointer;" title="Add Note" data-toggle="modal" data-target="#add-notes" onclick="getNoteBookId({{$value->id}});" class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                              <i style="cursor: pointer;" title="Delete NotebooK" onclick="getnotebookid({{$value->id}});" data-toggle="modal" data-target="#deletenotebook" class="fas fa-trash"></i></td>
+                          </tr>
+                          @endforeach 
+                          <tr>
+                            @else
+                           <div style="top:90%;position: absolute;right: 42%;" id="notfound">
+                              <strong>Sorry!</strong> No Notebook Found.
+                          </div>
+                          @endif 
+                          </tr>
                     </tbody>
+                     
                       </table>
+
                       {{$notebookdata->links()}}
 
                       <!--My Custom Design Ends-->

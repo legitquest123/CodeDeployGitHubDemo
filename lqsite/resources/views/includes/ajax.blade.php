@@ -953,7 +953,19 @@ function moveNote()
   }
   else
   {
-    alert("Please Select Notebook");
+    alert("Something Went Wrong");
   }
+}
+
+function saveBookMark()
+{
+  $.ajax({
+   type:'POST',
+   url:'save-bookmark',
+   data:{'_token':'{{csrf_token()}}'},
+   success:function(data){
+    alert(data);
+   }
+  });
 }
 </script>
