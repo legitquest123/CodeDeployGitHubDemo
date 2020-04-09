@@ -55,10 +55,10 @@
   }
   
  </style>
-  <footer class="footer background--dark">
+   <footer class="footer background--dark pt-0">
     <div class="container">
       <div class="row">
-        <div class="footer-content mb-5 col-12 ">
+        <div class="footer-content mt-6 mb-5 col-12 ">
           <div class="footer-row row ">
             <div class="col-md-7">
                 <div class="row px-md-4">
@@ -101,7 +101,7 @@
                           <div class="col-md-6">
                               <ul class="footer-nav nav flex-column align-items-start list-unstyled">
                                 <li class="nav-item mb-2">
-                                    <a class="nav-link p-0" href="./contact.html">Request Demo</a>
+                                    <a class="nav-link p-0" href="#">Request Demo</a>
                                 </li>
                                 <li class="nav-item mb-2">
                                     <a class="nav-link p-0" href="#" data-toggle="modal" data-target="#judgmentModal">Request a Judgment</a>
@@ -141,7 +141,7 @@
         <div class="col-12">
           <div class="footer-copyright-column d-md-flex justify-content-between align-items-center">
             <div class="copyright">
-              <p>{{Helpers::getCopyRightData()}}</p>
+              <p>©2019 - legitquest. All rights reserved.</p>
             </div>
 
             <ul class="social-icons ml-auto mb-0">
@@ -158,7 +158,6 @@
   </footer> <!-- END Footer -->
 
   <div class="alert-notifications-wrapper">
-
     <div id="subscribe-success-notification" class="alert alert-validation alert-success alert-dismissible fade" role="alert">
       Thank you for subscribing! Please check your inbox to opt-in.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -171,9 +170,8 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div> <!-- Subscribe Error -->
-
-  </div> <!-- END Alert Notifications Wrapper -->
+    </div> 
+  </div> 
 
   <div class="dropdown-menu popup-tag shadow" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item py-2" href="#">Copy with Citation</a>
@@ -201,6 +199,9 @@
 
 
   <script src="{{asset('public/js/min/main-min.js')}}"></script>
+  <!--  <script src="{{asset('public/js/vendor/datatable/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('public/js/vendor/datatable/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('public/js/vendor/datatable/dataTables.responsive.min.js')}}"></script> -->
 
   <script>
     $('.text-slider-list').listslider({
@@ -285,5 +286,10 @@
   <script>
       $('[data-fancybox="gallery"]').fancybox({
       // Options will go here
+    });
+  </script>
+   <script type="text/javascript">
+    $(document).ready(function() {
+      $("#datatable").DataTable()
     });
   </script>

@@ -1,8 +1,9 @@
 @extends('layouts.detaillayout')
 @section('content')
-<!-- <div class="overlay">
+<div class="overlay">
       <img id="loading_image" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
-    </div> -->
+    </div>
+    
         <section class="section judgment-section py-0 bg-gray">
           <div class="d-flex anim justify-content-between">
 
@@ -527,6 +528,29 @@
   </div>
 
 <!--Modal for Showing Notes Detail from Notebook Ends here-->
+
+
+<!--Modal for Showing Success Message in Bookmark Starts here-->
+
+<div class="modal" id="messagebookmark" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div style="border-radius: 0px; background-color: #4d5bed; width: 60%; margin: auto;" class="modal-content">
+        
+        <div class="modal-body" id="namit">
+          <!-- <input type="hidden" id="showNotebookNoteId"> -->
+          <!-- <h3 style="text-align: left; text-decoration: underline;" id="notetitle"></h3> -->
+          <p style="text-align: center; font-size: 17px; color:#fff" id="successmessage"></p>
+          <!-- Date Created: <p style="text-align: left;" id="notedate"></p> -->
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+        <button type="button" onclick="hidemodal();" class="close btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--Modal for Showing Success Message in Bookmark Ends here-->
 
 
   <!-- Modal -->

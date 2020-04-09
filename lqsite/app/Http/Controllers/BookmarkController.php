@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bookmark;
+use App\Models\Notes;
 
 class BookmarkController extends Controller
 {
+
+	public function index()
+	{
+	  $notecount = Notes::all()
+      ->where('user_id','1')
+      ->count();
+       return view('pages.bookmark',compact('notecount'));
+	}
+
     public function saveBookmark(Request $request)
     {
        $obj = new Bookmark();

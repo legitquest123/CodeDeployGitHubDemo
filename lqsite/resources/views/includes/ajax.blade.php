@@ -959,13 +959,33 @@ function moveNote()
 
 function saveBookMark()
 {
+  // alert();
   $.ajax({
    type:'POST',
    url:'save-bookmark',
+   beforeSend:function(){
+   $('#loading_image').show();
+   // $('.judgment-wrapper').css('opacity',0.2);
+   $('.tab-content').css('visibility','hidden'); 
+   $('#loading_image').css('visibility','visible'); 
+   },
+   complete:function(){
+   $('#loading_image').hide();
+   $('.tab-content').css('visibility','visible');
+   $('#loading_image').css('visibility','hidden'); 
+   // $('.judgment-wrapper').css('opacity',1); 
+   },
    data:{'_token':'{{csrf_token()}}'},
    success:function(data){
-    alert(data);
+    // alert(data);
+    $('#messagebookmark').show();
+    $('#successmessage').html(data);
    }
   });
+}
+
+function hidemodal()
+{
+  $('#messagebookmark').hide();
 }
 </script>

@@ -1,7 +1,6 @@
-@extends('layout')
+@extends('layouts.noteslayout')
 @section('content')
 
- 
     <section class="section publish-section section-posts bg-gray  pt-5 pb-5">
       <div class="container-fluid px-md-5">
         <div class="row row-grid justify-content-center">
@@ -13,7 +12,7 @@
               <aside class="sidebar col-lg-3">
                 <section class="widget rounded-lg shadow-sm user-block mb-4 text-center position-relative">
                   <figure class="user-thumb  mb-0">
-                    <img src="./images/team/ambikaprasad.jpg" alt="" class="rounded-circle w-100">
+                    <img src="{{asset('public/images/team/ambikaprasad.jpg')}}" alt="" class="rounded-circle w-100">
                     <figcaption class="position-absolute d-flex align-items-center px-1">
                       <span class="dot-separator bg-success mr-1"></span>
                       <span class="text-dark f-12">Online</span>
@@ -25,15 +24,15 @@
                   <div class="up-contents">
                     <div class="">
                       <div class="row mb-2 text-center">
-                        <div class="col-sm-6 b-r b-b">
+                        <div class="col-6 b-r b-b">
                           <div class="el-tablo centered py-3">
                             <a href="./notes.html">
-                              <div class="value">25</div>
+                              <div class="value">{{$notecount}}</div>
                               <div class="label">Notes</div>
                             </a>
                           </div>
                         </div>
-                        <div class="col-sm-6 b-b">
+                        <div class="col-6 b-b">
                           <div class="el-tablo centered  py-3">
                             <a href="./bookmark.html">
                               <div class="value">31</div>
@@ -258,7 +257,7 @@
 
         </div>
       </div>
-    </section> <!-- END Section Posts -->
+    </section>
 
 
 

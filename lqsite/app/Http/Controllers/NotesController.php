@@ -29,7 +29,9 @@ class NotesController extends Controller
       ->where('user_id','1')
       ->paginate(4);
 
-      $notecount = Notes::all()->count();
+      $notecount = Notes::all()
+      ->where('user_id','1')
+      ->count();
     	return view('pages.notes',compact('data','trashdata','notebookdata','notecount'));
     }
     public function detail()
@@ -162,7 +164,10 @@ class NotesController extends Controller
     	$tdata = Notes::all()
       ->where('trash' ,'=',1)
       ->where('user_id','1');
-    	return view('pages.trash',compact('tdata'));
+      $notecount = Notes::all()
+      ->where('user_id','1')
+      ->count();
+    	return view('pages.trash',compact('tdata','notecount'));
     }
 
     public function deletetrash()

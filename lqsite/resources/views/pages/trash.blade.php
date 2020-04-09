@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.noteslayout')
 @section('content')
 <!-- <div class="overlay">
       <img id="loading_image" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
@@ -39,7 +39,7 @@
                                       <div class="col-sm-6 b-r b-b">
                                           <div class="el-tablo centered py-3">
                                             <a href="./notes.html">
-                                              <div class="value">25</div>
+                                              <div class="value">{{$notecount}}</div>
                                               <div class="label">Notes</div>
                                             </a>
                                           </div>

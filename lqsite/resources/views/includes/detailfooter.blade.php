@@ -1,4 +1,15 @@
+
 <style>
+#loading_image{
+      left : 50%;
+      top : 42%;
+      position : absolute;
+      z-index : 101;
+      width : 90px;
+      height : 70px;
+     /* margin-left : -16px;
+      margin-top : -16px;*/
+  }
    #loading_image1{
       left : 41%;
       top : 35%;
