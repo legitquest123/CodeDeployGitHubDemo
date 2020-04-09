@@ -387,16 +387,16 @@
 
                 <ul class="nav-sub-menu dropdown-menu rounded-lg shadow dropdown-menu-right">
                   <li class="nav-item">
-                    <a href="./profile.html" class="nav-link">Profile</a>
+                    <a href="#" class="nav-link">Profile</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./bookmark.html" class="nav-link">My Bookmarks</a>
+                    <a href="{{URL('bookmark')}}" class="nav-link">My Bookmarks</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./notes.html" class="nav-link">My Notes</a>
+                    <a href="{{URL('notes')}}" class="nav-link">My Notes</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link">Logout</a>
+                    <a href="#" class="nav-link">Logout</a>
                   </li>
                 </ul>
               </li>
