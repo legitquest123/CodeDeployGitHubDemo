@@ -1,4 +1,42 @@
-
+<!-- <style>
+   #test.dark {
+  background-color: rgb(30,34,39);
+  color: #fff;
+}
+#test.dark code[class*=language-],
+#test.dark table tbody>tr:nth-child(odd)>td,
+#test.dark table tbody>tr:nth-child(odd)>th {
+  background: black;
+}
+</style> -->
+<style>
+ .night 
+ {
+  background: black;
+  color :white;
+ }
+ .night h1 
+ {
+  color :white;
+ }
+ .night p
+ {
+  color: white;
+ }
+ .night span
+ {
+  color: white;
+ }
+ .night small
+ {
+  color: #000;
+ }
+.light 
+{
+  background:none;
+  color :#000;
+}
+</style>
 <style>
 #loading_image{
       left : 50%;
@@ -69,6 +107,8 @@
   <script src="{{asset('public/js/min/main-min.js')}}"></script>
 
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+
+
 
 
   <script>

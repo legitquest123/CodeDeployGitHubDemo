@@ -988,4 +988,31 @@ function hidemodal()
 {
   $('#messagebookmark').hide();
 }
+
+// document.addEventListener('DOMContentLoaded', (event) => {
+//   ((localStorage.getItem('mode') || 'dark') === 'dark') ? document.getElementById('test').classList.add('dark') : document.getElementById('test').classList.remove('dark')
+// });
+
+function changeModeNight()
+{
+  body.className = 'night';
+  $('#nightmode').hide();
+  $('#lightmode').show();
+}
+
+function changeModeLight()
+{
+ body.className = 'light';
+  $('#lightmode').hide();
+  $('#nightmode').show();
+  
+}
+
+// function toggleDarkLight() {
+//   var main = document.getElementById("body");
+//   var currentClass = main.className;
+//   main.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+// }
+
+
 </script>

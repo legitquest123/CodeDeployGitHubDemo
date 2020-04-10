@@ -52,7 +52,7 @@
               </ul>
             </div>
 
-            <div class="flex-fill">
+            <div id="body" class="flex-fill">
               <div class="judgement-topbar shadow-sm bg-white">
                 <div class="alert alert-success" style="display: none;" id="addmessage"></div>
 
@@ -72,10 +72,13 @@
                     <button type="button" class="btn btn-default py-0 bookmark-btn" data-toggle="tooltip" data-placement="left" title="Bookmark">
                       <i onclick="saveBookMark();" class="lni-bookmark"></i>
                     </button>
-                    <button type="button" class="btn btn-default py-0" data-toggle="tooltip" data-placement="left" title="Night Mode">
-                      <i class="lni-night"></i>
+                    <button id="nightmode" type="button" class="btn btn-default py-0" data-toggle="tooltip" data-placement="left" title="Night Mode">
+                      <i onclick="changeModeNight();" class="lni-night"></i>
                     </button>
-                    <button type="button" class="btn btn-default py-0" data-toggle="modal" data-target=".report-problem-form">
+                    <button style="display: none;" id="lightmode" type="button" class="btn btn-default py-0" data-toggle="tooltip" data-placement="left" title="Light Mode">
+                      <i onclick="changeModeLight();" class="lni-night"></i>
+                    </button>
+                    <button type="button" class="btn btn-default py-0" data-toggle="modal" data-target="#report-problem-form">
                       <i class="lni-emoji-sad" data-toggle="tooltip" data-placement="left" title="Report a problem"></i>
                     </button>
                   </div>
@@ -110,9 +113,7 @@
                 </nav>
               </div>
 
-              <div class="px-4 mx-4  position-relative tab-content">
-
-
+              <div style="margin-top:-8px;" class="px-4 mx-4  position-relative tab-content">
                 <div id="judgement" class="flex-fill pt-4 mt-2 tab-pane fade show active"  role="tabpanel">
                   <div class="judgment-detail-header text-center">
                      @if(session('success'))
@@ -221,7 +222,7 @@
                       </div>
                     </div>
                     <div class="graph">
-                      <img src="./images/citation-graph.png" alt="">
+                      <img src="{{asset('public/images/citation-graph.png')}}" alt="">
                     </div>
                   </div>
 
@@ -238,7 +239,7 @@
                       </div>
                     </div>
                     <div class="graph">
-                      <img src="./images/citation-graph.png" alt="">
+                      <img src="{{asset('public/images/citation-graph.png')}}" alt="">
                     </div>
                   </div>
 
@@ -255,7 +256,7 @@
                       </div>
                     </div>
                     <div class="graph">
-                      <img src="./images/citation-graph.png" alt="">
+                      <img src="{{asset('public/images/citation-graph.png')}}" alt="">
                     </div>
                   </div>
 
@@ -337,6 +338,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </section> <!-- END Section Hero -->
@@ -554,7 +556,7 @@
 
 
   <!-- Modal -->
-<!-- <div class="modal fade report-problem-form" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-problem-form" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-header bg-gray">
@@ -594,7 +596,7 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 
 
