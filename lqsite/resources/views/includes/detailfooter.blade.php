@@ -1,14 +1,4 @@
-<!-- <style>
-   #test.dark {
-  background-color: rgb(30,34,39);
-  color: #fff;
-}
-#test.dark code[class*=language-],
-#test.dark table tbody>tr:nth-child(odd)>td,
-#test.dark table tbody>tr:nth-child(odd)>th {
-  background: black;
-}
-</style> -->
+
 <style>
  .night 
  {
@@ -16,6 +6,38 @@
   color :white;
  }
  .night h1 
+ {
+  color :white;
+ }
+ .night h4
+ {
+  color :white;
+ }
+ .night h5 
+ {
+  color :white;
+ }
+ .night #uniqueh5
+ {
+  color:#000;
+ }
+ .night #back
+ {
+  color:#000;
+ }
+ .night #results
+ {
+  color:#000;
+ }
+ .night li 
+ {
+  color :#000;
+ }
+ .night small 
+ {
+  color :white;
+ }
+ .night h3 
  {
   color :white;
  }
@@ -65,6 +87,16 @@
       z-index : 101;
       width : 50px;
       height : 50px;
+     /* margin-left : -16px;
+      margin-top : -16px;*/
+  }
+  #loading_image3{
+      left : 41%;
+      top : 35%;
+      position : absolute;
+      z-index : 101;
+      width : 70px;
+      height : 70px;
      /* margin-left : -16px;
       margin-top : -16px;*/
   }

@@ -989,30 +989,105 @@ function hidemodal()
   $('#messagebookmark').hide();
 }
 
-// document.addEventListener('DOMContentLoaded', (event) => {
-//   ((localStorage.getItem('mode') || 'dark') === 'dark') ? document.getElementById('test').classList.add('dark') : document.getElementById('test').classList.remove('dark')
-// });
-
 function changeModeNight()
 {
-  body.className = 'night';
+  var element = document.getElementById("body");
+  element.classList.add("night");
+  element.classList.remove("light");
+  // body.className = 'night';
   $('#nightmode').hide();
   $('#lightmode').show();
 }
 
 function changeModeLight()
 {
- body.className = 'light';
+  var element = document.getElementById("body");
+  element.classList.add("light");
+  element.classList.remove("night");
+ // body.className = 'light';
   $('#lightmode').hide();
   $('#nightmode').show();
   
 }
 
-// function toggleDarkLight() {
-//   var main = document.getElementById("body");
-//   var currentClass = main.className;
-//   main.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
-// }
+function getBookmarkId(id)
+{
+  $('#bookmarkid').val(id);
+}
 
+function deleteBookmark()
+{
+  var id = $('#bookmarkid').val();
+  $.ajax({
+   type:'POST',
+   url:'delete-bookmark',
+   data:{'_token':'{{csrf_token()}}',id:id},
+   beforeSend:function(){
+          $('#loading_image6').show();
+          $('#loader_message6').show();
+          $('#loading_image6').css("visibility","visible");
+          $('#loader_message6').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image6').hide();
+          $('#loader_message6').hide(); 
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image6').css("visibility","hidden");
+          $('#loader_message6').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
+   success:function(data)
+   {
+     $('#message6').show();
+     $('#message6').html(data);
+     location.reload(true);
+   }
+  });
+}
+
+function saveProblem()
+{
+  var problem_area = $('#problem_area').val();
+  var description  = $('#description123').val();
+  if(problem_area!='' && description!= '')
+  {
+$.ajax({
+     type:'POST',
+     url:'save-problem-area',
+     data:{'_token':'{{csrf_token()}}',problem_area:problem_area , description:description},
+     beforeSend:function(){
+          $('#loading_image3').show();
+          $('#loader_message3').show();
+          $('.prblem-area').hide();
+          $('#loading_image3').css("visibility","visible");
+          $('#loader_message3').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image3').hide();
+          $('#loader_message3').hide(); 
+          $('.prblem-area').show();
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image3').css("visibility","hidden");
+          $('#loader_message3').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
+    success:function(response){
+      // alert(response);
+      $("#message3").show();
+      $("#message3").html(response);
+       // location.reload(true);
+    }
+    });
+  }
+  else
+  {
+    alert('Please fill all the Entries');
+  }
+    
+}
 
 </script>

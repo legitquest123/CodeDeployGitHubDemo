@@ -11,12 +11,17 @@
 |
 */
 
+Route::any('/judgment','JudgmentListController@judgment');
+
+Route::any('getMetadata', 'JudgmentListController@getMetadata');
+Route::any('getCaseDetailsByBenchFilter', 'JudgmentListController@getCaseDetailsByBenchFilter');
+
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/judgment', function(){
-   return view('pages.judgment');
-});
+// Route::get('/judgment', function(){
+//    return view('pages.judgment');
+// });
 
 // Route::get('/detail', function(){
 //    return view('pages.detail');
@@ -200,6 +205,11 @@ Route::post('move-note','NotesController@moveNote');
 
 Route::get('bookmark','BookmarkController@index');
 Route::post('save-bookmark','BookmarkController@saveBookmark');
+Route::post('delete-bookmark','BookmarkController@deleteBookmark');
+
+/*Report a Problem Route*/
+
+Route::post('save-problem-area','BookmarkController@saveProblemArea');
 
 
 

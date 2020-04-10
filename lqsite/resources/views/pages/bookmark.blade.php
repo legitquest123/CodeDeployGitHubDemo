@@ -1,6 +1,5 @@
 @extends('layouts.noteslayout')
 @section('content')
-
     <section class="section publish-section section-posts bg-gray  pt-5 pb-5">
       <div class="container-fluid px-md-5">
         <div class="row row-grid justify-content-center">
@@ -35,7 +34,7 @@
                         <div class="col-6 b-b">
                           <div class="el-tablo centered  py-3">
                             <a href="./bookmark.html">
-                              <div class="value">31</div>
+                              <div class="value">{{$bookmarkcount}}</div>
                               <div class="label">Bookmarks</div>
                             </a>
                           </div>
@@ -74,191 +73,51 @@
                             </tr>
                           </thead>
                           <tbody>
+                            @foreach($bookmark as $key => $value)
                             <tr>
+                              <td>{{++$key}}</td>
+                              <td><a href="#">{{$value->slug}}</a></td>
                               <td>
-                                1
-                              </td>
-                              <td>
-                                <a href="#">Chandrashekhar Verma Vs. State of M.P.</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
+                                <a class="text-danger ml-2"><i onclick="getBookmarkId({{$value->id}});" data-toggle="modal" data-target="#deletebookmark" class="far fa-trash-alt"></i></a>
                               </td>
                             </tr>
-
-                            <tr>
-                              <td>
-                                2
-                              </td>
-                              <td>
-                                <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                3
-                              </td>
-                              <td>
-                                <a href="#">In lobortis volutpat tortor. In nec blandit nulla, ut pretium sem</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                4
-                              </td>
-                              <td>
-                                <a href="#">Chandrashekhar Verma Vs. State of M.P.</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                5
-                              </td>
-                              <td>
-                                <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                6
-                              </td>
-                              <td>
-                                <a href="#">In lobortis volutpat tortor. In nec blandit nulla, ut pretium sem</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                7
-                              </td>
-                              <td>
-                                <a href="#">Chandrashekhar Verma Vs. State of M.P.</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                8
-                              </td>
-                              <td>
-                                <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                9
-                              </td>
-                              <td>
-                                <a href="#">In lobortis volutpat tortor. In nec blandit nulla, ut pretium sem</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                10
-                              </td>
-                              <td>
-                                <a href="#">Chandrashekhar Verma Vs. State of M.P.</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                11
-                              </td>
-                              <td>
-                                <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
-                              </td>
-
-                              <td>
-
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td>
-                                12
-                              </td>
-                              <td>
-                                <a href="#">In lobortis volutpat tortor. In nec blandit nulla, ut pretium sem</a>
-                              </td>
-
-                              <td class="row-actions text-right">
-
-                                <a class="text-danger ml-2" href="#/"><i class="far fa-trash-alt"></i></a>
-                              </td>
-                            </tr>
+                            @endforeach
                           </tbody>
                         </table>
+                      {{$bookmark->links()}}
                       </div>
-
                     </div>
                   </div>
-
-
                 </section>
-
-
               </div> <!-- END Posts Wrapper -->
-
-
-
             </div> <!-- Nested row -->
           </div>
-
-
-
         </div>
       </div>
     </section>
 
+    <!--Modal for Deleting Bookmark Starts here-->
 
+  <div class="modal" id="deletebookmark" role="dialog">
+    <div class="modal-dialog">    
+      <!-- Modal content-->
+      <div style="width:68%; margin:auto; border-radius: 0px;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="bookmarkid">
+           <div style="display: none; margin:auto; font-size: 16px; color:green; text-align: center;" id="message6"></div>
+          <div class="overlay">
+          <h5 id="loader_message6" style="display:none; text-align: center;">Deleting Bookmark Please wait....</h5><br>       
+          <img id="loading_image6" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to delete this bookmark?</p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" onclick="resetform();" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px;font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm" onclick="deleteBookmark();"><i class="fa fa-check" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+<!--Modal for Deleting Bookmark Ends here-->
 @endsection

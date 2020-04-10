@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bookmark;
 use App\Models\Notes;
+use App\Models\ReportProblem;
 
 class BookmarkController extends Controller
 {
@@ -14,7 +15,14 @@ class BookmarkController extends Controller
 	  $notecount = Notes::all()
       ->where('user_id','1')
       ->count();
-       return view('pages.bookmark',compact('notecount'));
+
+    $bookmark = Bookmark::where('user_id','1')->paginate(5); 
+
+    $bookmarkcount = Bookmark::all()
+     ->where('user_id','1')
+     ->count();
+
+    return view('pages.bookmark',compact('notecount','bookmark','bookmarkcount'));
 	}
 
     public function saveBookmark(Request $request)
@@ -22,6 +30,7 @@ class BookmarkController extends Controller
        $obj = new Bookmark();
        $obj->judgment_id = '1';
        $obj->user_id = '1';
+       $obj->slug = 'Chandrashekhar Verma v.State of M.P.';
        $obj->date_created = date('Y-m-d');
        $obj->date_modified = date('Y-m-d');
        $save = $obj->save();
@@ -30,4 +39,31 @@ class BookmarkController extends Controller
        else
        echo "Bookmark Not Save"; 
     }
+
+    public function deleteBookmark(Request $request)
+    {
+      $id = $request->id;
+      // dd($id);
+      $bookmark = Bookmark::where('id','=',$id);
+      $delete = $bookmark->delete();
+      if($delete)
+        echo "Bookmark Deleted Successfully!";
+      else
+        echo "Fail to Delete Bookmark!";
+    }
+
+    public function saveProblemArea(Request $request)
+    {
+      $obj = new ReportProblem();
+      $obj->user_id = '1';
+      $obj->problem_area = implode(",",$request->problem_area);
+      $obj->description = $request->description;
+      $obj->date_created = date('Y-m-d');
+      $obj->date_modified = date('Y-m-d');
+      $save = $obj->save();
+      if($save)
+        echo "Problem Reported Successfully!";
+      else
+        echo "Fail to Report a Problem";
+    } 
 }

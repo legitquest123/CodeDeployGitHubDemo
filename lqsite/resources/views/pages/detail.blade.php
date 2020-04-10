@@ -59,11 +59,11 @@
                 <div class="container-fluid d-flex align-items-center mt-2 mb-1">
                   <div class="back-to-result">
                     <a href="#" class="d-block rounded py-1 px-1 font-semibold">
-                      <i class="fas fa-angle-left mr-2"></i> <span>Back</span> <span class="d-none d-lg-inline-block">to Results</span>
+                      <i class="fas fa-angle-left mr-2"></i> <span id="back">Back</span> <span id="results" class="d-none d-lg-inline-block">to Results</span>
                     </a>
                   </div>
                   <div class="text-md-center mx-auto">
-                    <h5 class="d-inline font-weight-bold mb-0">Rajendra Kumar v. Gopal Krishna</h5>
+                    <h5 id="uniqueh5" class="d-inline font-weight-bold mb-0">Rajendra Kumar v. Gopal Krishna</h5>
                     <span class="dot-separator bg-secondary mx-1"></span>
                     <small class="font-weight-light">Appeal Nos.7763 of 2004</small>
                   </div>
@@ -76,7 +76,7 @@
                       <i onclick="changeModeNight();" class="lni-night"></i>
                     </button>
                     <button style="display: none;" id="lightmode" type="button" class="btn btn-default py-0" data-toggle="tooltip" data-placement="left" title="Light Mode">
-                      <i onclick="changeModeLight();" class="lni-night"></i>
+                      <i onclick="changeModeLight();" class="lni-sun"></i>
                     </button>
                     <button type="button" class="btn btn-default py-0" data-toggle="modal" data-target="#report-problem-form">
                       <i class="lni-emoji-sad" data-toggle="tooltip" data-placement="left" title="Report a problem"></i>
@@ -214,7 +214,7 @@
                   <div class="block d-md-flex align-items-center">
                     <div class="flex-fill">
                       <h4 class="font-weight-bold">Palani &amp; Others .Vs State represented by Inspector of Police</h4>
-                      <small class="d-block mb-3">Supreme Court Of India | <span>LQ 2008 HC 11809</span> </small>
+                      <p class="d-block mb-3">Supreme Court Of India | <span>LQ 2008 HC 11809</span> </p>
                       <div class="">
                         <p class="mb-1">20. In A. <span class="text-primary">JAYACHANDRA</span> VS. <span class="text-primary">ANEEL KAUR</span> </p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque sint, nam delectus quod qui incidunt cum cupiditate beatae voluptate, impedit ullam quidem, quos amet est fugiat! Maiores saepe, voluptas magni. Iusto accusamus quae
@@ -231,7 +231,7 @@
                   <div class="block d-md-flex align-items-center">
                     <div class="flex-fill">
                       <h4 class="font-weight-bold">Palani &amp; Others .Vs State represented by Inspector of Police</h4>
-                      <small class="d-block mb-3">Supreme Court Of India | <span>LQ 2008 HC 11809</span> </small>
+                      <p class="d-block mb-3">Supreme Court Of India | <span>LQ 2008 HC 11809</span> </p>
                       <div class="">
                         <p class="mb-1">23. In A. <span class="text-primary">JAYACHANDRA</span> VS. <span class="text-primary">ANEEL KAUR</span> </p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque sint, nam delectus quod qui incidunt cum cupiditate beatae voluptate, impedit ullam quidem, quos amet est fugiat! Maiores saepe, voluptas magni. Iusto accusamus quae
@@ -248,7 +248,7 @@
                   <div class="block d-md-flex align-items-center">
                     <div class="flex-fill">
                       <h4 class="font-weight-bold">Palani &amp; Others .Vs State represented by Inspector of Police</h4>
-                      <small class="d-block mb-3">Supreme Court Of India | <span>LQ 2008 HC 11809</span> </small>
+                      <p class="d-block mb-3">Supreme Court Of India | <span>LQ 2008 HC 11809</span> </p>
                       <div class="">
                         <p class="mb-1">20. In A. <span class="text-primary">JAYACHANDRA</span> VS. <span class="text-primary">ANEEL KAUR</span> </p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque sint, nam delectus quod qui incidunt cum cupiditate beatae voluptate, impedit ullam quidem, quos amet est fugiat! Maiores saepe, voluptas magni. Iusto accusamus quae
@@ -265,7 +265,7 @@
                   <div class="block d-md-flex align-items-center">
                     <div class="flex-fill">
                       <h4 class="font-weight-bold">Palani &amp; Others .Vs State represented by Inspector of Police</h4>
-                      <small class="d-block mb-3">Supreme Court Of India | <span>LQ 2008 HC 11809</span> </small>
+                      <p class="d-block mb-3">Supreme Court Of India | <span>LQ 2008 HC 11809</span> </p>
                       <div class="">
                         <p class="mb-1">23. In A. <span class="text-primary">JAYACHANDRA</span> VS. <span class="text-primary">ANEEL KAUR</span> </p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque sint, nam delectus quod qui incidunt cum cupiditate beatae voluptate, impedit ullam quidem, quos amet est fugiat! Maiores saepe, voluptas magni. Iusto accusamus quae
@@ -556,7 +556,7 @@
 
 
   <!-- Modal -->
-<div class="modal fade report-problem-form" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-problem-form" data-backdrop="static" data-keyboard="false" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-header bg-gray">
@@ -565,14 +565,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
       <div class="modal-body">
-
-        <form>
-            <div class="prblem-area form-group ">
+         <div style="display: none; text-align:center; font-size: 16px; color:green;" id="message3"></div>
+         <div class="overlay">
+          <h5 id="loader_message3" style="display:none; text-align: center;">Sending your Problem Please wait....</h5>       
+          <img id="loading_image3" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+            <div class="prblem-area form-group">
               <label for="">Problem Area</label>
               <div class="">
-                <select class="selectpicker-modal form-control" multiple data-selected-text-format="count > 4" title="Select Problem Area">
+                <select name="problem_area" id="problem_area" class="selectpicker-modal form-control" multiple data-selected-text-format="count > 4" title="Select Problem Area">
                   <option>Content</option>
                   <option>Segregation</option>
                   <option>Judge Name</option>
@@ -581,21 +583,19 @@
                   <option>Other</option>
                 </select>
               </div>
-
             </div>
-
             <div class="form-group">
-                <label for="">Description</label>
-                <textarea class="form-control" value"" name="" rows="3" placeholder="Please enter information here"></textarea>
+                <label for="description">Description</label>
+                <textarea class="form-control" name="description123" id="description123" rows="3" cols="25"></textarea>
             </div>
-        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btn-sm">Send</button>
+        <button type="button" onclick="resetForm();" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        <button type="button" onclick="saveProblem();" class="btn btn-primary btn-sm">Send</button>
       </div>
     </div>
   </div>
+</form>
 </div>
 
 
@@ -666,10 +666,6 @@
     </div>
   </div>
   
-
-
-
-
 <div data-backdrop="static" data-keyboard="false" class="modal fade shareform" id="shareform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border:0px solid #FF9900;">
 
   <div class="modal-dialog modal-dialog-centered " role="document">
