@@ -133,8 +133,8 @@
                              <i data-toggle="modal" title="Move note to Notebook" data-target="#movenotemodal" onclick="getMoveNoteId({{$value->id}});" style="float: right; cursor: pointer; font-size: 12px; margin-right: 5px;" class="icon-move" aria-hidden="true"></i>
                        </div>
                        @endforeach
-                          
                         </div>
+                      {{$sharenote->links()}}
                       </div>
                       
                     <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="notebookTab">
@@ -265,7 +265,7 @@
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-header bg-gray">
-        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">New Note</h5>
+        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">New NoteBook</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -289,8 +289,8 @@
 
             </div>
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" id="name" rows="3" placeholder="Please enter name">
+                <label for="name">Notebook Name</label>
+                <input type="text" class="form-control" name="name" id="name" rows="3" placeholder="Please enter notebook name">
             </div>
 
             <div class="form-group">
