@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Notes;
 use App\Models\ShareNote;
 use App\Models\NoteBook;
+use App\Models\Bookmark;
 use Illuminate\Support\Facades\Route;
 use App\Mail\NoteMail;
 use Illuminate\Support\Facades\Mail;
@@ -32,7 +33,18 @@ class NotesController extends Controller
       $notecount = Notes::all()
       ->where('user_id','1')
       ->count();
-    	return view('pages.notes',compact('data','trashdata','notebookdata','notecount'));
+
+      $bookmarkcount = Bookmark::all()
+      ->where('user_id','1')
+      ->count();
+
+      $sharenote = DB::table('share_note as s')
+      ->join('note as n1','s.note_id','=','n1.id')
+      ->where('s.to_user_id','=','1')
+      ->where('n1.user_id','=','1')
+      ->paginate(4);
+
+    	return view('pages.notes',compact('data','trashdata','notebookdata','notecount','bookmarkcount','sharenote'));
     }
     public function detail()
     {
@@ -109,8 +121,7 @@ class NotesController extends Controller
 
     public function addNoteBook(Request $request)
     {
-    	$obj = new NoteBook;
-    	if($request->parent_id == 0){
+    	  $obj = new NoteBook;
 	    	$obj->parent_id = 0;
 	    	$obj->user_id = '1';
 	    	$obj->name = $request->name;
@@ -121,19 +132,19 @@ class NotesController extends Controller
 	    		return redirect()->back()->with('success','NoteBook Added Successfully!');
 	    	else
 	    		return redirect()->back()->with('error','Fail to Add NoteBook');	    		
-    	}
-    	else{
-    		$obj->parent_id = $request->parent_id;
-	    	$obj->user_id = '1';
-	    	$obj->name = $request->name;
-	    	$obj->description = $request->description;
-	    	$obj->date_created  = date('Y-m-d');
-	    	$save = $obj->save();
-	    	if($save)
-	    		return redirect()->back()->with('success','NoteBook Added Successfully!');
-	    	else
-	    		return redirect()->back()->with('error','Fail to Add NoteBook');	
-    	}
+    	// else
+     //  {
+    	// 	$obj->parent_id = $request->parent_id;
+	    // 	$obj->user_id = '1';
+	    // 	$obj->name = $request->name;
+	    // 	$obj->description = $request->description;
+	    // 	$obj->date_created  = date('Y-m-d');
+	    // 	$save = $obj->save();
+	    // 	if($save)
+	    // 		return redirect()->back()->with('success','NoteBook Added Successfully!');
+	    // 	else
+	    // 		return redirect()->back()->with('error','Fail to Add NoteBook');	
+    	// }
     	
     }
 
@@ -164,10 +175,16 @@ class NotesController extends Controller
     	$tdata = Notes::all()
       ->where('trash' ,'=',1)
       ->where('user_id','1');
+
       $notecount = Notes::all()
       ->where('user_id','1')
       ->count();
-    	return view('pages.trash',compact('tdata','notecount'));
+
+      $bookmarkcount = Bookmark::all()
+      ->where('user_id','1')
+      ->count();
+
+    	return view('pages.trash',compact('tdata','notecount','bookmarkcount'));
     }
 
     public function deletetrash()

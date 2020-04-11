@@ -47,7 +47,7 @@
                                       <div class="col-sm-6 b-b">
                                           <div class="el-tablo centered  py-3">
                                             <a href="./bookmark.html">
-                                              <div class="value">31</div>
+                                              <div class="value">{{$bookmarkcount}}</div>
                                               <div class="label">Bookmarks</div>
                                             </a>
                                           </div>

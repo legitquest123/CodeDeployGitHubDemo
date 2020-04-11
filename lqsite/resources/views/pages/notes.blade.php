@@ -47,7 +47,7 @@
                                       <div class="col-sm-6 b-b">
                                           <div class="el-tablo centered  py-3">
                                             <a href="#">
-                                              <div class="value">31</div>
+                                              <div class="value">{{$bookmarkcount}}</div>
                                               <div class="label">Bookmarks</div>
                                             </a>
                                           </div>
@@ -123,12 +123,16 @@
                         <h4 class="h4 card-title d-block mb-1 font-weight-bold" >Shared with me</h4>
                         <hr class="mb-3">
                         <div class="row mb-2">
-                       
-                       <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;">
-                            <h4></h4>
-                            <p style="font-size:12px;"></p>
+                       @foreach($sharenote as $key=> $value)
+                       <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:25px; padding-top: 15px; text-align: justify;">
+                            <h5 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h5>
+                            <p style="font-size:12px;">{{$value->date_created}}</p>
                             <div class="label" style="font-size:12px;"></div>
-                          </div>
+                             <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="float:right; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
+                             <i title="Move to trash" data-toggle="modal" data-target="#deletemodal1" onclick="getNoteId({{$value->id}});" style="float:right; font-size: 12px; margin-right: 8px; cursor: pointer;" class="fas fa-trash"></i>
+                             <i data-toggle="modal" title="Move note to Notebook" data-target="#movenotemodal" onclick="getMoveNoteId({{$value->id}});" style="float: right; cursor: pointer; font-size: 12px; margin-right: 5px;" class="icon-move" aria-hidden="true"></i>
+                       </div>
+                       @endforeach
                           
                         </div>
                       </div>
@@ -273,7 +277,7 @@
           @csrf()
             <div class="prblem-area form-group ">
 
-              <label for="">Select Your Notebook</label>
+              <!-- <label for="">Select Your Notebook</label>
               <div class="form-group">
                 <select class="selectpicker-modal form-control" name="parent_id" title="Select Problem Area">
                   <option value="0" selected>Select Parent Notebook</option>
@@ -281,7 +285,7 @@
                   <option value="{{$value->id}}">{{$value->name}}</option>
                   @endforeach
                 </select>
-              </div>
+              </div> -->
 
             </div>
             <div class="form-group">

@@ -16,7 +16,6 @@ Route::any('/judgment','JudgmentListController@judgment');
 Route::any('getMetadata', 'JudgmentListController@getMetadata');
 Route::any('getCaseDetailsByBenchFilter', 'JudgmentListController@getCaseDetailsByBenchFilter');
 
-
 Route::get('/', 'HomeController@index');
 
 // Route::get('/judgment', function(){
