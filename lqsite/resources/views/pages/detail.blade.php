@@ -54,7 +54,7 @@
 
             <div id="body" class="flex-fill">
               <div class="judgement-topbar shadow-sm bg-white">
-                <div class="alert alert-success" style="display: none;" id="addmessage"></div>
+               
 
                 <div class="container-fluid d-flex align-items-center mt-2 mb-1">
                   <div class="back-to-result">
@@ -116,16 +116,6 @@
               <div style="margin-top:-8px;" class="px-4 mx-4  position-relative tab-content">
                 <div id="judgement" class="flex-fill pt-4 mt-2 tab-pane fade show active"  role="tabpanel">
                   <div class="judgment-detail-header text-center">
-                     @if(session('success'))
-                              <div id="messagediv" class="alert alert-success">
-                                  {{session('success')}}
-                              </div>
-                                      @endif
-                        @if(session('error'))
-                      <div id="messagediv" class="alert alert-danger">
-                          {{session('error')}}
-                      </div>
-                      @endif
 
                     <h1 class="mb-3 font-weight-bold">Chandrashekhar Verma
                       <br>
@@ -401,8 +391,6 @@
                   <option>Issue</option>
                   </select>
               </div>
-
-
               <a href="#" class="close-notes tab-link" data-toggle="tab" data-target="#note-list" role="tab">
                 <svg width="12px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
                     <g><g><path d="M294.111,256.001L504.109,46.003c10.523-10.524,10.523-27.586,0-38.109c-10.524-10.524-27.587-10.524-38.11,0L256,217.892    L46.002,7.894c-10.524-10.524-27.586-10.524-38.109,0s-10.524,27.586,0,38.109l209.998,209.998L7.893,465.999    c-10.524,10.524-10.524,27.586,0,38.109c10.524,10.524,27.586,10.523,38.109,0L256,294.11l209.997,209.998    c10.524,10.524,27.587,10.523,38.11,0c10.523-10.524,10.523-27.586,0-38.109L294.111,256.001z"/>
@@ -415,6 +403,8 @@
                <div class="form-group">
                 <input type="hidden" class="form-control" value="2" name="notetype" id="notetype">
             </div>
+               
+               <div class="alert alert-success" style="display: none;" id="addmessage"></div>
               <div class="form-group">
                 <input type="text" name="title" id="title" class="form-control form-control-sm" placeholder="Enter Note Title">
               </div>
