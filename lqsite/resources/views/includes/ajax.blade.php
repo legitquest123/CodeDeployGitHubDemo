@@ -445,7 +445,7 @@ function showNotebookNote(id)
        success:function(response){
         $('#addmessage').show();
         $('#addmessage').html(response);
-        // location.reload(true);
+        location.reload(true);
 
        }
     });
