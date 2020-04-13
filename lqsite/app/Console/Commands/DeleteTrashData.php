@@ -41,5 +41,6 @@ class DeleteTrashData extends Command
         ->where('user_id','=','1')
         ->where('trash','=','1')
         ->delete();
+        echo "Hello";
     }
 }
