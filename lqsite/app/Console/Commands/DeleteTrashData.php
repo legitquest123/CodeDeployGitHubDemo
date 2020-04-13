@@ -37,9 +37,9 @@ class DeleteTrashData extends Command
      */
     public function handle()
     {
-        $delete = \DB::table('note')
-        ->where('user_id','=','1')
-        ->where('trash','=','1')
-        ->delete();
+        // $delete = \DB::table('note')
+        // ->where('user_id','=','1')
+        // ->where('trash','=','1')
+        // ->delete();
     }
 }
