@@ -155,15 +155,53 @@ $(function()
       // The key name on the left side is the name attribute
       // of an input field. Validation rules are defined
       // on the right side
-      fact:"required",
-      title: "required",
+      // fact:"required",
+      title: {
+      required:true,
+      maxlength:40,
+      },
       description: "required"
     },
     // Specify validation error messages
     messages: {
-      fact:"Please select fact",
-      title: "Please enter title.",
+      // fact:"Please select fact",
+      title: {
+      required:"Please enter title.",
+      maxlength:"Maximum 40 Characters limit", 
+      },
       description: "Please enter description."
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+
+<script>
+$(function() 
+{
+  $("form[name='notebooknoteform']").validate({
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      notebooknotetitle:{
+       required:true,
+       maxlength:40,
+      },
+      notebooknotedescription: "required"
+    },
+    // Specify validation error messages
+    messages: {
+      // fact:"Please select fact",
+      notebooknotetitle: {
+      required:"Please enter title.",
+      maxlength:"Maximum 40 Characters limit",
+      },
+      notebooknotedescription: "Please enter description."
     },
     // Make sure the form is submitted to the destination defined
     // in the "action" attribute of the form when valid
@@ -183,12 +221,18 @@ $(function()
       // The key name on the left side is the name attribute
       // of an input field. Validation rules are defined
       // on the right side
-      name: "required",
+      name: {
+      required:true,
+      maxlength:20,
+      },
       description: "required"
     },
     // Specify validation error messages
     messages: {
-      name: "Please enter notebook name",
+      name: {
+      required:"Please enter notebook name",
+      maxlength:"Maximum 20 Characters are Allowed",
+      },
       description: "Please enter notebook description"
     },
     // Make sure the form is submitted to the destination defined
@@ -278,8 +322,6 @@ $("#notebookBtn").click(function(){
   $("#row1").hide();
   $("#row2").show();
   $("#result").html('');
-
-    
 });
 
 function getSearchValue()
@@ -321,7 +363,7 @@ function showNotebookNote(id)
 <script>
   function getNoteBookId(id)
   {
-    $('#notebookid').val(id);
+    $('#notebookidfornotes').val(id);
   }
 </script>
 
@@ -367,26 +409,9 @@ function showNotebookNote(id)
        type:'GET',
        url:'delete-trash',
        // data:{'_token':'{{csrf_token()}}'},
-       beforeSend:function(){
-          $('#loading_image5').show();
-          $('#loader_message5').show();
-          $('#loading_image5').css("visibility","visible");
-          $('#loader_message5').css("visibility","visible");
-          $('.modal-body').css("visibility","hidden");
-          $('.modal-header').css("visibility","hidden");
-          },
-          complete:function(){
-          $('#loading_image5').hide();
-          $('#loader_message5').hide(); 
-          $('.modal-body').css("visibility","visible");
-          $('#loading_image5').css("visibility","hidden");
-          $('#loader_message5').css("visibility","hidden");
-          $('.modal-header').css("visibility","visible");
-          },
        success:function(data)
        {
-         $('#message5').show();
-         $('#message5').html(data);
+         alert(data);
          location.reload(true);
       }
     }); 
@@ -403,21 +428,16 @@ function showNotebookNote(id)
  */ 
   function detailAddNote()
   {
+    notetype = $('#notetype').val();
     fact = $('#fact').val();
     title = $('#title').val();
     description = $('#description').val();
     $.ajax({
        type:'POST',
        url:'add-note',
-       // beforeSend:function(){
-       //  $('#loading_image').show();
-       //   // $('body').not("#loading").css("filter","blur(3px)");
-       // },
-       // complete:function(){
-       //  $('#loading_image').hide();
-       // },
        data:{
         '_token':'{{csrf_token()}}',
+        notetype:notetype,
         fact:fact,
         title:title,
         description:description
@@ -425,7 +445,7 @@ function showNotebookNote(id)
        success:function(response){
         $('#addmessage').show();
         $('#addmessage').html(response);
-        location.reload(true);
+        // location.reload(true);
 
        }
     });
@@ -563,7 +583,7 @@ function showNotebookNote(id)
           // alert(data);
           $("#message").show();
           $("#message").html(data);
-
+          location.reload(true);
         }
     });  
     }

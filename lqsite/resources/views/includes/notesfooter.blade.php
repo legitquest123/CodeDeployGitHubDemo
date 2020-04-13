@@ -23,6 +23,16 @@
      /* margin-left : -16px;
       margin-top : -16px;*/
   }
+   #loading_image4{
+      left : 41%;
+      top : 35%;
+      position : absolute;
+      z-index : 101;
+      width : 50px;
+      height : 50px;
+     /* margin-left : -16px;
+      margin-top : -16px;*/
+  }
   #loading_image6{
       left : 41%;
       top : 35%;
@@ -193,6 +203,7 @@
   <!-- Global Required JS -->
   <script src="{{asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script>
   <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+  
 
   <script src="{{asset('public/js/vendor/popper.min.js')}}"></script>
   <script src="{{asset('public/js/vendor/bootstrap.min.js')}}"></script>

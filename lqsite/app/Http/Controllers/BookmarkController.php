@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Bookmark;
 use App\Models\Notes;
 use App\Models\ReportProblem;
+use DB;
 
 class BookmarkController extends Controller
 {
@@ -28,16 +29,29 @@ class BookmarkController extends Controller
     public function saveBookmark(Request $request)
     {
        $obj = new Bookmark();
-       $obj->judgment_id = '1';
-       $obj->user_id = '1';
-       $obj->slug = 'Chandrashekhar Verma v.State of M.P.';
-       $obj->date_created = date('Y-m-d');
-       $obj->date_modified = date('Y-m-d');
-       $save = $obj->save();
-       if($save)
-       echo "Bookmark Save Successfully!";
+       $count = DB::table('bookmark')
+       ->where('user_id','1')
+       ->where('judgment_id','=','1')
+       ->count();
+       
+       if($count > 0)
+       {
+        echo "BookMark Already Saved!";
+       }
        else
-       echo "Bookmark Not Save"; 
+       {
+         $obj->judgment_id = '1';
+         $obj->user_id = '1';
+         $obj->slug = 'Chandrashekhar Verma v.State of M.P.';
+         $obj->date_created = date('Y-m-d');
+         $obj->date_modified = date('Y-m-d');
+         $save = $obj->save();
+         if($save)
+         echo "Bookmark Save Successfully!";
+         else
+         echo "Bookmark Not Save"; 
+       }
+        
     }
 
     public function deleteBookmark(Request $request)

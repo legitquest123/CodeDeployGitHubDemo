@@ -84,6 +84,7 @@
                     </div>
                     </div>
                     <div class="row" style="margin:auto; padding:0px;" id="row1">
+
                       <div class="col-md-4" style="border:0px solid #CC6600;" id="noteTab">
                         <h4 class="h4 card-title d-block mb-1 font-weight-bold" >My Notes</h4>
                         <hr class="mb-3">
@@ -102,9 +103,13 @@
                         </div>
                         {{$data->links()}}
                       </div>
-                      <!-- left site -->
+
+
+                      <!--Trash Note Code -->
                         <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="trashTab">
                         <h4 class="h4 card-title d-block mb-1 font-weight-bold" >Trash</h4>
+                      <button type="button" data-toggle="modal" data-target="#emptytrashmodal">Empty Trash</button>
+
                         <hr class="mb-3">
                         <div class="row mb-2">
                        @foreach($trashdata as $value)
@@ -112,19 +117,23 @@
                             <h5 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h5>
                             <!-- <p style="font-size:12px;">{!!$value->description!!}</p> -->
                             <div class="label" style="font-size:12px;">{{$value->date_created}}</div>
-                            <i data-toggle="modal" data-target="#trash" onclick="getTrashNoteId({{$value->id}});" style=" float:right; cursor: pointer;" title="Undo trash" class="fas fa-undo"></i>
+                            <i data-toggle="modal" data-target="#trash" onclick="getTrashNoteId({{$value->id}});" style=" float:right; cursor: pointer; font-size: 12px;" title="Undo trash" class="fas fa-undo"></i>
+                             <a style="margin-right: 10px;float:right; font-size: 12px; cursor: pointer; color:#000;" title="Delete note permanently" class="ml-2" data-toggle="modal" data-target="#deletemodal12" href="#" onclick="getId({{$value->id}});"><i class="fas fa-trash"></i></a>
                        </div>
                        @endforeach
+
                         </div>
                       {{$trashdata->links()}}
                       </div>
+
+                      <!--Share Note Code -->
                       
                     <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="shareTab">
                         <h4 class="h4 card-title d-block mb-1 font-weight-bold" >Shared with me</h4>
                         <hr class="mb-3">
                         <div class="row mb-2">
                        @foreach($sharenote as $key=> $value)
-                       <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:25px; padding-top: 15px; text-align: justify;">
+                       <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:15px; padding-bottom:13px; text-align: justify;">
                             <h5 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h5>
                             <p style="font-size:12px;">{{$value->date_created}}</p>
                             <div class="label" style="font-size:12px;"></div>
@@ -138,22 +147,23 @@
                       </div>
                       
                     <div class="col-md-4" style="border:0px solid #CC6600; display:none;" id="notebookTab">
-
                         <h4 class="h4 card-title d-block mb-1 font-weight-bold" >Notebook</h4>
                         <hr class="mb-3">
                         <div class="row mb-2" >
                
-                       <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;">
-                            <h4></h4>
-                            <p style="font-size:12px;"></p>
-                            <div class="label" style="font-size:12px;"></div>
-                          </div>
+                             <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:20px; padding-top:20px;">
+                                  <h4></h4>
+                                  <p style="font-size:12px;"></p>
+                                  <div class="label" style="font-size:12px;"></div>
+                            </div>
                         </div>
-                      </div>
+                    </div>
                   
                   <div class="col-md-8" style="border:0px solid #CC6600;" id="result">
                   </div>
                   </div>
+
+
                   <div class="row" style="margin:auto; padding:0px; display:none;" id="row2">
            
                  <div class="col-md-10">
@@ -230,7 +240,7 @@
                              <div style="border-style: none;" id="demo{{$key}}" class="collapse table mydata{{$value->id}}">
                             </div></td>
                             <td>{{$value->date_created}}</td>
-                            <td><i style="cursor: pointer;" title="Add Note" data-toggle="modal" data-target="#add-notes" onclick="getNoteBookId({{$value->id}});" class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                            <td><i style="cursor: pointer;" title="Add Note" data-toggle="modal" data-target="#add-notes-directly-notebook" onclick="getNoteBookId({{$value->id}});" class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;
                               <i style="cursor: pointer;" title="Delete NotebooK" onclick="getnotebookid({{$value->id}});" data-toggle="modal" data-target="#deletenotebook" class="fas fa-trash"></i></td>
                           </tr>
                           @endforeach 
@@ -377,13 +387,13 @@
 
 
 
-<!--Modal for Add Notes in Notebook Starts here-->
+<!--Modal for Add Notes Starts here-->
 
 <div class="modal add-notes" id="add-notes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-header bg-gray">
-        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Add Note in Notebook</h5>
+        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Add Note</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -394,18 +404,24 @@
         <form method="POST" action="{{route('addingnote')}}" name="noteform">
           @csrf()
             <div class="prblem-area form-group ">
-              <input type="hidden" id="notebookid" name="notebookid">
-              <label for="">Select Notes Type</label>
+              <!-- <input type="hidden" id="notebookid" name="notebookid"> -->
+              <label for="">Select NoteBook</label>
               <div class="">
-                <select name="fact" id="fact" class="selectpicker-modal form-control" multiple data-selected-text-format="count > 4" title="Select Problem Area">
-                  <option>Reasoning</option>
-                  <option>Facts</option>
+                <select class="form-control" name="notebook_id" id="notebook_id" title="Select Notebook">
+                  <option value="" selected>Select NoteBook</option>
+                  @foreach($notebookdata as $key=> $value)
+                  <option value="{{$value->id}}">{{$value->name}}</option>
+                  @endforeach
+                  <!-- <option>Facts</option>
                   <option>Case Cited</option>
                   <option>Decision</option>
-                  <option>Issue</option>
+                  <option>Issue</option> -->
                 </select>
               </div>
 
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" value="1" name="notetype" id="notetype">
             </div>
             <div class="form-group">
                 <label for="note-title">Title</label>
@@ -425,8 +441,61 @@
 </div>
 </form>
 
-<!--Modal for Add Notes in Notebook Ends here-->
+<!--Modal for Add Notes Ends here-->
 
+
+<!--Modal for Add Notes in Notebook Starts here-->
+
+<div class="modal add-notes" id="add-notes-directly-notebook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-gray">
+        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Add Note in Notebook</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form method="POST" action="{{route('addingnotefromnotebook')}}" name="notebooknoteform">
+          @csrf()
+            <div class="prblem-area form-group ">
+              <input type="hidden" id="notebookidfornotes" name="notebookidfornotes">
+              <!-- <label for="">Select NoteBook</label>
+              <div class="">
+                <select class="form-control" name="notebookid" id="notebookid" title="Select Notebook">
+                  <option value="" selected>Select NoteBook</option>
+                  @foreach($notebookdata as $key=> $value)
+                  <option value="{{$value->id}}">{{$value->name}}</option>
+                  @endforeach
+                  
+                </select>
+              </div> -->
+
+            </div>
+             <div class="form-group">
+                <input type="hidden" class="form-control" value="1" name="notetype" id="notetype">
+            </div>
+            <div class="form-group">
+                <label for="note-title">Title</label>
+                <input type="text" class="form-control" value"" name="notebooknotetitle" id="notebooknotetitle" rows="3" placeholder="notes title">
+            </div>
+            <div class="form-group">
+                <label for="">Description</label>
+                <textarea class="form-control" value"" name="notebooknotedescription" id="notebooknotedescription" rows="3" placeholder="Please enter information here"></textarea>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary btn-sm">Add Note</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+<!--Modal for Add Notes in Notebook Ends here-->
 
 
 <!--Modal for Deleting Notebook Starts here-->
@@ -526,6 +595,59 @@
   </div>
 
 <!--Modal for Moving Notes Ends here-->
+
+
+
+
+<!-- Trash Note Modal -->
+  <div class="modal" id="emptytrashmodal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
+        <div class="modal-body">
+          <!-- <input type="hidden" id="trashnoteid"> -->
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message5"></div>
+          <div class="overlay">
+          <h5 id="loader_message5" style="display:none; text-align: center;">Emptying Your Trash ...</h5>       
+          <img id="loading_image5" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to Empty your Trash? </p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px;" type="button" onclick="trashNotes();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal" id="deletemodal12" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="trashnoteid">
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message4"></div>
+          <div class="overlay">
+          <h5 id="loader_message4" style="display:none; text-align: center;">Deleting Notes..</h5>       
+          <img id="loading_image4" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to Delete this 
+          Note Permanently?</p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px;" type="button" onclick="deletetrashnote();" class="btn btn-danger btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

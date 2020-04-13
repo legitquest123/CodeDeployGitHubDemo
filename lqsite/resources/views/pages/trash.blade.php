@@ -193,13 +193,11 @@
 
 
   <!-- Trash Note Modal -->
-  <div class="modal" id="emptytrashmodal" role="dialog">
+ <!--  <div class="modal" id="emptytrashmodal" role="dialog">
     <div class="modal-dialog">
     
-      <!-- Modal content-->
       <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
         <div class="modal-body">
-          <!-- <input type="hidden" id="trashnoteid"> -->
           <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message5"></div>
           <div class="overlay">
           <h5 id="loader_message5" style="display:none; text-align: center;">Emptying Your Trash ...</h5>       
@@ -215,7 +213,7 @@
       </div>
     </div>
   </div>
-
+ -->
                 </section>
               </div> <!-- END Posts Wrapper -->
             </div> <!-- Nested row -->

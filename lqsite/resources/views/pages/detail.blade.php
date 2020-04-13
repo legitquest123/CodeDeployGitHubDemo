@@ -412,8 +412,10 @@
             </div>
             <hr class="mb-0">
             <div class="notes-form p-4  slimScroll">
+               <div class="form-group">
+                <input type="hidden" class="form-control" value="2" name="notetype" id="notetype">
+            </div>
               <div class="form-group">
-
                 <input type="text" name="title" id="title" class="form-control form-control-sm" placeholder="Enter Note Title">
               </div>
 
@@ -546,7 +548,7 @@
           <!-- Date Created: <p style="text-align: left;" id="notedate"></p> -->
         </div>
         <div style="border-style:none;" class="modal-footer">
-        <button type="button" onclick="hidemodal();" class="close btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+        <button style="color:white;" type="button" onclick="hidemodal();" class="close btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>

@@ -57,43 +57,69 @@ class NotesController extends Controller
     	return view('pages.detail',compact('data'));
     }
 
+
+    /*Adding NOtes From Detail Page*/
+
     public function addNote(Request $request)
     {
-      // dd($request);
       $obj = new Notes;
       $obj->user_id = '1';
+      $obj->case_id = '1';
       $obj->fact = $request->fact;
       $obj->title = $request->title;
       $obj->description = $request->description;
       $obj->date_created = Date('Y-m-d');
       $obj->date_modified = Date('Y-m-d');
+      $obj->notetype = $request->notetype;
       $save = $obj->save();
       if($save)
-      	// return redirect()->back()->with('success','Note Save Successfully');
         echo "Notes Added Successfully!";
       else
-      	// return redirect()->back()->with('error','Fail to Save Note');
         echo "Fail to Add Notes";
     }
+
+
+
+  /*Adding Notes From Note Page*/
 
     public function addingnote(Request $request)
     {
       $obj = new Notes;
-      $obj->notebook_id = $request->notebookid;
+      $obj->notebook_id = $request->notebook_id;
       $obj->user_id = '1';
-      $obj->fact = $request->fact;
+      // $obj->fact = $request->fact;
       $obj->title = $request->title;
       $obj->description = $request->description;
       $obj->date_created = Date('Y-m-d');
       $obj->date_modified = Date('Y-m-d');
+      $obj->notetype = $request->notetype;
+      $save = $obj->save();
+      if($save)
+        return redirect()->back()->with('success','Note Added Successfully');
+      else
+        return redirect()->back()->with('error','Fail to Save Note');
+    }
+
+
+    /*Add Notes From Notebook*/
+
+    public function addingNoteFromNotebook(Request $request)
+    {
+      $obj = new Notes;
+      $obj->notebook_id = $request->notebookidfornotes;
+      $obj->user_id = '1';
+      // $obj->fact = $request->fact;
+      $obj->title = $request->notebooknotetitle;
+      $obj->description = $request->notebooknotedescription;
+      $obj->date_created = Date('Y-m-d');
+      $obj->date_modified = Date('Y-m-d');
+      $obj->notetype = $request->notetype;
 
       $save = $obj->save();
       if($save)
         return redirect()->back()->with('success','Note Added Successfully');
-        // echo "Notes Added Successfully!";
       else
         return redirect()->back()->with('error','Fail to Save Note');
-        // echo "Fail to Add Notes"; 
     }
 
     public function getNoteDetail(Request $request)
@@ -189,7 +215,10 @@ class NotesController extends Controller
 
     public function deletetrash()
     {
-    	$delete = Notes::where('trash','=',1)->delete();
+    	$delete = Notes::where('trash','=','1')
+      ->where('user_id','=','1')
+      ->delete();
+
     	if($delete)
         echo "Trash Empty Successfully!";
     		// return redirect()->back()->with('success','Trash Empty Successfully!');
@@ -289,10 +318,13 @@ class NotesController extends Controller
     public function deletenotebook(Request $request)
     {
       $id = $request->id;
-      $notes = Notes::where('notebook_id','=',$id);
-      $delete = $notes->delete();
-      $notebook = NoteBook::where('id','=',$id);
-      $deletenotebook = $notebook->delete();
+      $notes = Notes::where('notebook_id','=',$id)
+      ->where('user_id','=','1')
+      ->delete();
+
+      $deletenotebook = NoteBook::where('id','=',$id)
+      ->where('user_id','=','1')
+      ->delete();
      
       if($deletenotebook)
       {
@@ -336,6 +368,7 @@ class NotesController extends Controller
 
     public function emptytrash(Request $request)
     {
+      
       $id = $request->id;
       $note = Notes::find($id);
       $delete = $note->delete();
