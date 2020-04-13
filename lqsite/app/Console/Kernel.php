@@ -24,8 +24,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('delete:trash')
-                 ->hourly();
+        // $schedule->command('delete:trash')
+        //          ->hourly();
+         $schedule->call(function () {
+            DB::table('note')
+            ->where('user_id','=','1')
+            ->where('trash','=','1')
+            ->delete();
+        })->everyFiveMinutes();
     }
 
     /**
