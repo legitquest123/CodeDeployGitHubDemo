@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bookmark;
 use App\Models\Notes;
+use App\Models\Judgment;
 use App\Models\ReportProblem;
 use DB;
+use PDF;
 
 class BookmarkController extends Controller
 {
@@ -79,5 +81,32 @@ class BookmarkController extends Controller
         echo "Problem Reported Successfully!";
       else
         echo "Fail to Report a Problem";
+    }
+
+        /**
+
+     * Display a listing of the resource.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    public function generatePDF()
+    {
+        $data = Judgment::all();
+        $pdf = PDF::loadView('pages.myPDF', compact('data'));
+        return $pdf->download($data[0]->title.'.pdf');
+        // return $pdf->stream('my.pdf');    
     } 
+
+    public function pdf()
+    {
+        $data = Judgment::all();
+
+        $pdf = PDF::loadView('pages.myPDF2', compact('data'));
+        return $pdf->download($data[0]->title.'.pdf');
+        // return $pdf->stream('print.pdf');  
+    }
 }

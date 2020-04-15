@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -210,6 +211,11 @@ Route::post('delete-bookmark','BookmarkController@deleteBookmark');
 /*Report a Problem Route*/
 
 Route::post('save-problem-area','BookmarkController@saveProblemArea');
+
+/*PDF Routes*/
+
+Route::get('print-1','BookmarkController@generatePDF');
+Route::get('print-2','BookmarkController@pdf');
 
 
 

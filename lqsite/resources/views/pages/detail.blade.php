@@ -606,23 +606,25 @@
 
         <div class="row">
           <div class="col-sm-6 text-center">
+            <input type="hidden" value="1" id="print1">
             <h6 class="font-weight-bold mb-3">In One Column</h6>
-            <a href="#" class="print-item d-block position-relative">
+            <a class="print-item d-block position-relative">
             <figure class="p-4 bg-white mb-4 rounded ">
-              <img src="{{asset('public/images/onecolumn.png')}}" alt="" class="d-block w-100  shadow-sm">
+              <img  src="{{asset('public/images/onecolumn.png')}}" alt="" class="d-block w-100  shadow-sm">
               <figcaption>
-                <span class="mb-2"><i class='lni lni-printer'></i></span>
+                <span style="cursor: pointer;" onclick="printjudgment1();" class="mb-2"><i class='lni lni-printer'></i></span>
               </figcaption>
             </figure>
             </a>
           </div>
           <div class="col-sm-6 text-center">
+             <input type="hidden" value="2" id="print2">
             <h6 class="font-weight-bold mb-3">In Two Column</h6>
-            <a href="#" class="print-item d-block position-relative">
+            <a class="print-item d-block position-relative">
             <figure class="p-4 bg-white mb-4 rounded shadow-sm ">
               <img src="{{asset('public/images/twocolumn.png')}}" alt="" class="d-block w-100">
               <figcaption>
-                <span class="mb-2"><i class='lni lni-printer'></i></span>
+                <span style="cursor: pointer;" onclick="printjudgment2();" class="mb-2"><i class='lni lni-printer'></i></span>
               </figcaption>
             </figure>
             </a>

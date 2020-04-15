@@ -1111,3 +1111,49 @@ $.ajax({
 }
 
 </script>
+
+<script>
+function printjudgment1()
+{
+  $.ajax({
+  type:'GET',
+     xhrFields: {
+            responseType: 'blob'
+        },
+  url:'print-1',
+ success: function (data) {
+            var a = document.createElement('a');
+            var url = window.URL.createObjectURL(data);
+            a.href = url;
+            a.download = 'myfile.pdf';
+            document.body.append(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        }
+  });
+}
+</script>
+
+<script>
+function printjudgment2()
+{
+  $.ajax({
+  type:'GET',
+     xhrFields: {
+            responseType: 'blob'
+        },
+  url:'print-2',
+ success: function (data) {
+            var a = document.createElement('a');
+            var url = window.URL.createObjectURL(data);
+            a.href = url;
+            a.download = 'myfile.pdf';
+            document.body.append(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        }
+  });
+}
+</script>
