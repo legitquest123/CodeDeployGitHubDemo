@@ -163,7 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Snowfire\Beautymail\BeautymailServiceProvider::class,
-        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+        // niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,7 +233,7 @@ return [
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         // 'PDF' => Barryvdh\DomPDF\Facade::class,
         'Debugbar' => 'Barryvdh\Debugbar\Facade',
-        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
+        // 'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
     ],
 
 ];
