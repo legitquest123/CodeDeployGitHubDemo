@@ -10,12 +10,10 @@
     "require": {
         "php": "^7.2",
         "barryvdh/laravel-debugbar": "^3.2",
-        "barryvdh/laravel-dompdf": "^0.8.6",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
-        "niklasravnsborg/laravel-pdf": "^4.0",
         "snowfire/beautymail": "dev-master",
         "uxweb/sweet-alert": "^2.0"
     },
