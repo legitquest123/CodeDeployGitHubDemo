@@ -592,6 +592,13 @@ function showNotebookNote(id)
 </script>
 
 <script>
+
+/*resetform() is used to reset form on share note modal
+  
+  Created By: Namit Singh
+
+  Date-Created: 10-April-2020
+*/
   function resetform()
   {
     document.getElementById('shform').reset();
@@ -747,7 +754,7 @@ function showNotebookNote(id)
    $('#trashnote').val(id);
  }
 
- /*Below function undotrash is used to undo trash notes and mpve them to all notes from trash page
+ /*Below function undotrash() is used to undo trash notes and mpve them to all notes from trash page
 
    Created by :  Namit Singh
 
@@ -796,7 +803,7 @@ function getId(id)
 
 <script>
 
- /*Below function deletetrashnote is used to delete notes from trash page permanently
+ /*Below function deletetrashnote() is used to delete notes from trash page permanently
 
    Created by :  Namit Singh
 
@@ -840,7 +847,7 @@ function getId(id)
  //  alert(value);
  // }
 
- /*Below function getnotedetail is used to show detail view of notes on notes page under notebooks
+ /*Below function getnotedetail() is used to show detail view of notes on notes page under notebooks
 
    Created by :  Namit Singh
 
@@ -865,7 +872,7 @@ function getId(id)
 
 
  
- /*Below function getnotedetail is used to show detail view of notes on trash page
+ /*Below function getnotedetail() is used to show detail view of notes on trash page
 
    Created by :  Namit Singh
 
@@ -890,7 +897,7 @@ function getnotedetail(id)
  }
 
 
- /*Below function getNoteDetailId is used to show detail view of notes on detail page
+ /*Below function getNoteDetailId() is used to show detail view of notes on detail page
 
    Created by :  Namit Singh
 
@@ -928,6 +935,7 @@ $(document).ready(function(){
   });
 });
 
+
 function getMoveNoteId(id)
 {
   $('#movenoteid').val(id);
@@ -937,6 +945,17 @@ function getMoveNoteBookId(id)
 {
   $('#movenotebookid').val(id);
 }
+
+
+
+/*movenote() Function is used to move note in notebook on Note Page
+
+ Created By : Namit Singh
+
+ Date-Created: 12-April-2020
+*/
+
+
 function moveNote()
 {
   var noteid = $('#movenoteid').val();
@@ -977,6 +996,15 @@ function moveNote()
   }
 }
 
+
+
+/*saveBookMark() Function is used to save Bookmark on detail page
+
+ Created By : Namit Singh
+
+ Date-Created: 12-April-2020
+*/
+
 function saveBookMark()
 {
   // alert();
@@ -1004,10 +1032,25 @@ function saveBookMark()
   });
 }
 
+/*
+  hidemodal() function is used to close modal of bookmark save message
+
+  Created By: Namit Singh
+
+  Date-Created : 12-April-2020
+
+*/
 function hidemodal()
 {
   $('#messagebookmark').hide();
 }
+
+/*changeModeNight() Function is used to Change mode from light to Dark on detail page judgment
+
+ Created By : Namit Singh
+
+ Date-Created: 13-April-2020
+*/
 
 function changeModeNight()
 {
@@ -1018,6 +1061,14 @@ function changeModeNight()
   $('#nightmode').hide();
   $('#lightmode').show();
 }
+
+
+/*changeModeLight() Function is used to change mode from  dark to light on detail page judgment
+
+ Created By : Namit Singh
+
+ Date-Created: 13-April-2020
+*/
 
 function changeModeLight()
 {
@@ -1034,6 +1085,14 @@ function getBookmarkId(id)
 {
   $('#bookmarkid').val(id);
 }
+
+
+/*deleteBookmark() Function is used to deleteBookmark
+
+ Created By : Namit Singh
+
+ Date-Created: 13-April-2020
+*/
 
 function deleteBookmark()
 {
@@ -1066,6 +1125,14 @@ function deleteBookmark()
    }
   });
 }
+
+
+/*saveProblem() Function is used to store a Report a  Problem
+
+ Created By : Namit Singh
+
+ Date-Created: 13-April-2020
+*/
 
 function saveProblem()
 {
@@ -1112,16 +1179,51 @@ $.ajax({
 
 </script>
 
+
 <script>
+
+/*printjudgment1() function is used to print the judgment in single column layout on detail page
+  
+  Created By: Namit Singh
+
+  Date-Created : 15-April-2020
+
+*/
+
 function printjudgment1()
 {
   $.ajax({
   type:'GET',
-     xhrFields: {
-            responseType: 'blob'
-        },
-  url:'print-1',
- success: function (data) {
+  xhrFields: {
+          responseType: 'blob'
+      },
+  beforeSend:function(){
+          $('#loading_image4').show();
+          $('#loader_message4').show();
+          // $('#c1').hide();
+          // $('#c2').hide();
+          $('#c1').css("visibility","hidden");
+          $('#c2').css("visibility","hidden");
+          $('#loading_image4').css("visibility","visible");
+          $('#loader_message4').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image4').hide();
+          $('#loader_message4').hide(); 
+          $('#c1').css("visibility","visible");
+          $('#c2').css("visibility","visible");
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image4').css("visibility","hidden");
+          $('#loader_message').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
+          url:'print-1',
+ success: function (data) 
+ {
+         /*Login to Download PDF starts*/
+
             var a = document.createElement('a');
             var url = window.URL.createObjectURL(data);
             a.href = url;
@@ -1130,21 +1232,63 @@ function printjudgment1()
             a.click();
             a.remove();
             window.URL.revokeObjectURL(url);
+
+            /*Login to Download PDF Ends*/
+
+            /*Login to open PDF in New Tab Starts*/
+
+            // var a = document.createElement('a');
+            // var url = window.URL.createObjectURL(data);
+            // window.open(url);
+
+            /*Login to open PDF in New Tab Ends*/
         }
   });
 }
 </script>
 
 <script>
+
+/*printjudgment2() function is used to print the judgment in two column layout on detail page
+  
+  Created By: Namit Singh
+
+  Date-Created : 15-April-2020
+
+*/  
+
 function printjudgment2()
 {
   $.ajax({
   type:'GET',
-     xhrFields: {
-            responseType: 'blob'
-        },
+  xhrFields: {
+        responseType: 'blob'
+    },
+    beforeSend:function(){
+          $('#loading_image4').show();
+          $('#loader_message4').show();
+          $('#c1').css("visibility","hidden");
+          $('#c2').css("visibility","hidden");
+          $('#loading_image4').css("visibility","visible");
+          $('#loader_message4').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image4').hide();
+          $('#loader_message4').hide(); 
+          $('#c1').css("visibility","visible");
+          $('#c2').css("visibility","visible");
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image4').css("visibility","hidden");
+          $('#loader_message').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
   url:'print-2',
- success: function (data) {
+ success: function (data) 
+ {
+          /*Login to Download PDF Starts*/
+
             var a = document.createElement('a');
             var url = window.URL.createObjectURL(data);
             a.href = url;
@@ -1153,6 +1297,16 @@ function printjudgment2()
             a.click();
             a.remove();
             window.URL.revokeObjectURL(url);
+
+            /*Login to Download PDF Ends*/
+
+            /*Login to open PDF in New Tab Starts*/
+
+            // var a = document.createElement('a');
+            // var url = window.URL.createObjectURL(data);
+            // window.open(url);
+
+            /*Login to open PDF in New Tab Ends*/
         }
   });
 }

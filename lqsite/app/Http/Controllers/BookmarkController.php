@@ -17,6 +17,7 @@ class BookmarkController extends Controller
 	{
 	  $notecount = Notes::all()
       ->where('user_id','1')
+      ->where('trash','=','0')
       ->count();
 
     $bookmark = Bookmark::where('user_id','1')->paginate(5); 
@@ -95,18 +96,27 @@ class BookmarkController extends Controller
 
     public function generatePDF()
     {
-        $data = Judgment::all();
+        $data = DB::table('Judgment')
+        ->where('user_id','=','1')
+        ->where('id','=','1')
+        ->get();
+
         $pdf = PDF::loadView('pages.myPDF', compact('data'));
-        return $pdf->download($data[0]->title.'.pdf');
+        // return $pdf->download($data[0]->title.'.pdf');
+        return $pdf->download('my.pdf');
         // return $pdf->stream('my.pdf');    
     } 
 
     public function pdf()
     {
-        $data = Judgment::all();
+        $data = DB::table('Judgment')
+        ->where('user_id','=','1')
+        ->where('id','=','1')
+        ->get();
 
         $pdf = PDF::loadView('pages.myPDF2', compact('data'));
-        return $pdf->download($data[0]->title.'.pdf');
+        // return $pdf->download($data[0]->title.'.pdf');
+        return $pdf->download('my.pdf');
         // return $pdf->stream('print.pdf');  
     }
 }

@@ -603,26 +603,27 @@
       </div>
 
       <div class="modal-body bg-gray">
-
+        <div class="overlay">
+          <h5 id="loader_message4" style="display:none; text-align: center;">Downloading PDF Please Wait.....</h5>       
+          <img id="loading_image4" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
         <div class="row">
           <div class="col-sm-6 text-center">
-            <input type="hidden" value="1" id="print1">
             <h6 class="font-weight-bold mb-3">In One Column</h6>
-            <a class="print-item d-block position-relative">
-            <figure class="p-4 bg-white mb-4 rounded ">
-              <img  src="{{asset('public/images/onecolumn.png')}}" alt="" class="d-block w-100  shadow-sm">
+            <a id="c1" class="print-item d-block position-relative">
+            <figure  class="p-4 bg-white mb-4 rounded ">
+              <img src="{{asset('public/images/onecolumn.png')}}" alt="" class="d-block w-100  shadow-sm">
               <figcaption>
-                <span style="cursor: pointer;" target="_blank" onclick="printjudgment1();" class="mb-2"><i class='lni lni-printer'></i></span>
+                <span style="cursor: pointer;"  onclick="printjudgment1();" class="mb-2"><i class='lni lni-printer'></i></span>
               </figcaption>
             </figure>
             </a>
           </div>
-          <div class="col-sm-6 text-center">
-             <input type="hidden" value="2" id="print2">
+          <div  class="col-sm-6 text-center">
             <h6 class="font-weight-bold mb-3">In Two Column</h6>
-            <a class="print-item d-block position-relative">
+            <a id="c2" class="print-item d-block position-relative">
             <figure class="p-4 bg-white mb-4 rounded shadow-sm ">
-              <img src="{{asset('public/images/twocolumn.png')}}" alt="" class="d-block w-100">
+              <img  src="{{asset('public/images/twocolumn.png')}}" alt="" class="d-block w-100">
               <figcaption>
                 <span style="cursor: pointer;" target="_blank" onclick="printjudgment2();" class="mb-2"><i class='lni lni-printer'></i></span>
               </figcaption>

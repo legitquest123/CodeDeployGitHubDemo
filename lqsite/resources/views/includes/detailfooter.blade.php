@@ -100,6 +100,16 @@
      /* margin-left : -16px;
       margin-top : -16px;*/
   }
+  #loading_image4{
+      left : 41%;
+      top : 35%;
+      position : absolute;
+      z-index : 101;
+      width : 70px;
+      height : 70px;
+     /* margin-left : -16px;
+      margin-top : -16px;*/
+  }
 </style>
    <footer class="footer background--dark p-0 text-center">
                 <div class="container">

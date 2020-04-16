@@ -11,9 +11,9 @@
 </style>
 <body>
 	<htmlpageheader name="page-header">
-		<p style="text-align: center; font-size: 13px; font-weight: normal;">{{$data[0]->title}}</p><br>
+	<p style="text-align: center; border-bottom: 1px solid #ccc; padding-bottom: 1px; font-size: 13px; font-weight: normal;">{{$data[0]->title}}</p>
 	</htmlpageheader>
-<hr>
+	<br>
 	<htmlpagefooter name="page-footer">
 	    <img style="margin-top:20px;" src="{{asset('public/images/lq-logo.png')}}" alt="footer">
 	</htmlpagefooter>
@@ -35,7 +35,6 @@
 		<hr></hr>
 		<br>
 		<br>
-		<span style="font-size: 8px; color:green; text-align: justify;">{!!$data[0]->content!!}</span>
-</columns>
+		<div style="font-size: 12px; word-spacing: 3px; text-align: justify;">{!!$data[0]->content!!}</div></columns>
 </body>
 </html>
