@@ -96,7 +96,7 @@ class BookmarkController extends Controller
 
     public function generatePDF()
     {
-        $data = DB::table('Judgment')
+        $data = DB::table('judgment')
         ->where('user_id','=','1')
         ->where('id','=','1')
         ->get();
@@ -109,7 +109,7 @@ class BookmarkController extends Controller
 
     public function pdf()
     {
-        $data = DB::table('Judgment')
+        $data = DB::table('judgment')
         ->where('user_id','=','1')
         ->where('id','=','1')
         ->get();
