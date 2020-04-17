@@ -7,7 +7,7 @@
           <img class="" src="{{asset('public/images/lq-logo-m.png')}}" alt="legitquest" width="45px"></a>
 
 
-          <div class="search-filed-box search-bar-sm mx-4  mx-md-5 mx-lg-5 flex-fill">
+          <!-- <div class="search-filed-box search-bar-sm mx-4  mx-md-5 mx-lg-5 flex-fill">
             <div class="search-field">
               <input type="text" class="form-control border-0 search-input h-auto py-2" placeholder="Search by title, case number, issue, ...">
               <div class="form-control border-0 court-search-input  h-auto py-2">rtrt</div>
@@ -92,8 +92,7 @@
                   <h4 class="text-muted">Filters</h4>
                   <ul class="list-unstyled mb-3">
 
-                  <!-- <li data-powertip="We support over a dozen search filters. Read the documentation link below to learn more.">
-                    <div class='key'>By Court</div><a href='/search/?q=court%3A%22New+York%22'>court:"New York"</a></li> -->
+               
                   <li class="d-flex mb-1" data-powertip="We support over a dozen search filters. Read the documentation link below to learn more.">
                     <div class="key">By Judge</div><a href="#">judge:Posner</a></li>
                   <li class="d-flex mb-1" data-powertip="We support over a dozen search filters. Read the documentation link below to learn more.">
@@ -288,7 +287,320 @@
               </div>
             </div>
 
-          </div>
+          </div> -->
+          <div class="search-filed-box lq-search bg-white  d-flex align-items-center search-bar-sm   flex-fill">
+
+            <div class="position-relative flex-fill search-controls-containers">
+              <div id="free-text-box" class="search-field flex-fill show">
+                <input id="basics" class="form-control search-input" placeholder="Search by title, case number, issue, ..." >
+                <div class="search-dropdown p-3">
+                  <ul class="list-unstyled" >
+                      <li class="search-help-section-header text-muted">
+                          <div  class=""><small class="text-uppercase">Search techniques</small></div>
+                      </li>
+                      <li class="mb-2"><a class="row">
+                        <strong class="col-2 col-tag">(+)</strong>
+                        <small class="col-10 col-desc">
+                          <span  >Find documents containing all connected terms</span>
+                          <em  class="detail">personal + injury</em>
+                        </small></a>
+                      </li>
+                      <li class="mb-2"><a class="row">
+                        <strong class="col-2 col-tag">(-)</strong>
+                        <small class="col-10 col-desc">
+                          <span  >Excludes documents</span>
+                          <em  class="detail">personal - injury
+                            <small>finds documents with the word “personal” without  “injury”</small>
+                          </em>
+                        </small></a>
+                      </li>
+                      <li class="mb-2"><a class="row">
+                        <strong class="col-2 col-tag">w/#</strong>
+                        <small class="col-10 col-desc">
+                          <span >Find documents which have terms within a given proximity of each other.</span>
+                          <em  class="detail">personal w/5 injury
+                          <small>finds documents with “personal” within five words of “injury”</small>
+
+                          </em>
+                        </small>
+                      </a></li>
+                      <li class="mb-2"><a class="row">
+                        <strong class="col-2 col-tag">!</strong>
+                        <small class="col-10 col-desc">
+                          <span  >Stemming finds all words containing the root word</span>
+                          <em  class="detail">juris!
+                          <small>finds documents containing “jurisdiction”, “jurisprudence”, “juristic”, etc.</small>
+
+                          </em>
+                        </small>
+                      </a></li>
+                      <li class="mb-2"><a class="row">
+                        <strong class="col-2 col-tag">*</strong>
+                        <small class="col-10 col-desc">
+                          <span  >Find similar words with variations on single characters</span>
+                          <em  class="detail">wom*n
+                          <small>find documents containing either “woman” or “women”</small>
+
+                          </em>
+                        </small></a></li>
+
+                      <li class="mb-2"><a class="row">
+                        <strong class="col-2 col-tag">Filter Within</strong>
+                        <small class="col-10 col-desc">
+                          <span  >Any number of filter within the result</span>
+                          <em class="detail"></em>
+                        </small></a></li>
+                      <li class="mb-2"><a class="row">
+                        <strong class="col-2 col-tag">" "</strong>
+                        <small class="col-10 col-desc">
+                          <span  >Quote for the same phrase search</span>
+                          <em class="detail">"stop payment"; "non compliance of mandatory provisions"</em>
+                        </small></a></li>
+                      </ul>
+                </div>
+              </div>
+              <div id="citation-box" class="search-field flex-fill">
+                <input class="form-control journal-input search-input" placeholder="Search through Citation">
+                <div class="search-dropdown p-3">
+
+                    <div class="citation-list-container">
+                      <h4 class="text-center">Please enter your Citation in this format </h4>
+                      <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                          <div class="citation-list">
+                            <ul class="list-unstyled">
+                              <li>
+                                <strong>Supreme Court</strong>
+                              </li>
+                              <li>
+                              <span>AIR 1950 SC 1</span>
+                              </li>
+                              <li>
+                              <span>[1950 ] 1 SCR 64</span>
+                              </li><li>
+                              <span>JT 1986 (1) SC 178</span>
+                              </li>
+                              <li>
+                              <span>1981 (3) SCALE 1831</span>
+                              </li>
+                              <li>
+                              <span>(1970 ) 3 SCC 368</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="citation-list">
+                            <ul class="list-unstyled">
+                              <li>
+                                <strong>Patna</strong>
+                              </li>
+                              <li>
+                              <span>AIR 2000 Pat 331</span>
+                              </li>
+                              <li>
+                              <span>2000 (3) BLJR 2184</span>
+                              </li><li>
+                              <span>2000 (3)PLJR 241</span>
+                              </li>
+
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                          <div class="citation-list">
+                            <ul class="list-unstyled">
+                              <li>
+                                <strong>Delhi</strong>
+                              </li>
+                              <li>
+                              <span>1993 IVAD (Delhi ) 838</span>
+                              </li>
+                              <li>
+                              <span>AIR 1967 Delhi 65</span>
+                              </li><li>
+                              <span>3(1967 ) DLT 299</span>
+                              </li>
+                              <li>
+                              <span>1981 (2) DRJ 184</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="citation-list">
+                            <ul class="list-unstyled">
+                              <li>
+                                <strong>Punjab & Haryana</strong>
+                              </li>
+                              <li>
+                              <span>AIR 2014 P&H 139</span>
+                              </li>
+                              <li>
+                              <span>56 PLR 12 (1954 )</span>
+                              </li>
+
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                          <div class="citation-list">
+                            <ul class="list-unstyled">
+                              <li>
+                                <strong>Maharashtra</strong>
+                              </li>
+                              <li>
+                              <span>1997 (3) ALLMR 688</span>
+                              </li>
+                              <li>
+                              <span>AIR 1950 Bom 378</span>
+                              </li><li>
+                              <span>1982 (1) BomCR 236</span>
+                              </li>
+                              <li>
+                              <span>1981 (2) DRJ 184</span>
+                              </li>
+                              <li>
+                              <span>1963 MhLJ 503</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                          <div class="citation-list">
+                            <ul class="list-unstyled">
+                              <li>
+                                <strong>Calcutta</strong>
+                              </li>
+                              <li>
+                              <span>AIR 1950 Cal 573</span>
+                              </li>
+                              <li>
+                              <span>(1950 ) 1 CALLT 341 (HC )</span>
+                              </li><li>
+                              <span>2010 (1) CHN 237</span>
+                              </li>
+                              <li>
+                              <span>1971 (1) CLJ 314</span>
+                              </li>
+                              <li>
+                              <span>54 CWN 189</span>
+                              </li>
+                              <li>
+                              <span>(1952) ILR 2 Cal 352</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div id="judge-box" class="search-field flex-fill">
+                <input class="form-control search-input" placeholder="Judge name">
+              </div>
+              <div id="party-box" class="search-field flex-fill">
+                <input class="form-control search-input" placeholder="petitioner/respondent">
+              </div>
+              <div id="act-box" class="search-field flex-fill">
+                <input class="form-control search-input" placeholder="Act Name">
+                <input class="form-control section-input search-input" placeholder="Section">
+              </div>
+              <div id="act-search-box" class="search-field flex-fill">
+                <input class="form-control search-input" placeholder="Search bare Act">
+              </div>
+              <div class="search-btn">
+                <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+              </div>
+            </div>
+            <div class="search-select">
+              <button class="btn btn-primary select-btn px-3 " data-toggle="collapse" href="#select-dropdown" role="button" aria-expanded="false" aria-controls="select-dropdown">
+                All
+              </button>
+              <div class="collapse" id="select-dropdown">
+                <div class="card card-body p-3">
+                  <div class="select-block mb-4">
+                    <strong class="d-block mb-2">Case Law</strong>
+                    <ul class="m-0 p-0 list-unstyled">
+                      <li class="mb-1">
+                        <div class="select-radio">
+                          <div class="select-radio-inner">
+                            <span>Free text search</span>
+                            <label class="mb-0">
+                              <input class="d-none" type="radio" name="search-radio" value="free-text-box" checked>
+                              <span>All</span>
+                            </label>
+                          </div>
+
+                        </div>
+                      </li>
+                      <li class="mb-1">
+                        <div class="select-radio">
+                          <div class="select-radio-inner">
+                            <span>Name-Year-Vol-Page</span>
+                            <label class="mb-0">
+                              <input  class="d-none" type="radio" name="search-radio" value="citation-box">
+                              <span>Citation</span>
+                            </label>
+                          </div>
+
+                        </div>
+                      </li>
+                      <li class="mb-1">
+                        <div class="select-radio">
+                          <div class="select-radio-inner">
+                              <span>Last name – first name</span>
+                              <label class="mb-0">
+                                <input class="d-none" type="radio" name="search-radio" value="judge-box">
+                                <span>Judge Name</span>
+                              </label>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="mb-1">
+                        <div class="select-radio">
+                          <div class="select-radio-inner">
+                            <span>Petitioner - respondent</span>
+                            <label class="mb-0">
+                              <input class="d-none" type="radio" name="search-radio" value="party-box">
+                              <span>Party Name</span>
+                            </label>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="mb-1">
+                        <div class="select-radio">
+                          <div class="select-radio-inner">
+                            <span>Act name- Section</span>
+                            <label class="mb-0">
+                              <input class="d-none" type="radio" name="search-radio" value="act-box">
+                              <span>Act Name</span>
+                            </label>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="select-block">
+                    <strong class="d-block mb-2">Bare Act Search</strong>
+                    <ul class="m-0 p-0 list-unstyled">
+                      <li>
+                        <div class="select-radio">
+                          <div class="select-radio-inner">
+                            <span>Search bare Act</span>
+                            <label>
+                              <input class="d-none" type="radio" name="search-radio" value="act-search-box">
+                              <span>Act Name</span>
+                            </label>
+                          </div>
+
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>   
         <button class="navbar-toggler border-0" type="button" data-toggle="offcanvas">
           <i class="navbar-toggler__bar navbar-toggler__bar--top"></i>
           <i class="navbar-toggler__bar navbar-toggler__bar--middle"></i>

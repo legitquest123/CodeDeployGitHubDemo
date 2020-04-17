@@ -173,9 +173,7 @@ body.menu-open{
   filter: url("https://gist.githubusercontent.com/amitabhaghosh197/b7865b409e835b5a43b5/raw/1a255b551091924971e7dee8935fd38a7fdf7311/blur".svg#blur);
 filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='4');
 }
-.nav--has-sub-menu:not(.show) .dropdown-menu {
-  display: none !important
-}
+
 .sidebar-menu-header{
       border-bottom: 1px solid #ffffff08;
 }

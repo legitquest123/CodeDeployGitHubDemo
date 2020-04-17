@@ -12,28 +12,22 @@
 |
 */
 
-Route::any('/judgment','JudgmentListController@judgment');
+// Route::any('/judgment','JudgmentListController@judgment');
 
-Route::any('getMetadata', 'JudgmentListController@getMetadata');
-Route::any('getCaseDetailsByBenchFilter', 'JudgmentListController@getCaseDetailsByBenchFilter');
+// Route::any('getMetadata', 'JudgmentListController@getMetadata');
+// Route::any('getCaseDetailsByBenchFilter', 'JudgmentListController@getCaseDetailsByBenchFilter');
 
 Route::get('/', 'HomeController@index');
 
-// Route::get('/judgment', function(){
-//    return view('pages.judgment');
-// });
+Route::get('/judgment', function(){
+   return view('pages.judgment');
+});
 
-// Route::get('/detail', function(){
-//    return view('pages.detail');
-// });
 
 Route::get('/coverage', function(){
    return view('pages.coverage');
 });
 
-// Route::get('/notes', function(){
-//    return view('pages.notes');
-// });
 
 Route::get('/bookmark', function(){
    return view('pages.bookmark');

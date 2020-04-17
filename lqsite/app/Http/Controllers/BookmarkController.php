@@ -13,6 +13,19 @@ use PDF;
 class BookmarkController extends Controller
 {
 
+  /*Index() function is used to retunr data for login user
+
+     @returns 
+
+     $notecount for login user
+     $bookmark Bookmark for login user
+     $bookmarkcount for login user
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+  */
+
 	public function index()
 	{
 	  $notecount = Notes::all()
@@ -28,6 +41,13 @@ class BookmarkController extends Controller
 
     return view('pages.bookmark',compact('notecount','bookmark','bookmarkcount'));
 	}
+
+    /*saveBookmark() function is used to save newly added bookmark
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+    */
 
     public function saveBookmark(Request $request)
     {
@@ -57,6 +77,13 @@ class BookmarkController extends Controller
         
     }
 
+    /*deleteBookmark() function is used to deletebookmark from bookmark page
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+    */
+
     public function deleteBookmark(Request $request)
     {
       $id = $request->id;
@@ -68,6 +95,14 @@ class BookmarkController extends Controller
       else
         echo "Fail to Delete Bookmark!";
     }
+
+
+    /*saveProblemArea() function is used to save a problem of Report A Problem Popup
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+    */
 
     public function saveProblemArea(Request $request)
     {
@@ -84,15 +119,12 @@ class BookmarkController extends Controller
         echo "Fail to Report a Problem";
     }
 
-        /**
+    /*generatePDF() function is used to generatePDF for one Column Layout
 
-     * Display a listing of the resource.
+     Created By: Namit Singh
 
-     *
-
-     * @return \Illuminate\Http\Response
-
-     */
+     Date-Created: 15-April-2020 
+    */
 
     public function generatePDF()
     {
@@ -106,6 +138,14 @@ class BookmarkController extends Controller
         return $pdf->download('my.pdf');
         // return $pdf->stream('my.pdf');    
     } 
+
+
+    /*pdf() function is used to generatePDF for two Column Layout
+
+     Created By: Namit Singh
+
+     Date-Created: 15-April-2020 
+    */
 
     public function pdf()
     {

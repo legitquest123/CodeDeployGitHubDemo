@@ -13,6 +13,27 @@ use Illuminate\Support\Facades\Mail;
 use DB;
 class NotesController extends Controller
 {
+
+  /**Index() function  is returning all required data for particular user.
+    
+        @return $data  All Notes data of login user.
+
+        $trashdata All Trash data for login user.
+
+        $notebookdata All Notebooks for login user
+
+        $notecount No of notes for login user
+
+        $bookmarkcount No of bookmarks for login user 
+
+        $sharenote All Shared notes for login user.
+
+    Created By: Namit Singh
+
+    Date-Created: 12-April-2020
+
+  */
+
     public function index()
     {
     	$data = Notes::orderBy('id','desc')
@@ -46,6 +67,15 @@ class NotesController extends Controller
 
     	return view('pages.notes',compact('data','trashdata','notebookdata','notecount','bookmarkcount','sharenote'));
     }
+
+
+    /*detail() function is returning data of notes on detail page
+
+      Created By: Namit Singh
+
+      Date-Created: 12-April-2020
+    */
+
     public function detail()
     {
     	$data = Notes::orderBy('id','desc')
@@ -58,7 +88,12 @@ class NotesController extends Controller
     }
 
 
-    /*Adding NOtes From Detail Page*/
+    /*addNote () is Adding Notes From Detail Page
+      
+      Created By: Namit Singh
+
+      Date-Created: 12-April-2020
+    */
 
     public function addNote(Request $request)
     {
@@ -80,7 +115,12 @@ class NotesController extends Controller
 
 
 
-  /*Adding Notes From Note Page*/
+  /*addingnote() function is used for Adding Notes From Note Page
+     
+     Created By: Namit Singh
+
+     Date-Created: 13-April-2020
+  */
 
     public function addingnote(Request $request)
     {
@@ -101,7 +141,12 @@ class NotesController extends Controller
     }
 
 
-    /*Add Notes From Notebook*/
+    /*addingNoteFromNotebook() function is used to Add Notes From Notebook
+
+     Created By: Namit Singh
+
+     Date-Created: 13-April-2020 
+    */
 
     public function addingNoteFromNotebook(Request $request)
     {
@@ -121,6 +166,17 @@ class NotesController extends Controller
       else
         return redirect()->back()->with('error','Fail to Save Note');
     }
+
+
+
+     /*getNoteDetail() function is used to get The Detail of particular note
+
+     @returns HTML view to show detail of notes
+
+     Created By: Namit Singh
+
+     Date-Created: 13-April-2020 
+    */
 
     public function getNoteDetail(Request $request)
     {
@@ -145,6 +201,14 @@ class NotesController extends Controller
     	return $view;
     }
 
+
+    /*addnoteBook() function is used to Add Notebook
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+    */
+
     public function addNoteBook(Request $request)
     {
     	  $obj = new NoteBook;
@@ -157,61 +221,56 @@ class NotesController extends Controller
 	    	if($save)
 	    		return redirect()->back()->with('success','NoteBook Added Successfully!');
 	    	else
-	    		return redirect()->back()->with('error','Fail to Add NoteBook');	    		
-    	// else
-     //  {
-    	// 	$obj->parent_id = $request->parent_id;
-	    // 	$obj->user_id = '1';
-	    // 	$obj->name = $request->name;
-	    // 	$obj->description = $request->description;
-	    // 	$obj->date_created  = date('Y-m-d');
-	    // 	$save = $obj->save();
-	    // 	if($save)
-	    // 		return redirect()->back()->with('success','NoteBook Added Successfully!');
-	    // 	else
-	    // 		return redirect()->back()->with('error','Fail to Add NoteBook');	
-    	// }
+	    		return redirect()->back()->with('error','Fail to Add NoteBook');
     	
     }
+    
+    // public function getNoteBookNotes(Request $request)
+    // {
+    //   $id = $request->id;	
+    //   $getnotes = Notes::where('notebook_id','=',$id)->get();
 
-    public function getNoteBookNotes(Request $request)
-    {
-      $id = $request->id;	
-      $getnotes = Notes::where('notebook_id','=',$id)->get();
+    //   $view = '';
+    // 	foreach($getnotes as $value)
+    // 	{
+    // 		$view .= '<h4 class="h4 card-title d-block mb-1 font-weight-bold" >'.$value['title'].'</h4>
+    //                     <hr class="mb-3">
+    //                     <div class="row mb-2">
+    //                       <div style="text-align:justify;" class="col-sm-12 b-b">
+    //                         <div class="label" style="font-size:15px; font-weight:bold; padding:0px 0px 10px 0px;"></div>
+    //                         <h4 style="padding:6px 0px 10px 0px;">'.$value['title'].'</h4>
+    //                         <p style="font-size:13px; text-align:justify;">'.$value['description'].'</p>
+    //                         <div class="label" style="font-size:12px; margin-bottom:4px;">'.$value['date_created'].'</div>
+    //                       </div>
+    //                     </div>';
+    // 	}
+    // 	return $view;
+    // }
 
-      $view = '';
-    	foreach($getnotes as $value)
-    	{
-    		$view .= '<h4 class="h4 card-title d-block mb-1 font-weight-bold" >'.$value['title'].'</h4>
-                        <hr class="mb-3">
-                        <div class="row mb-2">
-                          <div style="text-align:justify;" class="col-sm-12 b-b">
-                            <div class="label" style="font-size:15px; font-weight:bold; padding:0px 0px 10px 0px;"></div>
-                            <h4 style="padding:6px 0px 10px 0px;">'.$value['title'].'</h4>
-                            <p style="font-size:13px; text-align:justify;">'.$value['description'].'</p>
-                            <div class="label" style="font-size:12px; margin-bottom:4px;">'.$value['date_created'].'</div>
-                          </div>
-                        </div>';
-    	}
-    	return $view;
-    }
+    // public function showtrash()
+    // {
+    // 	$tdata = Notes::all()
+    //   ->where('trash' ,'=',1)
+    //   ->where('user_id','1');
 
-    public function showtrash()
-    {
-    	$tdata = Notes::all()
-      ->where('trash' ,'=',1)
-      ->where('user_id','1');
+    //   $notecount = Notes::all()
+    //   ->where('user_id','1')
+    //   ->count();
 
-      $notecount = Notes::all()
-      ->where('user_id','1')
-      ->count();
+    //   $bookmarkcount = Bookmark::all()
+    //   ->where('user_id','1')
+    //   ->count();
 
-      $bookmarkcount = Bookmark::all()
-      ->where('user_id','1')
-      ->count();
+    // 	return view('pages.trash',compact('tdata','notecount','bookmarkcount'));
+    // }
 
-    	return view('pages.trash',compact('tdata','notecount','bookmarkcount'));
-    }
+    
+   /*deletetrash() function is used to Empty Trash 
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+    */
 
     public function deletetrash()
     {
@@ -221,11 +280,17 @@ class NotesController extends Controller
 
     	if($delete)
         echo "Trash Empty Successfully!";
-    		// return redirect()->back()->with('success','Trash Empty Successfully!');
     	else
         echo "Trash is Aleady Empty!";
-    		// return redirect()->back()->with('error','Trash is already empty');
     }
+    
+
+    /*deletenote() function is used to move notes to trash
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+    */
 
     public function deletenote(Request $request)
     {
@@ -243,11 +308,17 @@ class NotesController extends Controller
       }
       else
       {
-        // $note->trash = '0';
         echo "Already in Trash";
       }
-    	// $delete = $note->delete();		
     }
+
+
+    /*generateurl() function is generating url to fill in sharenote popup
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+    */
 
     public function generateurl(Request $request)
     {
@@ -265,6 +336,14 @@ class NotesController extends Controller
        return $arr; 
     }
 
+
+    /*sharenote() function is used to sharenotes
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+    */
+
     public function sharenote(Request $request)
     { 
       $email = $request->email;  
@@ -274,7 +353,6 @@ class NotesController extends Controller
       if($count > 0)
       {
           $user_id = DB::table('users')->where('email','=',$request->email)->pluck('id');
-          // dd($user_id[0]); 
           $obj->note_id = $request->noteid;
           $obj->from_user_id = $from_user_id;
           $obj->to_user_id = $user_id[0];
@@ -283,7 +361,6 @@ class NotesController extends Controller
           if($save)
            {
                 Mail::to($email)->send(new NoteMail($request->firstname));
-                // return redirect()->back()->with('success','Note Share Successfully!');
                 echo "Notes Shared Successfully!";   
            }
             else
@@ -294,6 +371,14 @@ class NotesController extends Controller
         echo "Email id not exists";
       }
     }
+
+
+   /*getemails() function is used to for automcomplete emails in sharenotes popup
+
+     Created By: Namit Singh
+
+     Date-Created: 13-April-2020 
+    */
 
     public function getemails(Request $request)
     {
@@ -314,6 +399,13 @@ class NotesController extends Controller
         }
     }
 
+    
+    /*deletenotebook() function is used to deletenotebook and notes attach with notebook
+
+     Created By: Namit Singh
+
+     Date-Created: 13-April-2020 
+    */ 
 
     public function deletenotebook(Request $request)
     {
@@ -336,6 +428,16 @@ class NotesController extends Controller
       }
     }
 
+
+    /*getnotebookdata() function is used to get notes which are in notebook
+
+     @return notes ul and li form 
+
+     Created By: Namit Singh
+
+     Date-Created: 13-April-2020 
+    */
+
     public function getnotebookdata(Request $request)
     {
       $id = $request->id;
@@ -350,6 +452,14 @@ class NotesController extends Controller
       }
       return $view;
     }
+
+
+    /*undoTrash() function is used to undo notes which are in trash
+
+     Created By: Namit Singh
+
+     Date-Created: 13-April-2020 
+    */
 
     public function undoTrash(Request $request)
     {
@@ -366,6 +476,14 @@ class NotesController extends Controller
       }
     }
 
+
+    /*emptytrash() function is used to delete notes permasnently from trash
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+    */
+
     public function emptytrash(Request $request)
     {
       
@@ -378,12 +496,29 @@ class NotesController extends Controller
         echo "Fail to Delete Note!";
     }
 
+
+
+    /*getNotebookNotesDetail() function is used to get details of notes of particular notebook
+
+     Created By: Namit Singh
+
+     Date-Created: 14-April-2020 
+    */
+
     public function getNotebookNotesDetail(Request $request)
     {
       $id = $request->id;
       $data = Notes::find($id);
       return $data;
     }
+
+
+    /*moveNote() function is used to move notes in notebook
+
+     Created By: Namit Singh
+
+     Date-Created: 15-April-2020 
+    */
 
     public function moveNote(Request $request)
     {

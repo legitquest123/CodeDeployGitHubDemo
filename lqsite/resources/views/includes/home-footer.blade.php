@@ -85,13 +85,13 @@
                 <div class="address_box">
                     <div class="d-flex">
                         <span class="mr-3">
-                          <img width="20px" src="./images/singapore.svg" alt="Singapore Flag" class="flag">
+                          <img width="20px" src="{{asset('public/images/singapore.svg')}}" alt="Singapore Flag" class="flag">
                         </span>
                         <p class="contact-info footer-text"> 519 Balestier Road, #02-03 Le Shantier, Singapore 329852</p>
                     </div>
                     <div class="d-flex">
                         <span class="mr-3">
-                          <img width="20px" src="./images/india.svg" alt="India Flag" class="flag">
+                          <img width="20px" src="{{asset('public/images/india.svg')}}" alt="India Flag" class="flag">
                         </span>
                         <p class="contact-info footer-text">   A-149,Block A, LGF, Defence Colony, New Delhi, India - 110024.</p>
                     </div>
@@ -103,7 +103,7 @@
         <div class="col-12">
           <div class="footer-copyright-column d-md-flex justify-content-between align-items-center">
             <div class="copyright">
-              <p>©2019 - legitquest. All rights reserved.</p>
+              <p>{{Helpers::getCopyRightData()}}</p>
             </div>
 
             <ul class="social-icons ml-auto mb-0">
