@@ -112,6 +112,7 @@
 
                         <hr class="mb-3">
                         <div class="row mb-2">
+                       @if(count($trashdata) > 0)   
                        @foreach($trashdata as $value)
                        <div class="col-sm-12 b-r b-r-s b-b" style="text-align: justify; padding-bottom:25px; padding-top:13px;">
                             <h5 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h5>
@@ -121,7 +122,9 @@
                              <a style="margin-right: 10px;float:right; font-size: 12px; cursor: pointer; color:#000;" title="Delete note permanently" class="ml-2" data-toggle="modal" data-target="#deletemodal12" href="#" onclick="getId({{$value->id}});"><i class="fas fa-trash"></i></a>
                        </div>
                        @endforeach
-
+                       @else
+                       <p style="margin-left: 10px;">No Notes found</p>
+                       @endif 
                         </div>
                       {{$trashdata->links()}}
                       </div>
@@ -132,16 +135,20 @@
                         <h4 class="h4 card-title d-block mb-1 font-weight-bold" >Shared with me</h4>
                         <hr class="mb-3">
                         <div class="row mb-2">
+                       @if(count($sharenote) > 0)   
                        @foreach($sharenote as $key=> $value)
                        <div class="col-sm-12 b-r b-r-s b-b" style="padding-bottom:15px; padding-bottom:13px; text-align: justify;">
                             <h5 style="cursor: pointer; color:#3646eb;" onclick="getNoteDetail({{$value->id}});">{{$value->title}}</h5>
                             <p style="font-size:12px;">{{$value->date_created}}</p>
                             <div class="label" style="font-size:12px;"></div>
                              <i title="Share" data-toggle="modal" data-target="#shareform" onclick="generateURL({{$value->id}});" style="float:right; font-size: 12px; cursor: pointer;" class="fas fa-share"></i>
-                             <i title="Move to trash" data-toggle="modal" data-target="#deletemodal1" onclick="getNoteId({{$value->id}});" style="float:right; font-size: 12px; margin-right: 8px; cursor: pointer;" class="fas fa-trash"></i>
+                             <i title="Move to trash" data-toggle="modal" data-target="#deletemodal2" onclick="getNoteIdShare({{$value->id}});" style="float:right; font-size: 12px; margin-right: 8px; cursor: pointer;" class="fas fa-trash"></i>
                              <i data-toggle="modal" title="Move note to Notebook" data-target="#movenotemodal" onclick="getMoveNoteId({{$value->id}});" style="float: right; cursor: pointer; font-size: 12px; margin-right: 5px;" class="icon-move" aria-hidden="true"></i>
                        </div>
                        @endforeach
+                        @else
+                       <p style="margin-left: 10px;">No Notes found</p>
+                       @endif 
                         </div>
                       {{$sharenote->links()}}
                       </div>
@@ -341,7 +348,7 @@
       <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
         <div class="modal-body">
           <input type="hidden" id="deletenote">
-          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message1"></div>
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:30px;" id="message1"></div>
           <div class="overlay">
           <h5 id="loader_message2" style="display:none; text-align: center;">Moving to Trash..</h5>       
           <img id="loading_image2" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
@@ -351,6 +358,27 @@
         <div style="border-style:none;" class="modal-footer">
           <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-danger btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
           <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" onclick="deletenote();" class="btn btn-success btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Move note to trash modal starts here -->
+  <div class="modal" id="deletemodal2" role="dialog">
+    <div class="modal-dialog">
+      <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="deletenotefromshare">
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:30px;" id="message8"></div>
+          <div class="overlay">
+          <h5 id="loader_message8" style="display:none; text-align: center;">Moving to Trash..</h5>       
+          <img id="loading_image8" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+        </div>
+          <p>Are you sure you want to move this note to trash?</p>
+        </div>
+        <div style="border-style:none;" class="modal-footer">
+          <button style="padding-left:10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-danger btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button style="padding-left:8px; padding-right: 8px; padding-top: 5px; padding-bottom: 5px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" onclick="deletenoteshare();" class="btn btn-success btn-sm"><i class="fa fa-check" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
@@ -366,10 +394,10 @@
       <div style="width:63%; margin:auto; border-radius:0px;" class="modal-content">
         <div class="modal-body">
           <input type="hidden" id="trashnote">
-          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message1"></div>
+          <div style="display: none; margin:auto; font-size: 14px; color:green; margin-left:50px;" id="message7"></div>
           <div class="overlay">
-          <h5 id="loader_message2" style="display:none; text-align: center;">Moving to Notes..</h5>       
-          <img id="loading_image2" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
+          <h5 id="loader_message7" style="display:none; text-align: center;">Moving to Notes..</h5>    
+          <img id="loading_image7" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
         </div>
           <p>Are you sure you want to Undo trash this 
           Note?</p>

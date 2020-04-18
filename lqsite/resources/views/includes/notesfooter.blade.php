@@ -73,6 +73,26 @@
      /* margin-left : -16px;
       margin-top : -16px;*/
   }
+   #loading_image7{
+      left : 41%;
+      top : 35%;
+      position : absolute;
+      z-index : 101;
+      width : 50px;
+      height : 50px;
+     /* margin-left : -16px;
+      margin-top : -16px;*/
+  }
+  #loading_image8{
+      left : 41%;
+      top : 35%;
+      position : absolute;
+      z-index : 101;
+      width : 50px;
+      height : 50px;
+     /* margin-left : -16px;
+      margin-top : -16px;*/
+  }
   
  </style>
    <footer class="footer background--dark pt-0">

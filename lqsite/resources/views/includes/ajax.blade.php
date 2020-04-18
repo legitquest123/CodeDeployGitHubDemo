@@ -485,7 +485,7 @@ function showNotebookNote(id)
           $('#loading_image2').hide();
           $('#loader_message2').hide(); 
           $('.modal-body').css("visibility","visible");
-          $('#loading_image1').css("visibility","hidden");
+          $('#loading_image2').css("visibility","hidden");
           $('#loader_message2').css("visibility","hidden");
           $('.modal-header').css("visibility","visible");
           },
@@ -504,6 +504,49 @@ function showNotebookNote(id)
     // event.preventDefault();   
   }
 
+</script>
+
+
+<script>
+  function getNoteIdShare(id)
+  {
+    $('#deletenotefromshare').val(id); 
+  }
+  function deletenoteshare()
+  {
+    alert();
+    var id = $('#deletenotefromshare').val();
+       $.ajax({
+          type:'POST',
+          url:'delete-note-from-share',
+          beforeSend:function(){
+          $('#loading_image8').show();
+          $('#loader_message8').show();
+          $('#loading_image8').css("visibility","visible");
+          $('#loader_message8').css("visibility","visible");
+          $('.modal-body').css("visibility","hidden");
+          $('.modal-header').css("visibility","hidden");
+          },
+          complete:function(){
+          $('#loading_image8').hide();
+          $('#loader_message8').hide(); 
+          $('.modal-body').css("visibility","visible");
+          $('#loading_image8').css("visibility","hidden");
+          $('#loader_message8').css("visibility","hidden");
+          $('.modal-header').css("visibility","visible");
+          },
+          data:{
+        '_token':'{{csrf_token()}}',
+          id:id,
+          },
+          success:function(data){
+          // alert(data);
+          $('#message8').show();
+          $('#message8').html(data);
+           location.reload(true);
+          }
+       });
+  }
 </script>
 
 <script>
@@ -768,25 +811,25 @@ function showNotebookNote(id)
     type:'POST',
     url:'undotrash',
     beforeSend:function(){
-          $('#loading_image2').show();
-          $('#loader_message2').show();
-          $('#loading_image2').css("visibility","visible");
-          $('#loader_message2').css("visibility","visible");
+          $('#loading_image7').show();
+          $('#loader_message7').show();
+          $('#loading_image7').css("visibility","visible");
+          $('#loader_message7').css("visibility","visible");
           $('.modal-body').css("visibility","hidden");
           $('.modal-header').css("visibility","hidden");
           },
           complete:function(){
-          $('#loading_image2').hide();
-          $('#loader_message2').hide(); 
+          $('#loading_image7').hide();
+          $('#loader_message7').hide(); 
           $('.modal-body').css("visibility","visible");
-          $('#loading_image2').css("visibility","hidden");
-          $('#loader_message2').css("visibility","hidden");
+          $('#loading_image7').css("visibility","hidden");
+          $('#loader_message7').css("visibility","hidden");
           $('.modal-header').css("visibility","visible");
           },
     data:{'_token':'{{csrf_token()}}',id:id},
     success:function(data){
-      $('#message').show();
-      $('#message').html(data);
+      $('#message7').show();
+      $('#message7').html(data);
       location.reload(true);
     }
   });

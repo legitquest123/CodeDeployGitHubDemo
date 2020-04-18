@@ -63,6 +63,7 @@ class NotesController extends Controller
       ->join('note as n1','s.note_id','=','n1.id')
       ->where('s.to_user_id','=','1')
       ->where('n1.user_id','=','1')
+      ->where('s.trash','=','0')
       ->paginate(4);
 
     	return view('pages.notes',compact('data','trashdata','notebookdata','notecount','bookmarkcount','sharenote'));
@@ -306,9 +307,44 @@ class NotesController extends Controller
           else
           echo "Fail to Move notes";
       }
+      else 
+      {
+        echo "Already in Trash!";
+      }
+    }
+
+    public function deleteNoteFromShare(Request $request)
+    {
+      $id = $request->id;
+      // dd($id);
+      $note = Notes::find($id);
+      if($note->trash == '0')
+      {
+        $note->trash = '1';
+        $note->save();
+        // $noteshare = ShareNote::find('note_id','=',$id);
+        // $noteshare->trash = '1';
+        // $trash = $noteshare->save();
+         $trash = DB::table('share_note')
+              ->where('note_id', $id)
+              ->update(['trash' => '1']);
+
+        if($trash)
+        {
+          // $noteshare->trash = '1';
+          echo "Notes move to Trash Successfully!";  
+        }
+      }
       else
       {
-        echo "Already in Trash";
+        // $noteshare = ShareNote::where('note_id','=',$id)->get();
+       
+        $trash = DB::table('share_note')
+              ->where('note_id', $id)
+              ->update(['trash' => '1']);
+
+        if($trash)
+        echo "Note move to trash Successfully!";
       }
     }
 
