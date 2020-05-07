@@ -106,6 +106,7 @@ class BookmarkController extends Controller
 
     public function saveProblemArea(Request $request)
     {
+      // dd($request);
       $obj = new ReportProblem();
       $obj->user_id = '1';
       $obj->problem_area = implode(",",$request->problem_area);

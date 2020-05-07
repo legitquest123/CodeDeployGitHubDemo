@@ -11,30 +11,30 @@
 </style>
 <body>
 	<htmlpageheader name="page-header">
-	<p style="text-align: center; border-bottom: 1px solid #ccc; padding-bottom: 1px; font-size: 13px; font-weight: normal;">{{$data[0]->title}}</p>
+	<p style="text-align: center; border-bottom: 1px solid #ccc; padding-bottom: 1px; font-size: 13px; font-weight: normal;">{{$data[0]->Petitioner}} V. {{$data[0]->Responder}}</p>
 	</htmlpageheader>
 	<br>
 	<htmlpagefooter name="page-footer">
 	    <img style="margin-top:20px;" src="{{asset('public/images/lq-logo.png')}}" alt="footer">
 	</htmlpagefooter>
 	<columns column-count="2">
-		<h3 style="text-align:center; font-size: 23px;"><b>{{$data[0]->court_name}}</b></h3>
-		<p style="text-align: center; font-size: 18px">{{$data[0]->appeal_no}}</p></br>
+		<h3 style="text-align:center; font-size: 23px;"><b>Supreme Court</b></h3>
+		<p style="text-align: center; font-size: 18px">{{$data[0]->CaseNo}}</p></br>
 		<br>
 
 		<p style="text-align: center; font-size: 17px;"><u>Judgment Date:</u></p>
-		<p style="text-align: center; font-size: 15px;">{{$data[0]->judgment_date}}</p>
-		<span style="font-size: 15px;">{{$data[0]->petitioner}}</span>
+		<p style="text-align: center; font-size: 15px;">{{$data[0]->DateOfJudgement}}</p>
+		<span style="font-size: 15px;">{{$data[0]->Petitioner}}</span>
 		<span style="font-size: 20px;"><b>..Petitioner</b></span><br><br>
-		<span style="font-size: 15px;">{{$data[0]->respondent}}</span>
+		<span style="font-size: 15px;">{{$data[0]->Responder}}</span>
 		<span style="font-size: 20px;"><b>..Respondent</b></span><br><br>
 
 		<p style="text-align: center; font-size: 19px;"><u>Bench:</u></p>
-		<p style="text-align: center; font-size: 17px;"><b>{{$data[0]->bench}}</b></p>
+		<p style="text-align: center; font-size: 17px;"><b>{{$data[0]->Bench}}</b></p>
 		<p style="text-align: center; font-size: 19px;"><u>Citation:</u></p></br></br>
 		<hr></hr>
 		<br>
 		<br>
-		<div style="font-size: 12px; word-spacing: 3px; text-align: justify;">{!!$data[0]->content!!}</div></columns>
+		<div style="font-size: 12px; word-spacing: 3px; text-align: justify;">{!!$data[0]->Judgement!!}</div></columns>
 </body>
 </html>

@@ -72,12 +72,15 @@
                     <button type="button" class="btn btn-default py-0 bookmark-btn" data-toggle="tooltip" data-placement="left" title="Bookmark">
                       <i onclick="saveBookMark();" class="lni-bookmark"></i>
                     </button>
+
                     <button id="nightmode" type="button" class="btn btn-default py-0" data-toggle="tooltip" data-placement="left" title="Night Mode">
                       <i onclick="changeModeNight();" class="lni-night"></i>
                     </button>
+
                     <button style="display: none;" id="lightmode" type="button" class="btn btn-default py-0" data-toggle="tooltip" data-placement="left" title="Light Mode">
                       <i onclick="changeModeLight();" class="lni-sun"></i>
                     </button>
+                    
                     <button type="button" class="btn btn-default py-0" data-toggle="modal" data-target="#report-problem-form">
                       <i class="lni-emoji-sad" data-toggle="tooltip" data-placement="left" title="Report a problem"></i>
                     </button>
@@ -464,7 +467,6 @@
                  <hr>
                 @endforeach   
               </div>
-
             </div>
           </div>
         </div>
@@ -547,7 +549,7 @@
 <!--Modal for Showing Success Message in Bookmark Ends here-->
 
 
-  <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade report-problem-form" data-backdrop="static" data-keyboard="false" id="report-problem-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
@@ -587,7 +589,6 @@
       </div>
     </div>
   </div>
-</form>
 </div>
 
 
@@ -649,7 +650,7 @@
           <h5 id="loader_message2" style="display:none; text-align: center;">Deleting Note..</h5>       
           <img id="loading_image2" style="display:none;" height="60" width="60" src="{{asset('public/images/loader.gif')}}">
         </div>
-          <p>Are you sure you want to delete this note?</p>
+          <p>Are you sure you want to move this note to trash?</p>
         </div>
         <div style="border-style:none;" class="modal-footer">
           <button style="padding-left:10px; padding-right: 10px; padding-top: 3px; font-size: 15px; border-radius: 0px; color:#fff;" type="button" class="btn btn-success btn-sm pull-right" onclick="removemessage();" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
